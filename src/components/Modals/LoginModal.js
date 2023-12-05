@@ -1,49 +1,49 @@
+import React from "react";
+import { Form, FormGroup } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
-function LoginModal(props) {
-  return (
-    <Modal
-      {...props}
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
-    >
-      <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">
-          Modal heading
-        </Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        <h4>Centered Modal</h4>
-        <p>
-          Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-          dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-          consectetur ac, vestibulum at eros.
-        </p>
-      </Modal.Body>
-      <Modal.Footer>
-        <Button onClick={props.onHide}>Close</Button>
-      </Modal.Footer>
-    </Modal>
-  );
-}
-
-function App() {
-  const [modalShow, setModalShow] = React.useState(false);
-
+const LoginModal = (props) => {
   return (
     <>
-      <Button variant="primary" onClick={() => setModalShow(true)}>
-        Launch vertically centered modal
-      </Button>
+      <Modal
+        {...props}
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+        className="loginModal"
+      >
+        <Modal.Header closeButton className="border-0"></Modal.Header>
+        <Modal.Body>
+          <h2>Login</h2>
+          <p>Just email and password and you’re good to go</p>
+          <Form>
+            <FormGroup className="mb-3" controlId="formBasicEmail">
+              <Form.Control type="email" placeholder="Enter email" />
+            </FormGroup>
 
-      <MyVerticallyCenteredModal
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-      />
+            <FormGroup controlId="formBasicPassword">
+              <Form.Control type="password" placeholder="Password" />
+            </FormGroup>
+            <Button className="btnsign">Sign up</Button>
+            <div className="d-flex flex-column align-items-center">
+              <Button className="btncontinue">
+                <img
+                  className="me-3"
+                  src="/images/googleIcon.svg"
+                  alt="goole"
+                />
+                Continue with Google
+              </Button>
+              <Button className="btncontinue">
+                <img className="me-3" src="/images/apleIcon.svg" alt="apple" />
+                Continue with Apple
+              </Button>
+            </div>
+          </Form>
+        </Modal.Body>
+      </Modal>
     </>
   );
-}
+};
 
-render(<App />);
+export default LoginModal;

@@ -4,8 +4,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-fade";
+import LoginModal from "../Modals/LoginModal";
 
 const Signup = () => {
+  const [modalShow, setModalShow] = React.useState(false);
   return (
     <>
       <Row className="g-0 signmainBox">
@@ -46,7 +48,11 @@ const Signup = () => {
               </div>
               <div className="havean">
                 <p>Already have an account?</p>
-                <Button>Login</Button>
+                <Button onClick={() => setModalShow(true)}>Login</Button>
+                <LoginModal
+                  show={modalShow}
+                  onHide={() => setModalShow(false)}
+                />
               </div>
             </Form>
           </div>

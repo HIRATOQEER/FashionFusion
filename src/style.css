@@ -88,7 +88,14 @@ button.btnPrimary {
   border: 1px solid #e2e2e2;
   background: #fff;
 }
-.signbox1 form button.btnsign {
+.loginModal form input {
+  padding: 12px;
+  color: #858585;
+  border-radius: 8px;
+  border: 1px solid #e2e2e2;
+  background: #fff;
+}
+button.btnsign {
   background-color: #4b8bbe;
   border-radius: 8px;
   width: 100%;
@@ -106,7 +113,7 @@ button.btnPrimary {
   width: 100%;
   padding: 12px 16px;
 }
-.signbox1 .btncontinue:hover {
+.btncontinue:hover {
   color: #fff;
   background-color: #4b8bbe;
 }
@@ -125,6 +132,7 @@ button.btnPrimary {
   font-size: 14px;
   font-family: "Andika", sans-serif;
   color: #4b8bbe;
+  font-weight: 700;
   border: none;
   background-color: transparent;
 }
@@ -159,4 +167,35 @@ button.btnPrimary {
   font-family: "Pacifico", cursive;
   text-align: center;
   margin-bottom: 2rem;
+}
+.loginModal h2 {
+  font-size: 4.8rem;
+  font-weight: 400;
+  background: linear-gradient(90deg, #4e46b4 -18.44%, #4b8bbe 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding-bottom: 25px;
+  text-align: center;
+}
+.modal.loginModal {
+  --bs-modal-width: 610px;
+}
+.modal.loginModal .modal-content {
+  border-radius: 50px;
+  background: linear-gradient(213deg, #d5f7fd 13.56%, #b4c4ff 98.03%);
+  padding: 30px;
+}
+.loginModal p {
+  font-size: 20px;
+  font-weight: 400;
+  color: #333333;
+  font-family: "Andika", sans-serif;
+  margin-bottom: 2.5rem;
+  text-align: center;
+}
+.loginModal form {
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.5);
+  padding: 30px 30px 10px;
 }
