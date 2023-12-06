@@ -17,6 +17,7 @@ h6 {
 p {
   margin: 0;
   padding: 0;
+  font-family: "Barlow Semi Condensed", sans-serif;
 }
 button {
   font-family: "Andika", sans-serif;
@@ -198,4 +199,237 @@ button.btnsign {
   border-radius: 30px;
   background: rgba(255, 255, 255, 0.5);
   padding: 30px 30px 10px;
+}
+/* -------------welcome screen------------ */
+.welcomHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 30px 0 30px;
+}
+.welcomHeader h2 {
+  font-size: 2.6rem;
+  font-weight: 400;
+  background: linear-gradient(90deg, #4e46b4 -18.44%, #4b8bbe 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.welcomHeader .makeAccount {
+  display: flex;
+  align-items: center;
+  border-radius: 20px;
+  background: #eeedfe;
+  padding: 16px 20px;
+}
+.welcomHeader .makeAccount p {
+  font-size: 1.25rem;
+  color: #333333;
+  font-weight: 400;
+  font-family: "Barlow Semi Condensed", sans-serif;
+  margin-right: 1.5rem;
+}
+.welcomHeader .makeAccount button:nth-child(2) {
+  font-size: 14px;
+  font-weight: 700;
+  color: #333333;
+  font-family: "Andika", sans-serif;
+  background-color: transparent;
+  border-radius: var(--interactive-border-radius-radius-i-sm, 8px);
+  border: 1px solid var(--text-100, #333);
+  margin-right: 12px;
+  padding: 8px 16px;
+}
+.welcomHeader .makeAccount button:nth-child(3) {
+  font-size: 14px;
+  font-weight: 700;
+  color: #ffffff;
+  font-family: "Andika", sans-serif;
+  border-radius: var(--interactive-border-radius-radius-i-sm, 8px);
+  background: var(--primary-10, #4b8bbe);
+  padding: 8px 16px;
+}
+.welcomMain {
+  background-color: #f4f4f4;
+}
+/* --------Card-------- */
+.loveCrd {
+  position: relative;
+  padding: 0 12px;
+  border-radius: 8px;
+  background: var(--text-5, #fafafa);
+  width: 323px;
+}
+.cardBox h2 {
+  font-size: 1.75rem;
+  color: #333333;
+  margin-bottom: 40px;
+}
+.loveCrd .prIcon {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.loveCrd .prIcon img {
+  width: 44px;
+  height: 44px;
+  border-radius: 44px;
+  border: 2px solid #fff;
+  background-color: lightgray 50%;
+}
+.loveCrd p.discription {
+  font-size: 14px;
+  color: #5c5c5c;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  max-height: 3em;
+  text-align: center;
+  margin-top: 18px;
+}
+.loveCrd .RatingBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 17px 0;
+}
+.loveCrd .RatingBox p.point {
+  font-size: 10px;
+  font-weight: 500;
+  color: #333333;
+  margin-left: 4px;
+}
+.loveCrd .RatingBox h3 {
+  font-size: 12px;
+  color: #4b8bbe;
+  font-weight: 400;
+}
+.loveCrd .fctr-Brand {
+  border-radius: 8px;
+  background: var(--White, #fff);
+  box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.4),
+    0px 6px 6px -6px rgba(0, 0, 0, 0.16);
+  padding: 12px;
+  position: relative;
+}
+.loveCrd .fctr-Brand img {
+  width: 62px;
+  height: 80px;
+}
+.loveCrd .fctr-Brand p {
+  font-size: 12px;
+  color: #333333;
+  font-family: "Andika", sans-serif;
+  font-weight: 700;
+  text-align: start;
+  margin-bottom: 14px;
+}
+.loveCrd .fctr-Brand span {
+  padding: 0 2px;
+  border-radius: 3.014px;
+  background: linear-gradient(
+    90deg,
+    #d7f3ff 0%,
+    rgba(215, 243, 255, 0.44) 100%
+  );
+}
+.loveCrd .fctr-Brand span.prcLevel {
+  font-size: 9px;
+  color: #ffffff;
+  font-weight: 700;
+  font-family: "Andika", sans-serif;
+  position: absolute;
+  bottom: 6px;
+  right: 6px;
+  display: flex;
+  align-items: center;
+  border-radius: var(--interactive-border-radius-radius-i-xs, 4px);
+  background: var(--Accent, #f06292);
+  padding: 2px 8px 2px 3px;
+}
+.loveCrd .fctr-Brand span.prcLevel img {
+  width: 12px;
+  height: 12px;
+}
+.loveCrd .fctr-Brand span.brndLogo img {
+  height: 10px;
+}
+/* ---------brand choose----------- */
+.brandChoose h2 {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #5c5c5c;
+  padding-top: 16px;
+}
+.brandChoose h2 span {
+  font-family: "Andika", sans-serif;
+}
+.brandChoose .Choose {
+  margin: 20px auto;
+  max-width: 1166px;
+}
+.brandChoose .Choose .swiper-slide img {
+  padding: 17px;
+  max-height: 60px;
+  border-radius: 17.127px;
+  border: 1.07px solid var(--text-20, #d6d6d6);
+}
+.brandchoseBox {
+  border-radius: 40px 40px 0px 0px;
+  background: #fff;
+  box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.4),
+    0px 12px 12px -6px rgba(0, 0, 0, 0.16);
+}
+
+/* ------------choose ChooseCategory------- */
+.ChooseCategory .topdiv {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 750px;
+  margin: 0 auto;
+}
+.ChooseCategory .topdiv h2 {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #5c5c5c;
+}
+.ChooseCategory .topdiv h2 span {
+  font-family: "Andika", sans-serif;
+}
+.ChooseCategory .category {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1166px;
+  margin: 10px 0;
+}
+.ChooseCategory .category .hrline {
+  height: 132px;
+  width: 1px;
+  background-color: #d6d6d6;
+}
+.ChooseCategory .category .firstSlide img {
+  width: 137px;
+  height: 175px;
+  border-radius: 8px;
+}
+.ChooseCategory .category .firstSlide p {
+  font-size: 20px;
+  font-weight: 400;
+  font-family: "Barlow Semi Condensed", sans-serif;
+  color: #5c5c5c;
+}
+.ChooseCategory .category .SecondSlide img {
+  width: 137px;
+  height: 175px;
+  border-radius: 8px;
+}
+.ChooseCategory .category .SecondSlide p {
+  font-size: 20px;
+  font-weight: 400;
+  font-family: "Barlow Semi Condensed", sans-serif;
+  color: #5c5c5c;
 }
