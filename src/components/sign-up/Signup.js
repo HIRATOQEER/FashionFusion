@@ -73,7 +73,7 @@ const Signup = () => {
             <div className="signupAnimation">
               <Swiper
                 spaceBetween={50}
-                slidesPerView={1}
+                slidesPerView={2}
                 loop={true}
                 effect={"fade"}
                 modules={[EffectFade, Autoplay]}
@@ -99,6 +99,8 @@ const Signup = () => {
                   <img src="/images/Formal-Wardrobe.svg" alt="text" />
                 </SwiperSlide>
               </Swiper>
+
+
             </div>
             <div className="staticImg">
               <img src="/images/MBL1.png" alt="picture" />

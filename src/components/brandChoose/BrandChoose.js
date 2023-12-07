@@ -13,12 +13,6 @@ const BrandChoose = () => {
           <span> Choose any one</span>
         </h2>
         <div className="Choose">
-          {/* <img src="/images/sabasafinazlogo.svg" alt="Brand logo" />
-          <img src="/images/dinerlogo.svg" alt="Brand logo" />
-          <img src="/images/levislogo.svg" alt="Brand logo" />
-          <img src="/images/furorlogo.svg" alt="Brand logo" />
-          <img src="/images/sabasafinazlogo.svg" alt="Brand logo" />
-          <img src="/images/dinerlogo.svg" alt="Brand logo" /> */}
           <Swiper
             spaceBetween={10}
             slidesPerView={6}
