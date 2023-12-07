@@ -13,7 +13,18 @@ const WelcomeScreen = () => {
         <div className="brandchoseBox">
           <BrandChoose />
           <ChooseCategory />
+          <img
+            className="leftBgsvg"
+            src="/images/abstract-ng-arrow.svg"
+            alt="vector"
+          />
         </div>
+
+        <img
+          className="rightBgsvg"
+          src="/images/topright-bg-welcom.svg"
+          alt="vector"
+        />
       </div>
     </>
   );
