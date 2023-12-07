@@ -3,7 +3,7 @@ import React from "react";
 const SaveCard = () => {
   return (
     <>
-      <div className="cardBox text-center mb-4">
+      <div className="cardBox">
         <h2>People love our suggested products</h2>
         <div className="d-flex align-items-center justify-content-center gap-3">
           <div className="loveCrd">
@@ -79,6 +79,11 @@ const SaveCard = () => {
             </div>
           </div>
         </div>
+        <img
+          className="leftBgsvg"
+          src="/images/abstract-ng-arrow.svg"
+          alt="vector"
+        />
       </div>
     </>
   );

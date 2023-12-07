@@ -1,5 +1,5 @@
 import React from "react";
-import WelcomeHeader from "../../components/welcomeheader/WelcomeHeader";
+import WelcomeHeader from "../../components/headers/WelcomeHeader";
 import SaveCard from "../../components/Cards/SaveCard";
 import BrandChoose from "../../components/brandChoose/BrandChoose";
 import ChooseCategory from "../../components/choosecategory/ChooseCategory";
@@ -13,11 +13,6 @@ const WelcomeScreen = () => {
         <div className="brandchoseBox">
           <BrandChoose />
           <ChooseCategory />
-          <img
-            className="leftBgsvg"
-            src="/images/abstract-ng-arrow.svg"
-            alt="vector"
-          />
         </div>
 
         <img

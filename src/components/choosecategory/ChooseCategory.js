@@ -85,7 +85,7 @@ const ChooseCategory = () => {
                   </SwiperSlide>
                 </Swiper>
               </div>
-            </Col >
+            </Col>
             <Col lg={6}>
               <div className="SecondSlide">
                 <Swiper
@@ -155,7 +155,7 @@ const ChooseCategory = () => {
             </Col>
           </Row>
         </div>
-        <Button className="btnPrimary mx-auto mb-3">
+        <Button className="btnPrimary mx-auto mt-5 mb-3">
           <img className="me-3" src="/images/staricon.svg" alt="star" /> Try it
           now
         </Button>

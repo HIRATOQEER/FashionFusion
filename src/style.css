@@ -20,6 +20,9 @@ p {
   padding: 0;
   font-family: "Barlow Semi Condensed", sans-serif;
 }
+li {
+  list-style-type: none;
+}
 
 button {
   font-family: "Andika", sans-serif;
@@ -34,15 +37,26 @@ button.btnPrimary {
   padding: 1rem;
   color: #fff;
   border-radius: 8px;
-  background: linear-gradient(90deg,
-      #5754f3 -8.73%,
-      #4b8bbe 16.83%,
-      #ba4788 41.83%,
-      #3a81ba 65.13%,
-      #6cb8c4 91.83%);
+  background: linear-gradient(
+    90deg,
+    #5754f3 -8.73%,
+    #4b8bbe 16.83%,
+    #ba4788 41.83%,
+    #3a81ba 65.13%,
+    #6cb8c4 91.83%
+  );
   border: none;
+  background-size: 500% 100%; /* Adjust the value for your needs */
+  animation: gradientAnimation 5s linear infinite;
 }
-
+@keyframes gradientAnimation {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
 .signmainBox {
   width: 100%;
   height: 100%;
@@ -239,7 +253,7 @@ button.btnsign {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 30px 30px 0 30px;
+  padding: 5px 30px 10px 15px;
 }
 
 .welcomHeader h2 {
@@ -301,12 +315,23 @@ button.btnsign {
   border-radius: 8px;
   background: var(--text-5, #fafafa);
   width: 323px;
+  height: 210px;
 }
 
 .cardBox h2 {
   font-size: 1.75rem;
   color: #333333;
-  margin-bottom: 40px;
+  margin-bottom: 50px;
+}
+.cardBox {
+  position: relative;
+  margin-bottom: 55px;
+  text-align: center;
+}
+.cardBox img.leftBgsvg {
+  position: absolute;
+  bottom: -76px;
+  left: 0;
 }
 
 .loveCrd .prIcon {
@@ -363,7 +388,9 @@ button.btnsign {
   box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.4),
     0px 6px 6px -6px rgba(0, 0, 0, 0.16);
   padding: 12px;
-  position: relative;
+  position: absolute;
+  bottom: -15px;
+  width: 298px;
 }
 
 .loveCrd .fctr-Brand img {
@@ -383,9 +410,11 @@ button.btnsign {
 .loveCrd .fctr-Brand span {
   padding: 0 2px;
   border-radius: 3.014px;
-  background: linear-gradient(90deg,
-      #d7f3ff 0%,
-      rgba(215, 243, 255, 0.44) 100%);
+  background: linear-gradient(
+    90deg,
+    #d7f3ff 0%,
+    rgba(215, 243, 255, 0.44) 100%
+  );
 }
 
 .loveCrd .fctr-Brand span.prcLevel {
@@ -417,7 +446,7 @@ button.btnsign {
   font-size: 1.5rem;
   font-weight: 400;
   color: #5c5c5c;
-  padding-top: 16px;
+  padding-top: 26px;
 }
 
 .brandChoose h2 span {
@@ -425,7 +454,7 @@ button.btnsign {
 }
 
 .brandChoose .Choose {
-  margin: 20px auto;
+  margin: 40px auto;
   max-width: 1166px;
 }
 
@@ -450,7 +479,7 @@ button.btnsign {
   justify-content: space-between;
   align-items: center;
   max-width: 750px;
-  margin: 0 auto;
+  margin: 20px auto;
 }
 
 .ChooseCategory .topdiv h2 {
@@ -507,7 +536,6 @@ button.btnsign {
   color: #5c5c5c;
 }
 
-
 .category.row [class*="col-"]:nth-of-type(1) {
   border-right: 1px solid #d6d6d6;
 }
@@ -527,4 +555,202 @@ button.btnsign {
 .ChooseCategory .category img.noFounditems {
   width: 153px;
   height: 91px;
+}
+
+/* ------create wardrobe guest-------- */
+.crtWrdbMain {
+  background-color: var(--Background, #f4f4f4);
+  padding-bottom: 40px;
+}
+.crtWrdbHeader {
+  display: flex;
+  padding-top: 20px;
+}
+.crtWrdbHeader img.logo {
+  width: 100px;
+  height: 100px;
+  margin-right: 5rem;
+}
+.crtWrdbHeader .WrdbHeaderBox {
+  margin: 40px 0 0;
+}
+.crtWrdbHeader .WrdbHeaderBox h2 {
+  font-size: 3rem;
+  font-weight: 400;
+  background: linear-gradient(90deg, #4e46b4 -18.44%, #4b8bbe 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.crtWrdbHeader .WrdbHeaderBox p {
+  font-size: 1.75rem;
+  font-style: italic;
+  color: #5c5c5c;
+}
+.guestSidebar {
+  padding: 0 0 0 30px;
+}
+.guestSidebar ul {
+  display: inline-flex;
+  padding: 20px 8px;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  border-radius: 20px;
+  background: var(--White, #fff);
+  width: 60px;
+  height: 136px;
+}
+.guestSidebar ul li:first-child {
+  display: flex;
+  padding: var(--py-3, 12px) var(--px-3, 12px);
+  align-items: center;
+  border-radius: var(--interactive-border-radius-radius-i-sm, 8px);
+  background: linear-gradient(135deg, #4e46b4 22.57%, #4b8bbe 124.39%);
+}
+.guestgenrete-Form {
+  padding: 40px 30px 0 0;
+}
+.guestgenrete-Form .poopOverinfo button {
+  border-radius: var(--interactive-border-radius-radius-i-sm, 8px);
+  background: var(--main-heles, rgba(0, 0, 0, 0.04));
+  padding: 4px;
+  border: none;
+}
+.guestgenrete-Form .poopOverinfo button:active {
+  background-color: white;
+}
+.popover-body {
+  border-radius: var(--interactive-border-radius-radius-i-sm, 8px);
+  background: var(--main-gohan, #fff);
+  box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.4),
+    0px 6px 6px -6px rgba(0, 0, 0, 0.16);
+  padding: 8px;
+  display: flex;
+  align-items: center;
+}
+.accordion {
+  padding: 20px 30px;
+  border-radius: var(--paddings-gaps-p-4, 16px);
+  background: #fff;
+  box-shadow: 0px 0px 1px 0px rgba(240, 98, 146, 0.4),
+    0px 8px 24px -6px rgba(240, 98, 146, 0.16);
+  border: none;
+  margin-bottom: 20px;
+}
+.accordion .card {
+  border: none;
+}
+.accordion .card-header {
+  background-color: white;
+  border: none;
+  padding-left: 0;
+  padding-right: 0;
+}
+.accordion .card-header button {
+  border-radius: var(--interactive-border-radius-radius-i-sm, 8px);
+  background-color: #ebebeb !important;
+  border: none;
+}
+/* .accordion .card-header button.btnExpand {
+  border-radius: var(--interactive-border-radius-radius-i-sm, 8px);
+  background-color: #ebebeb !important;
+  border: none;
+} */
+.accordion .card-header span.gnrspan {
+  font-size: 1.3rem;
+  color: #333333;
+  font-family: "Andika", sans-serif;
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.accordion .card-header span.tagg {
+  font-size: 10px;
+  font-weight: 700;
+  color: white;
+  padding: 4px 8px 4px 4px;
+  border-radius: var(--interactive-border-radius-radius-i-xs, 4px);
+  background: var(--secondary-30, #4e46b4);
+  margin-right: 10px;
+}
+.accordion .card-header span.tagg img {
+  margin-right: 6px;
+}
+.accordion .card-header p.prvd {
+  font-size: 1rem;
+  color: #5c5c5c;
+}
+.accordion .imageGenrat.card .card-body {
+  border-radius: var(--paddings-gaps-p-4, 16px);
+  border: 2px dashed var(--text-60, #858585);
+  padding: 15px 0;
+}
+.accordion .imageGenrat.card .card-body button.btUploadImg {
+  background-color: transparent;
+  text-align: center;
+  border: none;
+}
+.accordion .imageGenrat.card .card-body button.btUploadImg p {
+  font-size: 1rem;
+  color: #5c5c5c;
+}
+.socialGenrat.card .card-body input {
+  border-radius: var(--interactive-border-radius-radius-i-sm, 8px);
+  border: 1px solid var(--main-beerus, #e2e2e2);
+  background: var(--main-gohan, #fff);
+  padding: 12px 12px 12px 50px;
+}
+.socialGenrat.card .card-body img.inptlogo {
+  position: absolute;
+  top: 14px;
+  left: 28px;
+}
+.accordion .card-header p.acnumber span:first-child {
+  font-size: 1.25rem;
+  color: #333333;
+}
+.accordion .card-header p.acnumber span:nth-child(2) {
+  font-size: 1.25rem;
+  color: #858585;
+}
+.preferencesGenrat.card .Gender strong {
+  font-size: 1rem;
+  color: #333333;
+  font-family: "Andika", sans-serif;
+  margin-bottom: 12px;
+  display: block;
+}
+.preferencesGenrat.card .Gender button {
+  padding: 8px;
+  color: #333333;
+  font-size: 14px;
+  font-family: "Andika", sans-serif;
+  font-weight: 700;
+  border-radius: var(--interactive-border-radius-radius-i-sm, 8px);
+  border: 1px solid var(--text-100, #333);
+  background-color: transparent;
+  width: 90px;
+}
+.preferencesGenrat.card .Gender button.active {
+  color: #4b8bbe;
+  border: 1px solid var(--primary-10, #4b8bbe);
+  background: var(--primary-shades-20, #e6eff6);
+}
+.preferencesGenrat.card .card-header button.btnRemove {
+  font-size: 14px;
+  color: #962d2d;
+  font-family: "Andika", sans-serif;
+  border-radius: var(--interactive-border-radius-radius-i-sm, 8px);
+  border: 1px solid var(--Alert, #962d2d);
+  margin-right: 12px;
+  background-color: transparent !important;
+}
+.accordion.prfrnceNested {
+  border-radius: var(--surface-border-radius-radius-s-sm, 8px);
+  background: var(--main-gohan, #fff);
+
+  /* Light/shadow-sm */
+  box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.4),
+    0px 6px 6px -6px rgba(0, 0, 0, 0.16) !important;
 }
