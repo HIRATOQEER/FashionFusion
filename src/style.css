@@ -31,7 +31,14 @@ button.btnPrimary {
   padding: 1rem;
   color: #fff;
   border-radius: 8px;
-  background: linear-gradient(90deg, #4e46b4 0%, #ba4788 100%);
+  background: linear-gradient(
+    90deg,
+    #5754f3 -8.73%,
+    #4b8bbe 16.83%,
+    #ba4788 41.83%,
+    #3a81ba 65.13%,
+    #6cb8c4 91.83%
+  );
   border: none;
 }
 
@@ -251,6 +258,7 @@ button.btnsign {
 }
 .welcomMain {
   background-color: #f4f4f4;
+  position: relative;
 }
 /* --------Card-------- */
 .loveCrd {
@@ -380,8 +388,9 @@ button.btnsign {
 .brandchoseBox {
   border-radius: 40px 40px 0px 0px;
   background: #fff;
-  box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.4),
-    0px 12px 12px -6px rgba(0, 0, 0, 0.16);
+  /* box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.4),
+    0px 12px 12px -6px rgba(0, 0, 0, 0.16); */
+  position: relative;
 }
 
 /* ------------choose ChooseCategory------- */
@@ -404,7 +413,7 @@ button.btnsign {
   display: flex;
   justify-content: space-between;
   max-width: 1166px;
-  margin: 10px 0;
+  margin: 10px auto 20px;
 }
 .ChooseCategory .category .hrline {
   height: 132px;
@@ -432,4 +441,18 @@ button.btnsign {
   font-weight: 400;
   font-family: "Barlow Semi Condensed", sans-serif;
   color: #5c5c5c;
+}
+.welcomMain img.rightBgsvg {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.welcomMain .brandchoseBox img.leftBgsvg {
+  position: absolute;
+  top: -197px;
+  left: 0;
+}
+.ChooseCategory .category img.noFounditems {
+  width: 153px;
+  height: 91px;
 }

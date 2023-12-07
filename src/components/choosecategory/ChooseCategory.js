@@ -3,13 +3,14 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-fade";
+import { Button } from "react-bootstrap";
 
 const ChooseCategory = () => {
   return (
     <>
       <div className="ChooseCategory text-center">
         <div className="topdiv">
-          <img src="/images/female-product-icon.svg" alt="male" />
+          <img src="/images/male-product-icon.svg" alt="male" />
           <h2>
             Brands
             <span> Choose any one</span>
@@ -94,6 +95,12 @@ const ChooseCategory = () => {
                 </div>
               </SwiperSlide>
             </Swiper>
+            {/* ------------- when No men products found then show this img----------- */}
+            {/* <img
+              className="noFounditems"
+              src="/images/nofound-men-product.png"
+              alt="No found"
+            /> */}
           </div>
           <div className="hrline"></div>
           <div className="SecondSlide">
@@ -173,8 +180,19 @@ const ChooseCategory = () => {
                 </div>
               </SwiperSlide>
             </Swiper>
+            {/* ------------- when No women products found then show this img----------- */}
+
+            {/* <img
+              className="noFounditems"
+              src="/images/nofound-women-product.png"
+              alt="No found"
+            /> */}
           </div>
         </div>
+        <Button className="btnPrimary mx-auto mb-3">
+          <img className="me-3" src="/images/staricon.svg" alt="star" /> Try it
+          now
+        </Button>
       </div>
     </>
   );
