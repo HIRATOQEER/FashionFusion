@@ -589,6 +589,10 @@ button.btnsign {
 }
 .guestSidebar {
   padding: 0 0 0 30px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100dvh;
 }
 .guestSidebar ul {
   display: inline-flex;
@@ -748,9 +752,137 @@ button.btnsign {
 }
 .accordion.prfrnceNested {
   border-radius: var(--surface-border-radius-radius-s-sm, 8px);
-  background: var(--main-gohan, #fff);
-
-  /* Light/shadow-sm */
   box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.4),
     0px 6px 6px -6px rgba(0, 0, 0, 0.16) !important;
+  padding: 10px 0 0 0;
+}
+.accordion.prfrnceNested .card-header {
+  padding: 10px;
+}
+.accordion.prfrnceNested .nestedAcrdn.card-body {
+  background: var(--main-gohan, #fafafa);
+  border-radius: 12px;
+}
+.prfrnceNested .nestedAcrdn button.searchIcon {
+  background-color: transparent;
+  padding: 0 5px;
+  border-radius: var(--interactive-border-radius-radius-i-sm, 8px);
+  border: 1px solid var(--main-beerus, #e2e2e2);
+  border-right: none;
+}
+.prfrnceNested .nestedAcrdn input.searchInput.form-control {
+  color: var(--text-80, #5c5c5c);
+  font-family: "Barlow Semi Condensed", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: var(--interactive-border-radius-radius-i-sm, 8px);
+  border: 1px solid var(--main-beerus, #e2e2e2);
+  background: var(--main-gohan, #fff);
+  padding: 4px;
+  border-left: none;
+  border-right: none;
+}
+.nestedAcrdn input.searchInput.form-control:focus {
+  box-shadow: none;
+}
+.prfrnceNested .nestedAcrdn button.srchClr {
+  background-color: transparent;
+  color: #333333;
+  border-radius: var(--interactive-border-radius-radius-i-sm, 8px);
+  border: 1px solid var(--main-beerus, #e2e2e2);
+  border-left: none;
+  color: var(--text-80, #5c5c5c);
+  font-family: "Barlow Semi Condensed", sans-serif;
+  font-size: 14px;
+}
+.prfrnceNested .nestedAcrdn label.form-label {
+  color: var(--text-100, #333);
+  font-family: "Andika", sans-serif;
+  font-size: 1rem;
+}
+.multi-range-slider .bar-right {
+  width: 25%;
+  background-color: #d5d0d0;
+  border-radius: 0px 10px 10px 0px;
+  /* box-shadow: inset 0px 0px 5px black; */
+}
+.multi-range-slider .bar-inner {
+  background-color: #4b8bbe;
+  display: flex;
+  flex-grow: 1;
+  flex-shrink: 1;
+  justify-content: space-between;
+  position: relative;
+  /* border: solid 1px black; */
+  justify-content: space-between;
+  /* box-shadow: inset 0px 0px 5px black; */
+}
+.multi-range-slider .thumb::before {
+  content: "";
+  background-color: inherit;
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border: none;
+  box-shadow: none;
+  border-radius: 50%;
+  z-index: 1;
+  margin: -2px 0px;
+  cursor: pointer;
+}
+.multi-range-slider .thumb .caption * {
+  position: absolute;
+  min-width: 30px;
+  height: 30px;
+  font-size: 75%;
+  text-align: center;
+  line-height: 30px;
+  background-color: #4b8bbe;
+  border-radius: 15px;
+  border: 2px solid white;
+  color: white;
+  box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.16);
+  padding: 0px 5px;
+  white-space: nowrap;
+}
+.prfrnceNested .nestedAcrdn .dropdown-toggle::after {
+  display: none;
+}
+.prfrnceNested .nestedAcrdn button#input-group-dropdown-2 {
+  background-color: transparent;
+  border-color: #dee2e6;
+  border-left: none;
+}
+
+.prfrnceNested .nestedAcrdn input.selectSize.form-control {
+  color: var(--text-80, #5c5c5c);
+  font-family: Barlow Semi Condensed;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: var(--interactive-border-radius-radius-i-sm, 8px);
+  border: 1px solid var(--main-beerus, #e2e2e2);
+  background: var(--main-gohan, #fff);
+  padding: 8px 12px;
+  border-right: none;
+}
+button.addPerafrence {
+  color: var(--text-100, #333);
+  font-family: "Andika", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: var(--interactive-border-radius-radius-i-sm, 8px);
+  border: 1px solid var(--text-100, #333);
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+}
+button.addPerafrence:active {
+  background-color: white !important;
+  color: var(--text-100, #333);
+  border: 1px solid var(--text-100, #333);
+}
+button.addPerafrence:hover {
+  background-color: white !important;
+  color: var(--text-100, #333);
+  border: 1px solid var(--text-100, #333);
 }
