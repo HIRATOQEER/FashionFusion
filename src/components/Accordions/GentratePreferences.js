@@ -275,6 +275,10 @@ const GentratePreferences = (event) => {
           </Accordion.Collapse>
         </Card>
       </Accordion>
+      <Button className="btnPrimary mx-auto mt-5 mb-3">
+        <img className="me-3" src="/images/staricon.svg" alt="star" /> Generate
+        the magic
+      </Button>
     </>
   );
 };

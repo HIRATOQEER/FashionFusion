@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import SignUp from "./pages/signUp/SignUp";
 import WelcomeScreen from "./pages/welcomScreen/WelcomeScreen";
 import CreateWardrobe from "./pages/AsGuest/createWardrobe/CreateWardrobe";
+import GenratedResult from "./pages/AsGuest/genratedWardrobe/GenratedResult";
 
 function App() {
   return (
@@ -14,7 +15,12 @@ function App() {
           path="./pages/welcomScreen/WelcomeScreen"
           element={<WelcomeScreen />}
         />
-        <Route exact path="/" element={<CreateWardrobe />} />
+        <Route
+          exact
+          path="./pages/AsGuest/createWardrobe/CreateWardrobe"
+          element={<CreateWardrobe />}
+        />
+        <Route exact path="/" element={<GenratedResult />} />
       </Routes>
     </Router>
   );

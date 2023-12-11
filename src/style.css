@@ -30,13 +30,14 @@ button {
 }
 
 button.btnPrimary {
-  font-size: 16px;
+  font-size: 1rem;
+  font-family: "Pacifico", cursive;
   display: flex;
   justify-content: center;
   width: 456px;
   padding: 1rem;
   color: #fff;
-  border-radius: 8px;
+  border-radius: 30px;
   background: linear-gradient(
     90deg,
     #5754f3 -8.73%,
@@ -592,7 +593,7 @@ button.btnsign {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  height: 100dvh;
+  height: calc(100dvh - 350px);
 }
 .guestSidebar ul {
   display: inline-flex;
@@ -885,4 +886,259 @@ button.addPerafrence:hover {
   background-color: white !important;
   color: var(--text-100, #333);
   border: 1px solid var(--text-100, #333);
+}
+.genratedResult {
+  background-image: url(../public/images/genrate-result-bg.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.BasedUponPrfrnc p.discptn {
+  color: var(--text-100, #333);
+  font-family: "Andika", sans-serif;
+  font-size: 1.125rem;
+}
+.givenPrefrnc img.picIcon {
+  border-radius: 30px;
+  background: var(--White, #fff);
+  padding: 8px;
+}
+.givenPrefrnc p.imageURL {
+  color: var(--Accent, #f06292);
+  font-family: Barlow Semi Condensed;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 30px;
+  background: var(--White, #fff);
+  padding: 8px 16px;
+}
+.givenPrefrnc img.selectedImage {
+  border-radius: 4px;
+  background: #fff;
+  padding: 2px;
+  width: 36px;
+  height: 36px;
+}
+.givenPrefrnc button.linksRslt {
+  border-radius: 30px;
+  padding: 8px;
+  border: none;
+  background: var(--White, #fff);
+}
+.givenPrefrnc p.whoLink {
+  border-radius: 30px;
+  padding: 8px 16px;
+  background: var(--White, #fff);
+}
+.givenPrefrnc button.PrfrncResult {
+  border-radius: 30px;
+  padding: 8px;
+  border: none;
+  background: var(--White, #fff);
+}
+.givenPrefrnc p.muchPrfrnc {
+  color: var(--Accent, #f06292);
+  font-family: Barlow Semi Condensed;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 30px;
+  background: var(--White, #fff);
+  padding: 8px 16px;
+}
+.yourWardrobe {
+  padding: 30px 40px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.7);
+}
+.yourWardrobe h3.yur {
+  font-size: 1.5rem;
+  color: var(--primary-10, #4b8bbe);
+  margin: 0 0 20px;
+}
+.yourWardrobe p.gnrtDiscrptn {
+  color: var(--text-80, #5c5c5c);
+  font-family: Barlow Semi Condensed;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+}
+.yourWardrobe button.regenrete {
+  color: var(--text-100, #333);
+  font-family: "Andika", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 8px;
+  border-radius: var(--interactive-border-radius-radius-i-sm, 8px);
+  border: 1px solid var(--main-trunks, #595d62);
+  background-color: transparent;
+}
+.yourWardrobe .prfrncResult .resultImgInner {
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.4),
+    0px 6px 6px -6px rgba(0, 0, 0, 0.16);
+  border: none;
+  padding: 12px;
+  position: relative;
+}
+.viewReslt.show.dropdown .dropdown-menu.show {
+  transform: translate(-17px, -328px) !important;
+  width: 720px;
+}
+
+.viewReslt.show.dropdown .resultImgInner.zoomed {
+  border-radius: 13px;
+  border: 1px solid var(--Accent, #f06292) !important;
+  background: #fff;
+  box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.4),
+    0px 8px 24px -6px rgba(0, 0, 0, 0.16);
+  transform: scale(1.2); /* Adjust the scale factor as needed */
+  transition: transform 0.2s ease-in-out; /* Add a smooth transition effect */
+}
+.viewReslt.show.dropdown button.btnCloseDrp {
+  background-color: transparent;
+  border-radius: 8px;
+  border: none;
+  padding: 0;
+}
+.viewReslt.show.dropdown p.rmvPrdct {
+  color: var(--text-100, #333);
+  font-family: "Andika", sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+.viewReslt.show.dropdown span.rmvPrfTagg {
+  color: var(--text-100, #333);
+  font-family: "Andika", sans-serif;
+  font-size: 14px;
+  border-radius: var(--interactive-border-radius-radius-i-sm, 8px);
+  border: 1px solid var(--text-100, #333);
+  padding: 8px 16px;
+}
+.viewReslt.show.dropdown button.btnPrfSubmit {
+  border-radius: var(--interactive-border-radius-radius-i-sm, 8px);
+  background: var(--primary-10, #4b8bbe);
+  color: var(--White, #fff);
+  text-align: center;
+  font-family: "Andika", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 8px;
+  width: 145px;
+  float: inline-end;
+}
+.viewReslt.show.dropdown p.tellResn {
+  color: var(--text-100, #333);
+  font-size: 1.125rem;
+  font-family: "Andika", sans-serif;
+  margin: 0 0 12px;
+}
+.viewReslt.show.dropdown textarea.addTxtCmnt {
+  border-radius: var(--interactive-border-radius-radius-i-sm, 8px);
+  border: 1px solid var(--main-beerus, #e2e2e2);
+  background: var(--main-gohan, #fff);
+  padding: 12px;
+  width: 100%;
+}
+.yourWardrobe .prfrncResult button.resultImg img.productImg {
+  width: 140px;
+  height: 140px;
+}
+.prfrncResult .resultImgInner button.btnRemoveClose {
+  border-radius: var(--interactive-border-radius-radius-i-sm, 8px);
+  background: var(--White, #fff);
+  box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.4),
+    0px 6px 6px -6px rgba(0, 0, 0, 0.16);
+  padding: 2px;
+  display: none;
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  border: none;
+}
+.prfrncResult .resultImgInner:hover button.btnRemoveClose {
+  display: block;
+}
+.givenPrefrnc .btn-check:checked + .btn,
+.btn.active,
+.btn.show,
+.btn:first-child:active,
+:not(.btn-check) + .btn:active {
+  color: transparent;
+  background-color: white;
+  border-color: white;
+}
+.dropdown-toggle::after {
+  display: none;
+}
+.givenPrefrnc .dropdown-menu.show {
+  inset: 5px auto auto 27px !important;
+}
+.rstLinksDrp.show.dropdown .dropdown-menu.show {
+  border-radius: var(--interactive-border-radius-radius-i-md, 12px);
+  background: var(--main-gohan, #fff);
+  box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.4),
+    0px 8px 24px -6px rgba(0, 0, 0, 0.16);
+  border: none;
+}
+.prfAttached.show.dropdown .dropdown-menu.show {
+  border-radius: var(--interactive-border-radius-radius-i-md, 12px);
+  background: var(--main-gohan, #fff);
+  box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.4),
+    0px 8px 24px -6px rgba(0, 0, 0, 0.16);
+  border: none;
+}
+.rstLinksDrp.show.dropdown a.dropdown-item {
+  font-size: 1rem;
+  color: var(--Accent, #f06292);
+  font-family: Barlow Semi Condensed;
+  font-weight: 700;
+}
+.rstLinksDrp,
+.prfAttached.show.dropdown .dropdown-item:active {
+  background-color: var(--bs-dropdown-link-hover-bg);
+}
+.prfAttached.show.dropdown a.dropdown-item p {
+  display: flex;
+  align-items: center;
+}
+
+.prfAttached.show.dropdown a.dropdown-item span.prfSrNmbr {
+  color: var(--text-80, #5c5c5c);
+  text-align: center;
+  font-family: Barlow Semi Condensed;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 30px;
+  background: var(--text-10, #ebebeb);
+  padding: 4px 13px;
+}
+.prfAttached.show.dropdown a.dropdown-item span.prfNameCmn {
+  color: var(--text-60, #858585);
+  text-align: center;
+  font-family: Barlow Semi Condensed;
+  font-size: 1rem;
+  margin: 0 8px 0 0;
+}
+.prfAttached.show.dropdown a.dropdown-item span.prfProductCmn {
+  color: var(--Accent, #f06292);
+  text-align: center;
+  font-family: Barlow Semi Condensed;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.prfAttached.show.dropdown a.dropdown-item span.prColourCmn {
+  width: 24px;
+  height: 24px;
+  border-radius: 20px;
+  background: #ad00ff;
+  display: inline-block;
+}
+.prfAttached .dropdown-menu.show {
+  inset: 5px auto auto 27px !important;
+  z-index: 9;
+  transform: translate(-370px, 50px) !important;
 }
