@@ -237,9 +237,42 @@ const GuestGenratedResult = () => {
             You can save this wardrobe as it is or you can regenerate for some
             new results
           </p>
-          <Button className="regenrete">
+
+          {/* <Button className="regenrete">
             <img src="/images/refresh-Icon.svg" alt="icon" /> Regenerate
-          </Button>
+          </Button> */}
+
+          <Dropdown className="viewReslt">
+            <Dropdown.Toggle id="dropdown-basic" className="regenrete">
+              <img src="/images/refresh-Icon.svg" alt="icon" /> Regenerate
+            </Dropdown.Toggle>
+
+            <Dropdown.Menu>
+              <div className="d-flex justify-content-between align-items-center px-3 pt-2">
+                <p className="rmvPrdct">Regenerate</p>
+                <Button
+                  className="btnCloseDrp"
+                  onClick={handleRemoveButtonClick}
+                >
+                  <img src="/images/close-Icon.svg" alt="icon" />
+                </Button>
+              </div>
+              <hr />
+              <div className="p-3">
+                <p className="tellResn">Tell us the reason (Optional)</p>
+
+                <textarea
+                  className="addTxtCmnt mb-3 w-full d-block"
+                  name=""
+                  id=""
+                  cols="30"
+                  rows="1"
+                  placeholder="Comment"
+                ></textarea>
+                <Button className="btnPrfSubmit">Submit</Button>
+              </div>
+            </Dropdown.Menu>
+          </Dropdown>
         </div>
       </div>
       <Button className="btnPrimary mx-auto mt-5 mb-3">

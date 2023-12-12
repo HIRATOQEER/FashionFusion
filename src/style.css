@@ -888,11 +888,36 @@ button.addPerafrence:hover {
   border: 1px solid var(--text-100, #333);
 }
 .genratedResult {
+  position: relative;
+  /* Other styles for your container if needed */
+}
+
+.genratedResult::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   background-image: url(../public/images/genrate-result-bg.svg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
+  animation: rotateAndChangeColor 14s linear infinite;
 }
+
+@keyframes rotateAndChangeColor {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  50% {
+    filter: hue-rotate(180deg);
+  }
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}
+
 .BasedUponPrfrnc p.discptn {
   color: var(--text-100, #333);
   font-family: "Andika", sans-serif;
