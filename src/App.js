@@ -11,11 +11,7 @@ function App() {
     <Router>
       <Routes>
         <Route exact path="./pages/signUp/SignUps" element={<SignUp />} />
-        <Route
-          exact
-          path="welcome"
-          element={<WelcomeScreen />}
-        />
+        <Route exact path="/" element={<WelcomeScreen />} />
         <Route
           exact
           path="./pages/AsGuest/createWardrobe/CreateWardrobe"
@@ -26,7 +22,11 @@ function App() {
           path="./pages/AsGuest/genratedWardrobe/GenratedResult"
           element={<GenratedResult />}
         />
-        <Route exact path="/" element={<UserCreateWrdb />} />
+        <Route
+          exact
+          path="./pages/LogedIn/UserCreateWrdb"
+          element={<UserCreateWrdb />}
+        />
       </Routes>
     </Router>
   );

@@ -312,11 +312,11 @@ button.btnsign {
 /* --------Card-------- */
 .loveCrd {
   position: relative;
-  padding: 0 12px;
+  padding: 10px 12px 102px;
   border-radius: 8px;
   background: var(--text-5, #fafafa);
-  width: 323px;
-  height: 210px;
+  /* width: 323px;
+  height: 210px; */
 }
 
 .cardBox h2 {
@@ -391,7 +391,8 @@ button.btnsign {
   padding: 12px;
   position: absolute;
   bottom: -15px;
-  width: 298px;
+  left: 12px;
+  right: 12px;
 }
 
 .loveCrd .fctr-Brand img {
@@ -406,6 +407,12 @@ button.btnsign {
   font-weight: 700;
   text-align: start;
   margin-bottom: 14px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  max-height: 3em;
 }
 
 .loveCrd .fctr-Brand span {
@@ -441,7 +448,10 @@ button.btnsign {
 .loveCrd .fctr-Brand span.brndLogo img {
   height: 10px;
 }
-
+.swiper.swiper-initialized.swiper-horizontal.swiper-backface-hidden.mySwiper {
+  max-width: 650px;
+  padding: 25px 0;
+}
 /* ---------brand choose----------- */
 .brandChoose h2 {
   font-size: 1.5rem;
