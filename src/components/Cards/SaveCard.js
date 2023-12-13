@@ -19,11 +19,11 @@ const SaveCard = () => {
           slidesPerView={2}
           slidesPerGroup={1}
           loop={true}
-          speed={10}
+          speed={500}
           modules={[EffectFade, Autoplay]}
           fadeEffect={{ crossFade: true }}
           autoplay={{
-            delay: 1000,
+            delay: 5000,
           }}
           breakpoints={{
             640: {
