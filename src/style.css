@@ -1167,3 +1167,85 @@ button.addPerafrence:hover {
   z-index: 9;
   transform: translate(-370px, 50px) !important;
 }
+/* ----------UserSidebar--------  */
+.UserSidebar {
+  border-radius: 20px;
+  background: var(--White, #fff);
+  box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.4),
+    0px 12px 12px -6px rgba(0, 0, 0, 0.16);
+
+  width: 180px;
+  margin: 0 0 0 30px;
+  padding: 20px 8px;
+  text-align: center;
+}
+.UserSidebar ul li {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.UserSidebar ul li a {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+.UserSidebar ul li span.prnName {
+  display: block;
+  color: var(--primary-10, #5c5c5c);
+  font-size: 14px;
+  font-family: "Andika", sans-serif;
+  margin: 0 0 0 8px;
+}
+.UserSidebar ul li span.sameStl {
+  display: block;
+  color: var(--primary-10, #4b8bbe);
+  font-size: 14px;
+  font-family: "Andika", sans-serif;
+  margin: 0 0 0 8px;
+}
+.UserSidebar ul li.firstUr {
+  padding: 12px;
+  border-radius: var(--interactive-border-radius-radius-i-sm, 8px);
+  background: linear-gradient(135deg, #4e46b4 22.57%, #4b8bbe 124.39%);
+}
+.UserSidebar ul .innerOrder {
+  border-radius: var(--paddings-gaps-p-4, 16px);
+  background: var(--primary-shades-10, #eff7fc);
+  align-items: start;
+}
+.UserSidebar ul .innerOrder li {
+  padding: 12px;
+}
+.showDtl.dropdown button#dropdown-basic {
+  background-color: transparent;
+  padding: 0;
+  border: none;
+  display: flex;
+  align-items: center;
+}
+.showDtl.dropdown .dropdown-menu.show {
+  transform: translate(167px, 14px) !important;
+  border-radius: var(--interactive-border-radius-radius-i-md, 12px);
+  background: var(--main-gohan, #fff);
+  box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.4),
+    0px 8px 24px -6px rgba(0, 0, 0, 0.16);
+  padding: 4px;
+}
+.showDtl.dropdown .dropdown-menu.show p.whoDay {
+  color: var(--text-40, #adadad);
+  font-family: Barlow Semi Condensed;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 16px;
+}
+.showDtl.dropdown a.dropdown-item {
+  color: var(--text-100, #333);
+  font-family: "Andika", sans-serif;
+  font-size: 14px;
+}
+.showDtl.dropdown a.dropdown-item:active {
+  background-color: #3a81ba;
+  color: white;
+}
+/* .showDtl.Notification.show.dropdown */
