@@ -13,7 +13,7 @@ function App() {
         <Route exact path="./pages/signUp/SignUps" element={<SignUp />} />
         <Route
           exact
-          path="./pages/welcomScreen/WelcomeScreen"
+          path="welcome"
           element={<WelcomeScreen />}
         />
         <Route
