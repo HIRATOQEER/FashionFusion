@@ -992,6 +992,27 @@ button.addPerafrence:hover {
   color: var(--primary-10, #4b8bbe);
   margin: 0 0 20px;
 }
+.yourWardrobe .youWrdrbInner {
+  padding: 20px 70px;
+  border-radius: var(--paddings-gaps-p-4, 16px);
+  background: linear-gradient(
+    180deg,
+    #eff7fc 0%,
+    rgba(239, 247, 252, 0) 130.63%
+  );
+  /* max-width: 1076px; */
+}
+.swiper.swiper-initialized.swiper-horizontal.swiper-grid.mySwiperRst {
+  position: static !important;
+}
+.swiper-button-next {
+  right: 60px;
+  left: auto;
+}
+.swiper-button-prev {
+  left: 60px;
+  right: auto;
+}
 .yourWardrobe p.gnrtDiscrptn {
   color: var(--text-80, #5c5c5c);
   font-family: Barlow Semi Condensed;
@@ -1009,29 +1030,80 @@ button.addPerafrence:hover {
   border: 1px solid var(--main-trunks, #595d62);
   background-color: transparent;
 }
-.yourWardrobe .prfrncResult .resultImgInner {
+.yourWardrobe .prfrncResult button.resultImg {
   border-radius: 12px;
   background: #fff;
   box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.4),
     0px 6px 6px -6px rgba(0, 0, 0, 0.16);
   border: none;
+  width: 100%;
   padding: 12px;
   position: relative;
+}
+.fade.productDtlMdl.modal.show p.rmvPrdct {
+  color: var(--text-100, #333);
+  font-family: "Andika", sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+.fade.productDtlMdl.modal.show .dtlTagg span.tagg {
+  color: var(--text-100, #333);
+  font-family: "Andika", sans-serif;
+  font-size: 14px;
+  border-radius: var(--interactive-border-radius-radius-i-sm, 8px);
+  border: 1px solid var(--text-100, #333);
+  padding: 8px 16px;
+}
+.fade.productDtlMdl.modal.show p.tellResn {
+  color: var(--text-100, #333);
+  font-size: 1.125rem;
+  font-family: "Andika", sans-serif;
+  margin: 0 0 12px;
+}
+.fade.productDtlMdl.modal.show button.btnPrfSubmit {
+  border-radius: var(--interactive-border-radius-radius-i-sm, 8px);
+  background: var(--primary-10, #4b8bbe);
+  color: var(--White, #fff);
+  text-align: center;
+  font-family: "Andika", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 8px;
+  width: 145px;
+  float: inline-end;
+}
+.fade.productDtlMdl.modal.show textarea.addTxtCmnt {
+  border-radius: var(--interactive-border-radius-radius-i-sm, 8px);
+  border: 1px solid var(--main-beerus, #e2e2e2);
+  background: var(--main-gohan, #fff);
+  padding: 12px;
+  width: 100%;
+}
+.fade.productDtlMdl.modal.show img.prvImage {
+  padding: 7px;
+  width: 87px;
+  height: 87px;
+  border-radius: 7.463px;
+  background: #fff;
+  box-shadow: 0px 0px 0.537px 0px rgba(0, 0, 0, 0.4),
+    0px 4.295px 12.884px -3.221px rgba(0, 0, 0, 0.16);
+}
+.fade.productDtlMdl.modal.show button.cancelPrv {
+  color: var(--text-100, #333);
+  font-family: "Andika", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  width: 145px;
+  padding: 8px;
+  border-radius: var(--interactive-border-radius-radius-i-sm, 8px);
+  border: 1px solid var(--main-trunks, #595d62);
+  background-color: transparent;
 }
 .viewReslt.show.dropdown .dropdown-menu.show {
   transform: translate(-17px, -328px) !important;
   width: 720px;
 }
 
-.viewReslt.show.dropdown .resultImgInner.zoomed {
-  border-radius: 13px;
-  border: 1px solid var(--Accent, #f06292) !important;
-  background: #fff;
-  box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.4),
-    0px 8px 24px -6px rgba(0, 0, 0, 0.16);
-  transform: scale(1.2); /* Adjust the scale factor as needed */
-  transition: transform 0.2s ease-in-out; /* Add a smooth transition effect */
-}
 .viewReslt.show.dropdown button.btnCloseDrp {
   background-color: transparent;
   border-radius: 8px;
@@ -1081,7 +1153,7 @@ button.addPerafrence:hover {
   width: 140px;
   height: 140px;
 }
-.prfrncResult .resultImgInner button.btnRemoveClose {
+.prfrncResult button.resultImg button.btnRemoveClose {
   border-radius: var(--interactive-border-radius-radius-i-sm, 8px);
   background: var(--White, #fff);
   box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.4),
@@ -1093,7 +1165,7 @@ button.addPerafrence:hover {
   right: 6px;
   border: none;
 }
-.prfrncResult .resultImgInner:hover button.btnRemoveClose {
+.prfrncResult button.resultImg:hover button.btnRemoveClose {
   display: block;
 }
 .givenPrefrnc .btn-check:checked + .btn,
