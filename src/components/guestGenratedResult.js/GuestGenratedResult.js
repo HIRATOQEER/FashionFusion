@@ -198,7 +198,7 @@ const GuestGenratedResult = () => {
             </Swiper>
           </div>
 
-          <div className="d-flex justify-content-between align-items-center mt-4 ">
+          <div className="justify-content-between align-items-center mt-4 ">
             <p className="gnrtDiscrptn">
               <img src="/images/question-mark-Icon.svg" alt="icon" />
               You can save this wardrobe as it is or you can regenerate for some

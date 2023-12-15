@@ -49,6 +49,8 @@ button.btnPrimary {
   border: none;
   background-size: 500% 100%; /* Adjust the value for your needs */
   animation: gradientAnimation 5s linear infinite;
+  position: relative;
+  z-index: 1;
 }
 @keyframes gradientAnimation {
   0% {
@@ -1019,6 +1021,7 @@ button.addPerafrence:hover {
   font-size: 1rem;
   display: flex;
   align-items: center;
+  position: relative;
 }
 .yourWardrobe button.regenrete {
   color: var(--text-100, #333);
@@ -1029,6 +1032,8 @@ button.addPerafrence:hover {
   border-radius: var(--interactive-border-radius-radius-i-sm, 8px);
   border: 1px solid var(--main-trunks, #595d62);
   background-color: transparent;
+  float: right;
+  transform: translate(0, -30px);
 }
 .yourWardrobe .prfrncResult button.resultImg {
   border-radius: 12px;
@@ -1100,8 +1105,11 @@ button.addPerafrence:hover {
   background-color: transparent;
 }
 .viewReslt.show.dropdown .dropdown-menu.show {
-  transform: translate(-17px, -328px) !important;
-  width: 720px;
+  /* transform: translate(-17px, -328px) !important; */
+  width: 100%;
+  position: static !important;
+  overflow: hidden;
+  transform: translate(0px, 0) !important;
 }
 
 .viewReslt.show.dropdown button.btnCloseDrp {
