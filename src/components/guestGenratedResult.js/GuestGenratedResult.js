@@ -224,7 +224,6 @@ const GuestGenratedResult = () => {
                 <hr />
                 <div className="p-3">
                   <p className="tellResn">Tell us the reason (Optional)</p>
-
                   <textarea
                     className="addTxtCmnt mb-3 w-full d-block"
                     name=""
@@ -233,7 +232,10 @@ const GuestGenratedResult = () => {
                     rows="1"
                     placeholder="Comment"
                   ></textarea>
-                  <Button className="btnPrfSubmit">Submit</Button>
+                  <div className="d-flex justify-content-end align-items-center gap-3">
+                    <Button className="btnrgtn">Cancel</Button>
+                    <Button className="btnPrfSubmit">Submit</Button>
+                  </div>{" "}
                 </div>
               </Dropdown.Menu>
             </Dropdown>

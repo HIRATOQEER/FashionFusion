@@ -1010,10 +1010,12 @@ button.addPerafrence:hover {
 .swiper-button-next {
   right: 60px;
   left: auto;
+  top: 407px;
 }
 .swiper-button-prev {
   left: 60px;
   right: auto;
+  top: 407px;
 }
 .yourWardrobe p.gnrtDiscrptn {
   color: var(--text-80, #5c5c5c);
@@ -1142,7 +1144,17 @@ button.addPerafrence:hover {
   font-weight: 700;
   padding: 8px;
   width: 145px;
-  float: inline-end;
+}
+.viewReslt.show.dropdown button.btnrgtn {
+  color: var(--text-100, #333);
+  font-family: "Andika", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  width: 145px;
+  padding: 8px;
+  border-radius: var(--interactive-border-radius-radius-i-sm, 8px);
+  border: 1px solid var(--main-trunks, #595d62);
+  background-color: transparent;
 }
 .viewReslt.show.dropdown p.tellResn {
   color: var(--text-100, #333);
