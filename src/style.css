@@ -28,6 +28,67 @@ button {
   font-family: "Andika", sans-serif;
   font-weight: 700;
 }
+button.btnSimple {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+}
+button.btnSimple:hover {
+  background-color: #3a81ba;
+}
+button.btnrgtn {
+  color: var(--text-100, #333);
+  font-family: "Andika", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  width: 145px;
+  padding: 8px;
+  border-radius: var(--interactive-border-radius-radius-i-sm, 8px);
+  border: 1px solid var(--main-trunks, #595d62);
+  background-color: transparent;
+}
+button.btnrgtn:hover {
+  background-color: #3a81ba;
+  color: white;
+}
+button.btnPrfSubmit {
+  border-radius: var(--interactive-border-radius-radius-i-sm, 8px);
+  background: var(--primary-10, #4b8bbe);
+  color: var(--White, #fff);
+  text-align: center;
+  font-family: "Andika", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 8px;
+  width: 145px;
+}
+button.btnPrfSubmit:hover {
+  background-color: #3a81ba;
+}
+input.renameWrb {
+  border-radius: var(--Interactive-border-radius---radius-i-sm, 8px);
+  border: 1px solid var(--Main-beerus, #e2e2e2);
+  background: var(--Main-gohan, #fff);
+  padding: 12px;
+  width: 100%;
+}
+/* For WebKit browsers (Chrome, Safari) */
+::-webkit-scrollbar {
+  width: 8px; /* Set the width of the scrollbar */
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  /* Set the background color of the track */
+  border-radius: 50px;
+}
+
+/* Handle (thumb) */
+::-webkit-scrollbar-thumb {
+  background: #888; /* Set the color of the handle */
+  border-radius: 50px;
+}
 
 button.btnPrimary {
   font-size: 1rem;
@@ -60,6 +121,7 @@ button.btnPrimary {
     background-position: 0 0;
   }
 }
+
 .signmainBox {
   width: 100%;
   height: 100%;
@@ -1037,6 +1099,17 @@ button.addPerafrence:hover {
   float: right;
   transform: translate(0, -30px);
 }
+.yourWardrobe button.saveWrdrb {
+  display: flex;
+  width: 182px;
+  padding: var(--paddings-gaps-p-2, 8px) var(--paddings-gaps-p-4, 16px);
+  justify-content: center;
+  align-items: center;
+  gap: var(--gap-0, 0px);
+  border-radius: var(--Interactive-border-radius---radius-i-sm, 8px);
+  background-color: var(--primary-10, #4b8bbe);
+  border: none;
+}
 .yourWardrobe .prfrncResult button.resultImg {
   border-radius: 12px;
   background: #fff;
@@ -1134,17 +1207,7 @@ button.addPerafrence:hover {
   border: 1px solid var(--text-100, #333);
   padding: 8px 16px;
 }
-.viewReslt.show.dropdown button.btnPrfSubmit {
-  border-radius: var(--interactive-border-radius-radius-i-sm, 8px);
-  background: var(--primary-10, #4b8bbe);
-  color: var(--White, #fff);
-  text-align: center;
-  font-family: "Andika", sans-serif;
-  font-size: 14px;
-  font-weight: 700;
-  padding: 8px;
-  width: 145px;
-}
+
 .viewReslt.show.dropdown button.btnrgtn {
   color: var(--text-100, #333);
   font-family: "Andika", sans-serif;
@@ -1173,7 +1236,7 @@ button.addPerafrence:hover {
   width: 140px;
   height: 140px;
 }
-.prfrncResult button.resultImg button.btnRemoveClose {
+.prfrncResult .prfrncResultShow button.btnRemoveClose {
   border-radius: var(--interactive-border-radius-radius-i-sm, 8px);
   background: var(--White, #fff);
   box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.4),
@@ -1185,7 +1248,28 @@ button.addPerafrence:hover {
   right: 6px;
   border: none;
 }
-.prfrncResult button.resultImg:hover button.btnRemoveClose {
+.prfrncResult .prfrncResultShow:hover button.btnRemoveClose {
+  display: block;
+}
+.prfrncResult .prfrncResultShow button.btnFavourite {
+  border-radius: 8px;
+  background: var(--White, #fff);
+  box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.4),
+    0px 6px 6px -6px rgba(0, 0, 0, 0.16);
+  padding: 4px 12px;
+  color: var(--Text-100, #333);
+  font-size: 14px;
+  font-family: "Andika", sans-serif;
+  border: none;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  bottom: 2px;
+  right: 4px;
+  left: 4px;
+  display: none;
+}
+.prfrncResult .prfrncResultShow:hover button.btnFavourite {
   display: block;
 }
 .givenPrefrnc .btn-check:checked + .btn,
@@ -1277,7 +1361,7 @@ button.addPerafrence:hover {
     0px 12px 12px -6px rgba(0, 0, 0, 0.16);
 
   width: 180px;
-  margin: 0 0 0 30px;
+  margin: 60px 0 0 30px;
   padding: 20px 8px;
   text-align: center;
 }
@@ -1334,7 +1418,12 @@ button.addPerafrence:hover {
     0px 8px 24px -6px rgba(0, 0, 0, 0.16);
   padding: 4px;
 }
-.showDtl.dropdown .dropdown-menu.show p.whoDay {
+.dropdown-menu.show .wrdpss {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  height: 100px;
+}
+.dropdown-menu.show p.whoDay {
   color: var(--text-40, #adadad);
   font-family: Barlow Semi Condensed;
   font-size: 12px;
@@ -1351,3 +1440,117 @@ button.addPerafrence:hover {
   color: white;
 }
 /* .showDtl.Notification.show.dropdown */
+
+.showDtl.Notification.dropdown .dropdown-menu.show {
+  width: 500px;
+}
+.Notification.dropdown .ntfHdr p.hding {
+  color: var(--Text-100, #333);
+  font-family: "Andika", sans-serif;
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+.Notification.dropdown p.newNft {
+  color: var(--Text-100, #333);
+  font-family: "Andika", sans-serif;
+  font-size: 1rem;
+}
+.Notification.dropdown span.newNft {
+  color: var(--Text-80, #5c5c5c);
+  font-family: Barlow Semi Condensed;
+  font-size: 14px;
+}
+.Notification.dropdown span strong.NftNmbr {
+  color: var(--Accent, #f06292);
+  font-weight: 700;
+}
+.Notification.dropdown h4.tagNft {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 14px;
+  font-size: 12px;
+  color: white;
+  border-radius: 40px;
+  background: var(--Accent, #f06292);
+}
+.Notification.dropdown a.notificationNew.dropdown-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 16px;
+  border-radius: var(--paddings-gaps-p-4, 16px);
+  background: var(--Primary-Shades-10, #eff7fc);
+  margin: 8px 0;
+}
+.Notification.dropdown .Notifctns {
+  padding: 0 12px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  height: 260px;
+}
+.Notification.dropdown .NoNotifications {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 0 20px;
+}
+.showDtl.dropdown a.profiledrp.dropdown-item {
+  color: var(--Text-100, #333);
+  font-family: "Andika", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 8px;
+}
+.toast.successfullToast.show {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: var(--Surface-border-radius---radius-s-sm, 8px);
+  background: var(--Main-gohan, #fff);
+  box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.4),
+    0px 8px 24px -6px rgba(0, 0, 0, 0.16);
+}
+.toast.successfullToast p.savedwrdb {
+  color: var(--Text-100, #333);
+  font-family: "Andika", sans-serif;
+  font-size: 14px;
+}
+.toast.successfullToast p.savedwrdb span {
+  color: var(--Accent, #f06292);
+}
+.toast.successfullToast button.svdEdtWrdb {
+  border-radius: var(--Interactive-border-radius---radius-i-xs, 4px);
+  background: var(--Primary-Shades-20, #e6eff6);
+  border: none;
+  display: flex;
+  justify-content: center;
+  padding: 8px;
+}
+.toast.EditSavedToast {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 99999;
+  background-color: transparent;
+  padding: 0;
+  max-width: fit-content;
+  border: none;
+  box-shadow: none;
+}
+.Toastoverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(
+    0,
+    0,
+    0,
+    0.5
+  ); /* Adjust the background color and transparency as needed */
+  z-index: 9998; /* Place the overlay beneath the toast but above the content */
+}

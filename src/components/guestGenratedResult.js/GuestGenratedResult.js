@@ -9,9 +9,20 @@ import "swiper/css";
 import "swiper/css/grid";
 import "swiper/css/navigation";
 import ProductDtails from "../Modals/ProductDtails";
+import SuccessfullyToast from "../Toasts/SuccessfullySvedToast";
+import SuccessfullySavedToast from "../Toasts/SuccessfullySvedToast";
 
 const GuestGenratedResult = () => {
   const [modalShow, setModalShow] = React.useState(false);
+  const [showToast, setShowToast] = useState(false);
+
+  const handleButtonClick = () => {
+    setShowToast(true);
+  };
+
+  const handleCloseToast = () => {
+    setShowToast(false);
+  };
   return (
     <>
       <BasedUponPrfrnc />
@@ -32,168 +43,308 @@ const GuestGenratedResult = () => {
               className="mySwiperRst"
             >
               <SwiperSlide>
-                <Button
-                  className="resultImg"
-                  onClick={() => setModalShow(true)}
-                >
-                  <img
-                    className="productImg"
-                    src="/images/given-prefrnce-image-1.png"
-                    alt="picture"
-                  />
-
+                <div className="prfrncResultShow">
+                  <Button
+                    className="resultImg"
+                    onClick={() => setModalShow(true)}
+                  >
+                    <img
+                      className="productImg"
+                      src="/images/given-prefrnce-image-1.png"
+                      alt="picture"
+                    />
+                  </Button>
                   <Button className="btnRemoveClose">
                     <img src="/images/close-Icon.svg" alt="icon" />
                   </Button>
-                </Button>
+                  <Button className="btnFavourite">
+                    <img
+                      className="me-2"
+                      src="/images/fvrt-heart-Icon.svg"
+                      alt="icon"
+                    />
+                    Add to Favorites
+                  </Button>
+                </div>
                 <ProductDtails
                   show={modalShow}
                   onHide={() => setModalShow(false)}
                 />
               </SwiperSlide>
               <SwiperSlide>
-                <Button className="resultImg">
-                  <img
-                    className="productImg"
-                    src="/images/given-prefrnce-image-1.png"
-                    alt="picture"
-                  />
-
+                <div className="prfrncResultShow">
+                  <Button
+                    className="resultImg"
+                    onClick={() => setModalShow(true)}
+                  >
+                    <img
+                      className="productImg"
+                      src="/images/given-prefrnce-image-1.png"
+                      alt="picture"
+                    />
+                  </Button>
                   <Button className="btnRemoveClose">
                     <img src="/images/close-Icon.svg" alt="icon" />
                   </Button>
-                </Button>
+                  <Button className="btnFavourite">
+                    <img
+                      className="me-2"
+                      src="/images/fvrt-heart-Icon.svg"
+                      alt="icon"
+                    />
+                    Add to Favorites
+                  </Button>
+                </div>
               </SwiperSlide>
               <SwiperSlide>
-                <Button className="resultImg">
-                  <img
-                    className="productImg"
-                    src="/images/given-prefrnce-image-1.png"
-                    alt="picture"
-                  />
-
+                <div className="prfrncResultShow">
+                  <Button
+                    className="resultImg"
+                    onClick={() => setModalShow(true)}
+                  >
+                    <img
+                      className="productImg"
+                      src="/images/given-prefrnce-image-1.png"
+                      alt="picture"
+                    />
+                  </Button>
                   <Button className="btnRemoveClose">
                     <img src="/images/close-Icon.svg" alt="icon" />
                   </Button>
-                </Button>
+                  <Button className="btnFavourite">
+                    <img
+                      className="me-2"
+                      src="/images/fvrt-heart-Icon.svg"
+                      alt="icon"
+                    />
+                    Add to Favorites
+                  </Button>
+                </div>
               </SwiperSlide>
               <SwiperSlide>
-                <Button className="resultImg">
-                  <img
-                    className="productImg"
-                    src="/images/given-prefrnce-image-1.png"
-                    alt="picture"
-                  />
-
+                <div className="prfrncResultShow">
+                  <Button
+                    className="resultImg"
+                    onClick={() => setModalShow(true)}
+                  >
+                    <img
+                      className="productImg"
+                      src="/images/given-prefrnce-image-1.png"
+                      alt="picture"
+                    />
+                  </Button>
                   <Button className="btnRemoveClose">
                     <img src="/images/close-Icon.svg" alt="icon" />
                   </Button>
-                </Button>
+                  <Button className="btnFavourite">
+                    <img
+                      className="me-2"
+                      src="/images/fvrt-heart-Icon.svg"
+                      alt="icon"
+                    />
+                    Add to Favorites
+                  </Button>
+                </div>
               </SwiperSlide>
               <SwiperSlide>
-                <Button className="resultImg">
-                  <img
-                    className="productImg"
-                    src="/images/given-prefrnce-image-1.png"
-                    alt="picture"
-                  />
-
+                <div className="prfrncResultShow">
+                  <Button
+                    className="resultImg"
+                    onClick={() => setModalShow(true)}
+                  >
+                    <img
+                      className="productImg"
+                      src="/images/given-prefrnce-image-1.png"
+                      alt="picture"
+                    />
+                  </Button>
                   <Button className="btnRemoveClose">
                     <img src="/images/close-Icon.svg" alt="icon" />
                   </Button>
-                </Button>
+                  <Button className="btnFavourite">
+                    <img
+                      className="me-2"
+                      src="/images/fvrt-heart-Icon.svg"
+                      alt="icon"
+                    />
+                    Add to Favorites
+                  </Button>
+                </div>
               </SwiperSlide>
               <SwiperSlide>
-                <Button className="resultImg">
-                  <img
-                    className="productImg"
-                    src="/images/given-prefrnce-image-1.png"
-                    alt="picture"
-                  />
-
+                <div className="prfrncResultShow">
+                  <Button
+                    className="resultImg"
+                    onClick={() => setModalShow(true)}
+                  >
+                    <img
+                      className="productImg"
+                      src="/images/given-prefrnce-image-1.png"
+                      alt="picture"
+                    />
+                  </Button>
                   <Button className="btnRemoveClose">
                     <img src="/images/close-Icon.svg" alt="icon" />
                   </Button>
-                </Button>
-              </SwiperSlide>
-
-              <SwiperSlide>
-                <Button className="resultImg">
-                  <img
-                    className="productImg"
-                    src="/images/given-prefrnce-image-1.png"
-                    alt="picture"
-                  />
-
-                  <Button className="btnRemoveClose">
-                    <img src="/images/close-Icon.svg" alt="icon" />
+                  <Button className="btnFavourite">
+                    <img
+                      className="me-2"
+                      src="/images/fvrt-heart-Icon.svg"
+                      alt="icon"
+                    />
+                    Add to Favorites
                   </Button>
-                </Button>
+                </div>
               </SwiperSlide>
               <SwiperSlide>
-                <Button className="resultImg">
-                  <img
-                    className="productImg"
-                    src="/images/given-prefrnce-image-1.png"
-                    alt="picture"
-                  />
-
+                <div className="prfrncResultShow">
+                  <Button
+                    className="resultImg"
+                    onClick={() => setModalShow(true)}
+                  >
+                    <img
+                      className="productImg"
+                      src="/images/given-prefrnce-image-1.png"
+                      alt="picture"
+                    />
+                  </Button>
                   <Button className="btnRemoveClose">
                     <img src="/images/close-Icon.svg" alt="icon" />
                   </Button>
-                </Button>
+                  <Button className="btnFavourite">
+                    <img
+                      className="me-2"
+                      src="/images/fvrt-heart-Icon.svg"
+                      alt="icon"
+                    />
+                    Add to Favorites
+                  </Button>
+                </div>
               </SwiperSlide>
               <SwiperSlide>
-                <Button className="resultImg">
-                  <img
-                    className="productImg"
-                    src="/images/given-prefrnce-image-1.png"
-                    alt="picture"
-                  />
-
+                <div className="prfrncResultShow">
+                  <Button
+                    className="resultImg"
+                    onClick={() => setModalShow(true)}
+                  >
+                    <img
+                      className="productImg"
+                      src="/images/given-prefrnce-image-1.png"
+                      alt="picture"
+                    />
+                  </Button>
                   <Button className="btnRemoveClose">
                     <img src="/images/close-Icon.svg" alt="icon" />
                   </Button>
-                </Button>
+                  <Button className="btnFavourite">
+                    <img
+                      className="me-2"
+                      src="/images/fvrt-heart-Icon.svg"
+                      alt="icon"
+                    />
+                    Add to Favorites
+                  </Button>
+                </div>
               </SwiperSlide>
               <SwiperSlide>
-                <Button className="resultImg">
-                  <img
-                    className="productImg"
-                    src="/images/given-prefrnce-image-1.png"
-                    alt="picture"
-                  />
-
+                <div className="prfrncResultShow">
+                  <Button
+                    className="resultImg"
+                    onClick={() => setModalShow(true)}
+                  >
+                    <img
+                      className="productImg"
+                      src="/images/given-prefrnce-image-1.png"
+                      alt="picture"
+                    />
+                  </Button>
                   <Button className="btnRemoveClose">
                     <img src="/images/close-Icon.svg" alt="icon" />
                   </Button>
-                </Button>
+                  <Button className="btnFavourite">
+                    <img
+                      className="me-2"
+                      src="/images/fvrt-heart-Icon.svg"
+                      alt="icon"
+                    />
+                    Add to Favorites
+                  </Button>
+                </div>
               </SwiperSlide>
               <SwiperSlide>
-                <Button className="resultImg">
-                  <img
-                    className="productImg"
-                    src="/images/given-prefrnce-image-1.png"
-                    alt="picture"
-                  />
-
+                <div className="prfrncResultShow">
+                  <Button
+                    className="resultImg"
+                    onClick={() => setModalShow(true)}
+                  >
+                    <img
+                      className="productImg"
+                      src="/images/given-prefrnce-image-1.png"
+                      alt="picture"
+                    />
+                  </Button>
                   <Button className="btnRemoveClose">
                     <img src="/images/close-Icon.svg" alt="icon" />
                   </Button>
-                </Button>
+                  <Button className="btnFavourite">
+                    <img
+                      className="me-2"
+                      src="/images/fvrt-heart-Icon.svg"
+                      alt="icon"
+                    />
+                    Add to Favorites
+                  </Button>
+                </div>
               </SwiperSlide>
               <SwiperSlide>
-                <Button className="resultImg">
-                  <img
-                    className="productImg"
-                    src="/images/given-prefrnce-image-1.png"
-                    alt="picture"
-                  />
-
+                <div className="prfrncResultShow">
+                  <Button
+                    className="resultImg"
+                    onClick={() => setModalShow(true)}
+                  >
+                    <img
+                      className="productImg"
+                      src="/images/given-prefrnce-image-1.png"
+                      alt="picture"
+                    />
+                  </Button>
                   <Button className="btnRemoveClose">
                     <img src="/images/close-Icon.svg" alt="icon" />
                   </Button>
-                </Button>
+                  <Button className="btnFavourite">
+                    <img
+                      className="me-2"
+                      src="/images/fvrt-heart-Icon.svg"
+                      alt="icon"
+                    />
+                    Add to Favorites
+                  </Button>
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="prfrncResultShow">
+                  <Button
+                    className="resultImg"
+                    onClick={() => setModalShow(true)}
+                  >
+                    <img
+                      className="productImg"
+                      src="/images/given-prefrnce-image-1.png"
+                      alt="picture"
+                    />
+                  </Button>
+                  <Button className="btnRemoveClose">
+                    <img src="/images/close-Icon.svg" alt="icon" />
+                  </Button>
+                  <Button className="btnFavourite">
+                    <img
+                      className="me-2"
+                      src="/images/fvrt-heart-Icon.svg"
+                      alt="icon"
+                    />
+                    Add to Favorites
+                  </Button>
+                </div>
               </SwiperSlide>
             </Swiper>
           </div>
@@ -204,10 +355,16 @@ const GuestGenratedResult = () => {
               You can save this wardrobe as it is or you can regenerate for some
               new results
             </p>
+            {/* <div>
+              <Button className="saveWrdrb" onClick={handleButtonClick}>
+                Save Wardrobe
+              </Button>
 
-            {/* <Button className="regenrete">
-            <img src="/images/refresh-Icon.svg" alt="icon" /> Regenerate
-          </Button> */}
+              <SuccessfullySavedToast
+                showToast={showToast}
+                onClose={handleCloseToast}
+              />
+            </div> */}
 
             <Dropdown className="viewReslt">
               <Dropdown.Toggle id="dropdown-basic" className="regenrete">
@@ -242,9 +399,20 @@ const GuestGenratedResult = () => {
           </div>
         </div>
       </div>
+
       <Button className="btnPrimary mx-auto mt-5 mb-3">
         <img className="me-3" src="/images/staricon.svg" alt="star" /> Generate
         the magic
+        <div>
+          <Button className="saveWrdrb" onClick={handleButtonClick}>
+            Save Wardrobe
+          </Button>
+
+          <SuccessfullySavedToast
+            showToast={showToast}
+            onClose={handleCloseToast}
+          />
+        </div>
       </Button>
     </>
   );
