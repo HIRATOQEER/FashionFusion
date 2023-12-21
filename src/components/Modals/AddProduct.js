@@ -1,9 +1,19 @@
-import React from "react";
-import { Form, FormGroup } from "react-bootstrap";
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import { RatingStar } from "../Rating/RatingStar";
+import AddFavoritToast from "../Toasts/AddFavoritToast";
 
 const AddProduct = (props) => {
+  const [showToast, setShowToast] = useState(false);
+
+  const handleButtonClick = () => {
+    setShowToast(true);
+  };
+
+  const handleCloseToast = () => {
+    setShowToast(false);
+  };
   return (
     <>
       <Modal
@@ -32,13 +42,16 @@ const AddProduct = (props) => {
                 <span className="tagg">Brand</span>
                 <span className="tagg">Gender</span>
               </div>
+
+              <RatingStar />
+
               <textarea
                 className="addTxtCmnt mb-3 w-full d-block"
                 name=""
                 id=""
                 cols="30"
                 rows="1"
-                placeholder="Comment"
+                placeholder="Your Comment"
               ></textarea>
             </div>
 
@@ -49,13 +62,19 @@ const AddProduct = (props) => {
             />
           </div>
         </Modal.Body>
-        <Modal.Footer className="border-0">
-          <p></p>
+        <Modal.Footer className="border-0 d-flex justify-content-between align-items-center">
+          <p className="infoDis">
+            <img className="me-1" src="/images/info-Icon.svg" alt="info icon" />
+            Product will be saved with the comments and rating
+          </p>
           <div>
             <Button onClick={props.onHide} className="cancelPrv">
               Cancel
             </Button>
-            <Button className="btnPrfSubmit">Done</Button>
+            <Button className="btnPrfSubmit ms-3" onClick={handleButtonClick}>
+              Done
+            </Button>
+            <AddFavoritToast showToast={showToast} onClose={handleCloseToast} />
           </div>
         </Modal.Footer>
       </Modal>

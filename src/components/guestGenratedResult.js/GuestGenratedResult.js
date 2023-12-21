@@ -9,11 +9,12 @@ import "swiper/css";
 import "swiper/css/grid";
 import "swiper/css/navigation";
 import ProductDtails from "../Modals/ProductDtails";
-import SuccessfullyToast from "../Toasts/SuccessfullySvedToast";
 import SuccessfullySavedToast from "../Toasts/SuccessfullySvedToast";
+import AddProduct from "../Modals/AddProduct";
 
 const GuestGenratedResult = () => {
   const [modalShow, setModalShow] = React.useState(false);
+  const [modalAddShow, setModalAddShow] = React.useState(false);
   const [showToast, setShowToast] = useState(false);
 
   const handleButtonClick = () => {
@@ -57,7 +58,10 @@ const GuestGenratedResult = () => {
                   <Button className="btnRemoveClose">
                     <img src="/images/close-Icon.svg" alt="icon" />
                   </Button>
-                  <Button className="btnFavourite">
+                  <Button
+                    className="btnFavourite"
+                    onClick={() => setModalAddShow(true)}
+                  >
                     <img
                       className="me-2"
                       src="/images/fvrt-heart-Icon.svg"
@@ -69,6 +73,10 @@ const GuestGenratedResult = () => {
                 <ProductDtails
                   show={modalShow}
                   onHide={() => setModalShow(false)}
+                />
+                <AddProduct
+                  show={modalAddShow}
+                  onHide={() => setModalAddShow(false)}
                 />
               </SwiperSlide>
               <SwiperSlide>
@@ -360,16 +368,6 @@ const GuestGenratedResult = () => {
                 Save Wardrobe
               </Button>
             </div>
-            {/* <div>
-              <Button className="saveWrdrb" onClick={handleButtonClick}>
-                Save Wardrobe
-              </Button>
-
-              <SuccessfullySavedToast
-                showToast={showToast}
-                onClose={handleCloseToast}
-              />
-            </div> */}
 
             <Dropdown className="viewReslt">
               <Dropdown.Toggle id="dropdown-basic" className="regenrete">
@@ -404,16 +402,15 @@ const GuestGenratedResult = () => {
           </div>
         </div>
       </div>
-
+      <div>
+        <SuccessfullySavedToast
+          showToast={showToast}
+          onClose={handleCloseToast}
+        />
+      </div>
       <Button className="btnPrimary mx-auto mt-5 mb-3">
         <img className="me-3" src="/images/staricon.svg" alt="star" /> Generate
         the magic
-        <div>
-          <SuccessfullySavedToast
-            showToast={showToast}
-            onClose={handleCloseToast}
-          />
-        </div>
       </Button>
     </>
   );

@@ -657,6 +657,14 @@ button.btnsign {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+.crtWrdbHeader .HomeHdr h2 {
+  color: var(--Text-100, #333);
+  font-size: 3rem;
+  letter-spacing: -1px;
+  display: flex;
+  align-items: center;
+  margin: 20px 0 0;
+}
 .crtWrdbHeader .WrdbHeaderBox p {
   font-size: 1.75rem;
   font-style: italic;
@@ -1141,6 +1149,11 @@ button.addPerafrence:hover {
   font-family: "Andika", sans-serif;
   margin: 0 0 12px;
 }
+.fade.productDtlMdl.modal.show p.infoDis {
+  color: var(--Text-80, #5c5c5c);
+  font-family: Barlow Semi Condensed;
+  font-size: 1rem;
+}
 .fade.productDtlMdl.modal.show button.btnPrfSubmit {
   border-radius: var(--interactive-border-radius-radius-i-sm, 8px);
   background: var(--primary-10, #4b8bbe);
@@ -1543,6 +1556,13 @@ button.addPerafrence:hover {
   max-width: fit-content;
   border: none;
   box-shadow: none;
+  border-radius: 30px;
+}
+.toast.EditSavedToast p.prdtAdded {
+  color: var(--Accent, #f06292);
+  font-family: "Andika", sans-serif;
+  font-size: 1.25rems;
+  margin: 20px 0 0;
 }
 .Toastoverlay {
   position: fixed;
@@ -1557,4 +1577,142 @@ button.addPerafrence:hover {
     0.5
   ); /* Adjust the background color and transparency as needed */
   z-index: 9998; /* Place the overlay beneath the toast but above the content */
+}
+/* -----------Home---------- */
+.HomeBox {
+  height: calc(100dvh - 200px);
+}
+.HomeBox .gif-image {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.HomeBox .gif-image img {
+  opacity: 0.2;
+}
+.HomeBox .sortedBy .verticalLine {
+  border: none;
+  border-left: 2px solid #000; /* Change the color as needed */
+  height: 23px; /* Set the height of the vertical line */
+  display: inline-block;
+  margin: 0 20px;
+}
+.HomeBox .sortedBy p {
+  color: var(--Text-100, #333);
+  font-size: 1rem;
+  font-family: "Andika", sans-serif;
+}
+.HomeBox .sortedBy button.btnrgtn {
+  width: 120px;
+}
+.HomeBox .HomeCard {
+  position: relative;
+  padding: 25px;
+  border-radius: var(--paddings-gaps-p-4, 16px);
+  background: var(--White, #fff);
+  z-index: 9;
+}
+.HomeBox .HomeCard img.SmlProduct {
+  max-width: 76px;
+  height: 76px;
+  width: 100%;
+  border-radius: 5px;
+}
+.HomeBox .HomeCard p.WrdbNmbr {
+  color: var(--Text-100, #333);
+  font-family: "Andika", sans-serif;
+  font-size: 1.124rem;
+}
+.HomeBox .HomeCard .BottomCurveImg img {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  border-radius: 0 0 16px 16px;
+}
+.HomeBox .HomeCard .CreatedTime button.BtnTaggCstm {
+  border-radius: 20px;
+  background: var(--Secondary-Shades-10, #eeedfe);
+  padding: 4px 12px;
+  border: none;
+}
+.HomeBox .HomeCard .CreatedTime button.BtnTaggCstm span {
+  background: linear-gradient(90deg, #4e46b4 0%, #ba4788 96.74%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: "Andika", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+}
+.HomeBox .HomeCard .CreatedTime p.AgaoTime {
+  color: var(--Text-100, #333);
+  font-family: Barlow Semi Condensed;
+  font-size: 12px;
+}
+.HomeBox .MainCardBox {
+  overflow-y: hidden;
+  overflow-y: scroll;
+  height: 530px;
+}
+.HomeFooter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 40px 40px 0px 0px;
+  background: #fff;
+  padding: 37px 0;
+  box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.4),
+    0px 8px 24px -6px rgba(0, 0, 0, 0.16);
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.HomeFooter h3 {
+  font-size: 1.75rem;
+  background: linear-gradient(90deg, #4e46b4 -18.44%, #4b8bbe 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0 20px 0 0;
+}
+.HomeFooter .BlurSvg img {
+  position: absolute;
+  bottom: 130px;
+  width: 100%;
+  height: 363px;
+  left: 0;
+}
+.twoOption.show.dropdown .dropdown-menu.show {
+  inset: 0px 0 auto auto !important;
+  border-radius: var(--Interactive-border-radius---radius-i-md, 12px);
+  background: var(--Main-gohan, #fff);
+  box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.4),
+    0px 8px 24px -6px rgba(0, 0, 0, 0.16);
+}
+.twoOption.show.dropdown .dropdown-item {
+  color: var(--Text-100, #333);
+  font-family: "Andika", sans-serif;
+  font-size: 14px;
+}
+.twoOption.show.dropdown .dropdown-item:nth-child(2) {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #962d2d;
+}
+button.btnFeedBack {
+  margin: 10px 30px 10px 0;
+  color: var(--White, #fff);
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 12px;
+  border: none;
+  float: inline-end;
+  border-radius: var(--Interactive-border-radius---radius-i-sm, 8px);
+  background: var(--secondary-30, #4e46b4);
+  box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.4),
+    0px 12px 12px -6px rgba(0, 0, 0, 0.16);
 }

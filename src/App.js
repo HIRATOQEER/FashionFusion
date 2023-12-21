@@ -5,6 +5,7 @@ import WelcomeScreen from "./pages/welcomScreen/WelcomeScreen";
 import CreateWardrobe from "./pages/AsGuest/createWardrobe/CreateWardrobe";
 import GenratedResult from "./pages/AsGuest/genratedWardrobe/GenratedResult";
 import UserCreateWrdb from "./pages/LogedIn/UserCreateWrdb";
+import HomePage from "./pages/Home/HomePage";
 
 function App() {
   return (
@@ -21,12 +22,17 @@ function App() {
           path="/pages/AsGuest/createWardrobe/CreateWardrobe"
           element={<CreateWardrobe />}
         />
-        <Route exact path="/" element={<GenratedResult />} />
         <Route
           exact
-          path="/pages/LogedIn/UserCreateWrdb"
+          path="./pages/AsGuest/genratedWardrobe/GenratedResult"
+          element={<GenratedResult />}
+        />
+        <Route
+          exact
+          path="./pages/LogedIn/UserCreateWrdb"
           element={<UserCreateWrdb />}
         />
+        <Route exact path="/" element={<HomePage />} />
       </Routes>
     </Router>
   );
