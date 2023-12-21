@@ -350,11 +350,16 @@ const GuestGenratedResult = () => {
           </div>
 
           <div className="justify-content-between align-items-center mt-4 ">
-            <p className="gnrtDiscrptn">
-              <img src="/images/question-mark-Icon.svg" alt="icon" />
-              You can save this wardrobe as it is or you can regenerate for some
-              new results
-            </p>
+            <div className="d-flex flex-you justify-content-between">
+              <p className="gnrtDiscrptn">
+                <img src="/images/question-mark-Icon.svg" alt="icon" />
+                You can save this wardrobe as it is or you can regenerate for
+                some new results
+              </p>
+              <Button className="saveWrdrb" onClick={handleButtonClick}>
+                Save Wardrobe
+              </Button>
+            </div>
             {/* <div>
               <Button className="saveWrdrb" onClick={handleButtonClick}>
                 Save Wardrobe
@@ -404,10 +409,6 @@ const GuestGenratedResult = () => {
         <img className="me-3" src="/images/staricon.svg" alt="star" /> Generate
         the magic
         <div>
-          <Button className="saveWrdrb" onClick={handleButtonClick}>
-            Save Wardrobe
-          </Button>
-
           <SuccessfullySavedToast
             showToast={showToast}
             onClose={handleCloseToast}

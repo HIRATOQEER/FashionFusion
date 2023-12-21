@@ -1,21 +1,25 @@
 import React from "react";
+import { Nav, Navbar } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const GuestSideBar = () => {
   return (
     <>
       <div className="guestSidebar">
-        <ul>
-          <li>
-            <a href="#">
-              <img src="/images/white-star-Group.svg" alt="icon" />
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <img src="/images/user-Generic.svg" alt="icon" />
-            </a>
-          </li>
-        </ul>
+        <Navbar>
+          <ul>
+            <li>
+              <Link to="#">
+                <img src="/images/white-star-Group.svg" alt="icon" />
+              </Link>
+            </li>
+            <li>
+              <Link to="pages/signUp/SignUps">
+                <img src="/images/user-Generic.svg" alt="icon" />
+              </Link>
+            </li>
+          </ul>
+        </Navbar>
       </div>
     </>
   );

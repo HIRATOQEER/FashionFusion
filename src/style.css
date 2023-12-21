@@ -1097,7 +1097,7 @@ button.addPerafrence:hover {
   border: 1px solid var(--main-trunks, #595d62);
   background-color: transparent;
   float: right;
-  transform: translate(0, -30px);
+  transform: translate(0, -41px);
 }
 .yourWardrobe button.saveWrdrb {
   display: flex;
@@ -1109,6 +1109,7 @@ button.addPerafrence:hover {
   border-radius: var(--Interactive-border-radius---radius-i-sm, 8px);
   background-color: var(--primary-10, #4b8bbe);
   border: none;
+  z-index: 9;
 }
 .yourWardrobe .prfrncResult button.resultImg {
   border-radius: 12px;
@@ -1494,6 +1495,9 @@ button.addPerafrence:hover {
   justify-content: center;
   align-items: center;
   margin: 0 0 20px;
+}
+.d-flex.flex-you {
+  margin-right: 137px;
 }
 .showDtl.dropdown a.profiledrp.dropdown-item {
   color: var(--Text-100, #333);

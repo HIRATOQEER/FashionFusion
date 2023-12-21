@@ -10,21 +10,21 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route exact path="./pages/signUp/SignUps" element={<SignUp />} />
+        <Route exact path="/pages/signUp/SignUps" element={<SignUp />} />
         <Route
           exact
-          path="./pages/welcomScreen/WelcomeScreen"
+          path="/pages/welcomScreen/WelcomeScreen"
           element={<WelcomeScreen />}
         />
         <Route
           exact
-          path="./pages/AsGuest/createWardrobe/CreateWardrobe"
+          path="/pages/AsGuest/createWardrobe/CreateWardrobe"
           element={<CreateWardrobe />}
         />
         <Route exact path="/" element={<GenratedResult />} />
         <Route
           exact
-          path="./pages/LogedIn/UserCreateWrdb"
+          path="/pages/LogedIn/UserCreateWrdb"
           element={<UserCreateWrdb />}
         />
       </Routes>
