@@ -10,13 +10,22 @@ const HomeHeader = () => {
           alt="logo"
         />
         <div className="HomeHdr">
-          <h2>
+          {/* <h2>
             <img
               className="me-3"
               src="/images/noun-home-6295373-1.svg"
               alt="start icon"
             />
             Home
+          </h2> */}
+          {/* ------when open wardrobe then show this heading----- */}
+          <h2>
+            <img
+              className="me-3"
+              src="/images/main-wardrobe-icon.svg"
+              alt="start icon"
+            />
+            My Wardrobes
           </h2>
         </div>
       </div>

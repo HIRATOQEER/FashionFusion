@@ -636,6 +636,7 @@ button.btnsign {
 .crtWrdbMain {
   background-color: var(--Background, #f4f4f4);
   padding-bottom: 40px;
+  height: 100dvh;
 }
 .crtWrdbHeader {
   display: flex;
@@ -1586,6 +1587,7 @@ button.addPerafrence:hover {
   position: absolute;
   right: 0;
   top: 0;
+  pointer-events: none;
 }
 .HomeBox .gif-image img {
   opacity: 0.2;
@@ -1597,6 +1599,9 @@ button.addPerafrence:hover {
   display: inline-block;
   margin: 0 20px;
 }
+.HomeBox .sortedBy {
+  padding: 0 30px 0 0;
+}
 .HomeBox .sortedBy p {
   color: var(--Text-100, #333);
   font-size: 1rem;
@@ -1604,6 +1609,16 @@ button.addPerafrence:hover {
 }
 .HomeBox .sortedBy button.btnrgtn {
   width: 120px;
+}
+.HomeBox .sortedBy button.btnRemoveEvry {
+  color: var(--Alert, #962d2d);
+  font-family: "Andika", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: var(--Interactive-border-radius---radius-i-sm, 8px);
+  border: 1px solid var(--Alert, #962d2d);
+  padding: 8px 12px;
+  background-color: transparent;
 }
 .HomeBox .HomeCard {
   position: relative;
@@ -1613,8 +1628,7 @@ button.addPerafrence:hover {
   z-index: 9;
 }
 .HomeBox .HomeCard img.SmlProduct {
-  max-width: 76px;
-  height: 76px;
+  height: auto;
   width: 100%;
   border-radius: 5px;
 }
@@ -1684,6 +1698,7 @@ button.addPerafrence:hover {
   width: 100%;
   height: 363px;
   left: 0;
+  pointer-events: none;
 }
 .twoOption.show.dropdown .dropdown-menu.show {
   inset: 0px 0 auto auto !important;
@@ -1715,4 +1730,10 @@ button.btnFeedBack {
   background: var(--secondary-30, #4e46b4);
   box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.4),
     0px 12px 12px -6px rgba(0, 0, 0, 0.16);
+}
+.NoHaveWardrobe {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100dvh - 130px);
 }
