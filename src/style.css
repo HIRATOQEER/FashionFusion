@@ -636,7 +636,6 @@ button.btnsign {
 .crtWrdbMain {
   background-color: var(--Background, #f4f4f4);
   padding-bottom: 40px;
-  height: 100dvh;
 }
 .crtWrdbHeader {
   display: flex;
@@ -987,6 +986,7 @@ button.addPerafrence:hover {
   background-repeat: no-repeat;
   background-size: 100% 100%;
   animation: rotateAndChangeColor 14s linear infinite;
+  pointer-events: none;
 }
 
 @keyframes rotateAndChangeColor {
@@ -1028,6 +1028,13 @@ button.addPerafrence:hover {
   width: 36px;
   height: 36px;
 }
+.givenPrefrnc img.socialLink {
+  border-radius: 30px;
+  background: #fff;
+  padding: 8px;
+  width: 36px;
+  height: 36px;
+}
 .givenPrefrnc button.linksRslt {
   border-radius: 30px;
   padding: 8px;
@@ -1064,6 +1071,19 @@ button.addPerafrence:hover {
   font-size: 1.5rem;
   color: var(--primary-10, #4b8bbe);
   margin: 0 0 20px;
+}
+.yourWardrobe p.yur {
+  color: var(--Text-100, #333);
+  font-size: 1.125rem;
+  font-family: "Andika", sans-serif;
+}
+.yourWardrobe .wrdbCheck {
+  position: absolute;
+  top: 5px;
+  left: 10px;
+}
+.yourWardrobe .wrdbCheck input.form-check-input {
+  border: 1px solid #595d62;
 }
 .yourWardrobe .youWrdrbInner {
   padding: 20px 70px;
@@ -1188,11 +1208,31 @@ button.addPerafrence:hover {
   font-family: "Andika", sans-serif;
   font-size: 14px;
   font-weight: 700;
-  width: 145px;
+  min-width: 145px;
   padding: 8px;
   border-radius: var(--interactive-border-radius-radius-i-sm, 8px);
   border: 1px solid var(--main-trunks, #595d62);
   background-color: transparent;
+}
+.fade.productDtlMdl p.priceThis {
+  color: var(--secondary-30, #4e46b4);
+  font-family: Barlow Semi Condensed;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+.fade.productDtlMdl p.dtlThisPrdt {
+  color: var(--Text-100, #333);
+  font-family: "Andika", sans-serif;
+  font-size: 1.125rem;
+  margin: 0 0 8px;
+}
+.fade.productDtlMdl img.BrandThis {
+  padding: 4px;
+  max-width: 75px;
+  border-radius: 4px;
+  background: var(--White, #fff);
+  box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.4),
+    0px 6px 6px -6px rgba(0, 0, 0, 0.16);
 }
 .viewReslt.show.dropdown .dropdown-menu.show {
   /* transform: translate(-17px, -328px) !important; */
@@ -1502,7 +1542,7 @@ button.addPerafrence:hover {
   padding: 0 12px;
   overflow-x: hidden;
   overflow-y: scroll;
-  height: 260px;
+  height: 230px;
 }
 .Notification.dropdown .NoNotifications {
   display: flex;
@@ -1610,7 +1650,7 @@ button.addPerafrence:hover {
 .HomeBox .sortedBy button.btnrgtn {
   width: 120px;
 }
-.HomeBox .sortedBy button.btnRemoveEvry {
+button.btnRemoveEvry {
   color: var(--Alert, #962d2d);
   font-family: "Andika", sans-serif;
   font-size: 14px;
@@ -1618,6 +1658,12 @@ button.addPerafrence:hover {
   border-radius: var(--Interactive-border-radius---radius-i-sm, 8px);
   border: 1px solid var(--Alert, #962d2d);
   padding: 8px 12px;
+  background-color: transparent;
+}
+button.btnRemoveEvry:hover {
+  color: var(--Alert, #962d2d);
+  border: 1px solid var(--Alert, #962d2d);
+
   background-color: transparent;
 }
 .HomeBox .HomeCard {

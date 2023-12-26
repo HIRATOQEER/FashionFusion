@@ -18,7 +18,7 @@ const DeletionModal = (props) => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div className="d-flex justify-content-between align-items-start">
+          <div className="d-flex justify-content-center align-items-start pt-3">
             <p className="tellResn">
               Are you sure you want to remove everything?
             </p>

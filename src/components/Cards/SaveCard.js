@@ -5,15 +5,14 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
 import "swiper/css";
 import { Autoplay, EffectFade } from "swiper/modules";
+import { RatingStar } from "../Rating/RatingStar";
 
 const SaveCard = () => {
   return (
     <>
       <div className="cardBox">
         <h2>People love our suggested products</h2>
-        <div className="d-flex align-items-center justify-content-center gap-3">
-
-        </div>
+        <div className="d-flex align-items-center justify-content-center gap-3"></div>
         <Swiper
           spaceBetween={10}
           slidesPerView={2}
@@ -53,14 +52,15 @@ const SaveCard = () => {
                 cupiditate architecto consectetur.
               </p>
               <div className="RatingBox">
-                <div className="d-flex align-items-center">
+                {/* <div className="d-flex align-items-center">
                   <img src="/images/star.svg" alt="Rating" />
                   <img src="/images/star.svg" alt="Rating" />
                   <img src="/images/star.svg" alt="Rating" />
                   <img src="/images/star.svg" alt="Rating" />
                   <img src="/images/star.svg" alt="Rating" />
                   <p className="point">5.0 RATING</p>
-                </div>
+                </div> */}
+                <RatingStar />
                 <h3>Rick Wright</h3>
               </div>
               <div className="fctr-Brand">
@@ -93,14 +93,15 @@ const SaveCard = () => {
                 cupiditate architecto consectetur.
               </p>
               <div className="RatingBox">
-                <div className="d-flex align-items-center">
+                {/* <div className="d-flex align-items-center">
                   <img src="/images/star.svg" alt="Rating" />
                   <img src="/images/star.svg" alt="Rating" />
                   <img src="/images/star.svg" alt="Rating" />
                   <img src="/images/star.svg" alt="Rating" />
                   <img src="/images/star.svg" alt="Rating" />
                   <p className="point">5.0 RATING</p>
-                </div>
+                </div> */}
+                <RatingStar />
                 <h3>Rick Wright</h3>
               </div>
               <div className="fctr-Brand">
@@ -133,14 +134,15 @@ const SaveCard = () => {
                 cupiditate architecto consectetur.
               </p>
               <div className="RatingBox">
-                <div className="d-flex align-items-center">
+                {/* <div className="d-flex align-items-center">
                   <img src="/images/star.svg" alt="Rating" />
                   <img src="/images/star.svg" alt="Rating" />
                   <img src="/images/star.svg" alt="Rating" />
                   <img src="/images/star.svg" alt="Rating" />
                   <img src="/images/star.svg" alt="Rating" />
                   <p className="point">5.0 RATING</p>
-                </div>
+                </div> */}
+                <RatingStar />
                 <h3>Rick Wright</h3>
               </div>
               <div className="fctr-Brand">
@@ -173,14 +175,15 @@ const SaveCard = () => {
                 cupiditate architecto consectetur.
               </p>
               <div className="RatingBox">
-                <div className="d-flex align-items-center">
+                {/* <div className="d-flex align-items-center">
                   <img src="/images/star.svg" alt="Rating" />
                   <img src="/images/star.svg" alt="Rating" />
                   <img src="/images/star.svg" alt="Rating" />
                   <img src="/images/star.svg" alt="Rating" />
                   <img src="/images/star.svg" alt="Rating" />
                   <p className="point">5.0 RATING</p>
-                </div>
+                </div> */}
+                <RatingStar />
                 <h3>Rick Wright</h3>
               </div>
               <div className="fctr-Brand">
@@ -213,14 +216,15 @@ const SaveCard = () => {
                 cupiditate architecto consectetur.
               </p>
               <div className="RatingBox">
-                <div className="d-flex align-items-center">
+                {/* <div className="d-flex align-items-center">
                   <img src="/images/star.svg" alt="Rating" />
                   <img src="/images/star.svg" alt="Rating" />
                   <img src="/images/star.svg" alt="Rating" />
                   <img src="/images/star.svg" alt="Rating" />
                   <img src="/images/star.svg" alt="Rating" />
                   <p className="point">5.0 RATING</p>
-                </div>
+                </div> */}
+                <RatingStar />
                 <h3>Rick Wright</h3>
               </div>
               <div className="fctr-Brand">

@@ -6,6 +6,7 @@ import CreateWardrobe from "./pages/AsGuest/createWardrobe/CreateWardrobe";
 import GenratedResult from "./pages/AsGuest/genratedWardrobe/GenratedResult";
 import UserCreateWrdb from "./pages/LogedIn/UserCreateWrdb";
 import HomePage from "./pages/Home/HomePage";
+import WardrobeOne from "./pages/Wardrobe/WardrobeOne";
 
 function App() {
   return (
@@ -24,15 +25,17 @@ function App() {
         />
         <Route
           exact
-          path="./pages/AsGuest/genratedWardrobe/GenratedResult"
+          path="/pages/AsGuest/genratedWardrobe/GenratedResult"
           element={<GenratedResult />}
         />
         <Route
           exact
-          path="./pages/LogedIn/UserCreateWrdb"
+          path="/pages/LogedIn/UserCreateWrdb"
           element={<UserCreateWrdb />}
         />
-        <Route exact path="/" element={<HomePage />} />
+        <Route exact path="/pages/Home/HomePage" element={<HomePage />} />
+
+        <Route exact path="/" element={<WardrobeOne />} />
       </Routes>
     </Router>
   );

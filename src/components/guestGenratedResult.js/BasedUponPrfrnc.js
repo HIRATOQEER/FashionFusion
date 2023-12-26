@@ -50,9 +50,6 @@ const BasedUponPrfrnc = () => {
             </p>
           </div>
           <div className="d-flex align-items-center gap-2">
-            {/* <Button className="PrfrncResult">
-              <img src="/images/card-Icon.svg" alt="icon" />
-            </Button> */}
             <Dropdown className="prfAttached">
               <Dropdown.Toggle id="dropdown-basic" className="PrfrncResult">
                 <img src="/images/card-Icon.svg" alt="icon" />
@@ -133,6 +130,24 @@ const BasedUponPrfrnc = () => {
             <p className="muchPrfrnc">2 Preferences</p>
           </div>
         </div>
+
+        {/* -----when open save wardrobe then uncomment this code below----- */}
+        {/* 
+        <p className="discptn mb-3">
+          Wardrobe results for given social media link
+        </p>
+        <div className="givenPrefrnc d-flex align-items-center gap-4">
+          <div className="d-flex align-items-center gap-2">
+            <img className="socialLink" src="/images/fcbIcon.svg" alt="icon" />
+            <p className="imageURL">https://www.facebook.com/insta_profile/</p>
+            <img
+              className="socialLink"
+              src="/images/insta-Icon.svg"
+              alt="select image"
+            />
+            <p className="imageURL">https://www.instagram.com/insta_profile/</p>
+          </div>
+        </div> */}
       </div>
     </>
   );

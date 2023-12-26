@@ -17,7 +17,7 @@ const HomePage = () => {
           </Col>
           <Col md={10} className="pe-0">
             <HomeBox />
-            {/* ------when no have wardrobe then show this div----- */}
+            {/* ------when you have don't wardrobe then show this div----- */}
             {/* <div className="NoHaveWardrobe">
               <img src="/images/no-have-wardrobe.png" alt="No Have Wordrobe" />
             </div> */}

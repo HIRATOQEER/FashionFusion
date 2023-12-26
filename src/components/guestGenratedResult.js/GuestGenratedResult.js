@@ -11,10 +11,12 @@ import "swiper/css/navigation";
 import ProductDtails from "../Modals/ProductDtails";
 import SuccessfullySavedToast from "../Toasts/SuccessfullySvedToast";
 import AddProduct from "../Modals/AddProduct";
+import ProductOverview from "../Modals/ProductOverview";
 
 const GuestGenratedResult = () => {
   const [modalShow, setModalShow] = React.useState(false);
   const [modalAddShow, setModalAddShow] = React.useState(false);
+  const [modalOverViewShow, setModalOverViewShow] = React.useState(false);
   const [showToast, setShowToast] = useState(false);
 
   const handleButtonClick = () => {
@@ -47,7 +49,7 @@ const GuestGenratedResult = () => {
                 <div className="prfrncResultShow">
                   <Button
                     className="resultImg"
-                    onClick={() => setModalShow(true)}
+                    onClick={() => setModalOverViewShow(true)}
                   >
                     <img
                       className="productImg"
@@ -55,7 +57,10 @@ const GuestGenratedResult = () => {
                       alt="picture"
                     />
                   </Button>
-                  <Button className="btnRemoveClose">
+                  <Button
+                    className="btnRemoveClose"
+                    onClick={() => setModalShow(true)}
+                  >
                     <img src="/images/close-Icon.svg" alt="icon" />
                   </Button>
                   <Button
@@ -78,20 +83,24 @@ const GuestGenratedResult = () => {
                   show={modalAddShow}
                   onHide={() => setModalAddShow(false)}
                 />
+                <ProductOverview
+                  show={modalOverViewShow}
+                  onHide={() => setModalOverViewShow(false)}
+                />
               </SwiperSlide>
               <SwiperSlide>
                 <div className="prfrncResultShow">
-                  <Button
-                    className="resultImg"
-                    onClick={() => setModalShow(true)}
-                  >
+                  <Button className="resultImg">
                     <img
                       className="productImg"
                       src="/images/given-prefrnce-image-1.png"
                       alt="picture"
                     />
                   </Button>
-                  <Button className="btnRemoveClose">
+                  <Button
+                    className="btnRemoveClose"
+                    onClick={() => setModalShow(true)}
+                  >
                     <img src="/images/close-Icon.svg" alt="icon" />
                   </Button>
                   <Button className="btnFavourite">
