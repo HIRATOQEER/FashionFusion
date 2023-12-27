@@ -1,12 +1,10 @@
 import React from "react";
 import { Col, Row } from "react-bootstrap";
 import UserSideBar from "../../components/Sidebar/UserSideBar";
-import GuestGenrateForm from "../../components/genrateForm/GuestGenrateForm";
 import HomeHeader from "../../components/headers/HomeHeader";
-import HomeBox from "../../components/home/HomeBox";
-import HomeFooter from "../../components/home-footer/HomeFooter";
+import FvrtProductBox from "../../components/favoriteProducts/FvrtProductBox";
 
-const HomePage = () => {
+const FavoritesProduct = () => {
   return (
     <>
       <div className="crtWrdbMain">
@@ -16,14 +14,9 @@ const HomePage = () => {
             <UserSideBar />
           </Col>
           <Col md={10} className="pe-0">
-            <HomeBox />
-            {/* ------when you have don't wardrobe then show this div----- */}
-            {/* <div className="NoHaveWardrobe">
-              <img src="/images/no-have-wardrobe.png" alt="No Have Wordrobe" />
-            </div> */}
+            <FvrtProductBox />
           </Col>
         </Row>
-        <HomeFooter />
         <div className="BlurSvg">
           <img src="/images/attach-footer-blur.svg" alt="bg img" />
         </div>
@@ -32,4 +25,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default FavoritesProduct;

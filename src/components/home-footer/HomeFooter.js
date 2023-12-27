@@ -11,9 +11,6 @@ const HomeFooter = () => {
             <img className="me-3" src="/images/staricon.svg" alt="star" /> Let’s
             do this
           </Button>
-          <div className="BlurSvg">
-            <img src="/images/attach-footer-blur.svg" alt="bg img" />
-          </div>
         </div>
       </div>{" "}
     </>

@@ -7,6 +7,7 @@ import GenratedResult from "./pages/AsGuest/genratedWardrobe/GenratedResult";
 import UserCreateWrdb from "./pages/LogedIn/UserCreateWrdb";
 import HomePage from "./pages/Home/HomePage";
 import WardrobeOne from "./pages/Wardrobe/WardrobeOne";
+import FavoritesProduct from "./pages/Favorites/FavoritesProduct";
 
 function App() {
   return (
@@ -35,7 +36,12 @@ function App() {
         />
         <Route exact path="/pages/Home/HomePage" element={<HomePage />} />
 
-        <Route exact path="/" element={<WardrobeOne />} />
+        <Route
+          exact
+          path="/pages/Wardrobe/WardrobeOne"
+          element={<WardrobeOne />}
+        />
+        <Route exact path="/" element={<FavoritesProduct />} />
       </Routes>
     </Router>
   );

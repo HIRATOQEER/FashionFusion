@@ -1,11 +1,10 @@
 import React from "react";
 import { Button, Col, Dropdown, Row } from "react-bootstrap";
 import FeedbackModal from "../Modals/FeedbackModal";
-import DeletionModal from "../Modals/DeletionModal";
+import SortedBy from "../sorted/SortedBy";
 
 const HomeBox = () => {
   const [modalShow, setModalShow] = React.useState(false);
-  const [modalDeletionShow, setModalDeletionShow] = React.useState(false);
 
   return (
     <>
@@ -13,29 +12,7 @@ const HomeBox = () => {
         <div className="gif-image">
           <img src="/images/Home-screen.gif" alt="Gif Image" />
         </div>
-        <div className="sortedBy d-flex align-items-center justify-content-between mb-4">
-          <div className="d-flex align-items-center">
-            <p>Last created</p>
-            <hr className="verticalLine" />
-            <Button className="btnrgtn">
-              Sorted by{" "}
-              <img src="/images/dropdown-arrow-Icon.svg" alt="arrow" />
-            </Button>
-          </div>
-          <div>
-            <Button
-              className="btnRemoveEvry"
-              onClick={() => setModalDeletionShow(true)}
-            >
-              <img className="me-2" src="/images/remove-icon.svg" alt="icon" />
-              Remove Everything
-            </Button>
-            <DeletionModal
-              show={modalDeletionShow}
-              onHide={() => setModalDeletionShow(false)}
-            />
-          </div>
-        </div>
+        <SortedBy />
         <div className="MainCardBox">
           <Row className="g-3 me-0">
             <Col xs={12} md={6} lg={3}>

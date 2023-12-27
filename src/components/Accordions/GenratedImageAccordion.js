@@ -1,10 +1,11 @@
 import React from "react";
-import { Button } from "react-bootstrap";
+import { Button, CloseButton, ProgressBar } from "react-bootstrap";
 import Accordion from "react-bootstrap/Accordion";
 import { useAccordionButton } from "react-bootstrap/AccordionButton";
 import Card from "react-bootstrap/Card";
 
 const GenratedImageAccordion = () => {
+  const now = 60;
   const CustomToggle = ({ children, eventKey }) => {
     const decoratedOnClick = useAccordionButton(eventKey, () =>
       console.log("totally custom!")
@@ -43,11 +44,23 @@ const GenratedImageAccordion = () => {
         </Card.Header>
         <Accordion.Collapse eventKey="0">
           <Card.Body>
-            <div className="d-flex justify-content-center">
+            <div className="upldItem">
               <Button className="btUploadImg">
                 <img src="/images/picture-outline-Icon.svg" alt="icon" />
                 <p>Browse or drag and drop any image to upload </p>
               </Button>
+            </div>
+            <div className="uploadingItems d-flex justify-content-start align-items-center gap-2">
+              <img src="/images/blue-img-Icon.svg" alt="items" />
+              <p className="itemsName">Purple_Shirt.jpg</p>
+              <ProgressBar
+                now={now}
+                label={`${now}%`}
+                visuallyHidden
+                className="uplod-progress"
+              />
+              {/* ------when item uploaded then show this close icon------ */}
+              {/* <CloseButton aria-label="Hide" /> */}
             </div>
           </Card.Body>
         </Accordion.Collapse>
