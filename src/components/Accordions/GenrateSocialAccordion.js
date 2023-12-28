@@ -41,7 +41,11 @@ const GenrateSocialAccordion = () => {
               Links
             </span>
             <CustomToggle eventKey="0" as={Button}>
-              <img src="/images/downarrow.svg" alt="icon" />
+              <img
+                className="arrowSvg"
+                src="/images/downarrow.svg"
+                alt="icon"
+              />
             </CustomToggle>
           </div>
         </Card.Header>

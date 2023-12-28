@@ -38,7 +38,11 @@ const GenratedImageAccordion = () => {
               <img src="/images/up-img-Icon.svg" alt="icon" />2 images
             </span>
             <CustomToggle eventKey="0" as={Button}>
-              <img src="/images/downarrow.svg" alt="icon" />
+              <img
+                className="arrowSvg"
+                src="/images/downarrow.svg"
+                alt="icon"
+              />
             </CustomToggle>
           </div>
         </Card.Header>

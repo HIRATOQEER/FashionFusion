@@ -3,8 +3,6 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/navigation";
 import "swiper/css";
-import "swiper/css/grid";
-import "swiper/css/navigation";
 import { Keyboard, Pagination, Navigation } from "swiper/modules";
 import { Button, Col, Row } from "react-bootstrap";
 import { RatingStar } from "../Rating/RatingStar";
@@ -18,7 +16,7 @@ const FavoriteProductCard = () => {
           <Col xs={12} md={5}>
             <Swiper
               slidesPerView={1}
-              spaceBetween={30}
+              spaceBetween={0}
               loop={true}
               pagination={{
                 clickable: true,

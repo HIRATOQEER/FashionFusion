@@ -1,8 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Dropdown, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 const UserSideBar = () => {
+  const [dropdownStates, setDropdownStates] = useState([
+    { id: 0, name: "Wardrobe", isOpen: false },
+    { id: 1, name: "notification", isOpen: false },
+    { id: 2, name: "profile", isOpen: false },
+  ]);
+  let timeoutId;
+
+  const handleMouseEnter = (index) => {
+    console.log("enter  ", dropdownStates);
+    clearTimeout(timeoutId);
+    setDropdownStates((prevStates) => {
+      const newState = [...prevStates];
+      newState[index].isOpen = true;
+      return newState;
+    });
+  };
+
+  const handleMouseLeave = (index) => {
+    console.log("leave  ", dropdownStates);
+    timeoutId = setTimeout(() => {
+      setDropdownStates((prevStates) => {
+        const newState = [...prevStates];
+        newState[index].isOpen = false;
+        return newState;
+      });
+    }, 200); // Set the desired time duration in milliseconds (e.g., 500ms)
+  };
+  console.log("check  ", dropdownStates);
   return (
     <>
       <div className="UserSidebar">
@@ -16,15 +44,28 @@ const UserSideBar = () => {
             <div className="innerOrder d-flex flex-column gap-4">
               <li>
                 <Link to="#">
-                  <img src="/images/noun-home.svg" alt="home" />
+                  <img
+                    className="sideBarIcon"
+                    src="/images/noun-home.svg"
+                    alt="home"
+                  />
                   <span className="prnName">Home</span>
                 </Link>
               </li>
               <li>
                 <Link to="#">
-                  <Dropdown className="showDtl">
+                  <Dropdown
+                    className="showDtl"
+                    show={dropdownStates[0].isOpen}
+                    onMouseEnter={() => handleMouseEnter(0)}
+                    onMouseLeave={() => handleMouseLeave(0)}
+                  >
                     <Dropdown.Toggle id="dropdown-basic">
-                      <img src="/images/noun-wardrobe.svg" alt="home" />
+                      <img
+                        className="sideBarIcon"
+                        src="/images/noun-wardrobe.svg"
+                        alt="home"
+                      />
                       <span className="sameStl">My Wardrobes</span>
                     </Dropdown.Toggle>
 
@@ -51,15 +92,28 @@ const UserSideBar = () => {
               </li>
               <li>
                 <Link to="#">
-                  <img src="/images/Generic-heart.svg" alt="favrt" />
+                  <img
+                    className="sideBarIcon"
+                    src="/images/Generic-heart.svg"
+                    alt="favrt"
+                  />
                   <span className="sameStl">Favorites</span>
                 </Link>
               </li>
               <li>
                 <Link to="#">
-                  <Dropdown className="showDtl Notification">
+                  <Dropdown
+                    className="showDtl Notification"
+                    show={dropdownStates[1].isOpen}
+                    onMouseEnter={() => handleMouseEnter(1)}
+                    onMouseLeave={() => handleMouseLeave(1)}
+                  >
                     <Dropdown.Toggle id="dropdown-basic">
-                      <img src="/images/noun-bell.svg" alt="home" />
+                      <img
+                        className="sideBarIcon"
+                        src="/images/noun-bell.svg"
+                        alt="home"
+                      />
                       <span className="sameStl">Notifications</span>
                     </Dropdown.Toggle>
 
@@ -74,6 +128,7 @@ const UserSideBar = () => {
                       {/* ----when you have no notification then show this img------ */}
                       {/* <div className="NoNotifications">
                       <img
+                      className="sideBarIcon"
                         src="/images/No-notifications-1.png"
                         alt="Nothing No"
                       />
@@ -124,7 +179,12 @@ const UserSideBar = () => {
             </div>
             <li>
               <Link to="#" className="userPrf">
-                <Dropdown className="showDtl">
+                <Dropdown
+                  className="showDtl"
+                  show={dropdownStates[2].isOpen}
+                  onMouseEnter={() => handleMouseEnter(2)}
+                  onMouseLeave={() => handleMouseLeave(2)}
+                >
                   <Dropdown.Toggle id="dropdown-basic">
                     <img
                       src="/images/sidebr-prf-image.png"

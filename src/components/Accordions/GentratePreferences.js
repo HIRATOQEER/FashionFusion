@@ -78,7 +78,11 @@ const GentratePreferences = (event) => {
                 <span>/20</span>
               </p>
               <CustomToggle eventKey="0">
-                <img src="/images/downarrow.svg" alt="icon" />
+                <img
+                  className="arrowSvg"
+                  src="/images/downarrow.svg"
+                  alt="icon"
+                />
               </CustomToggle>
             </div>
           </Card.Header>
@@ -100,7 +104,11 @@ const GentratePreferences = (event) => {
                     <div className="d-flex align-items-center">
                       <Button className="btnRemove">Remove</Button>
                       <CustomToggle eventKey="nested-0" as={Button}>
-                        <img src="/images/downarrow.svg" alt="icon" />
+                        <img
+                          className="arrowSvg"
+                          src="/images/downarrow.svg"
+                          alt="icon"
+                        />{" "}
                       </CustomToggle>
                     </div>
                   </Card.Header>

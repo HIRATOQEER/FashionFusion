@@ -7,7 +7,6 @@ import { Grid, Navigation } from "swiper/modules";
 import "swiper/css/navigation";
 import "swiper/css";
 import "swiper/css/grid";
-import "swiper/css/navigation";
 import ProductDtails from "../Modals/ProductDtails";
 import SuccessfullySavedToast from "../Toasts/SuccessfullySvedToast";
 import AddProduct from "../Modals/AddProduct";
