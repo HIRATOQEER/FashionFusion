@@ -97,7 +97,9 @@ button.btnPrimary {
   font-family: "Pacifico", cursive;
   display: flex;
   justify-content: center;
-  width: 456px;
+  align-items: center;
+  max-width: 456px;
+  width: 100%;
   padding: 1rem;
   color: #fff;
   border-radius: 30px;
@@ -155,6 +157,25 @@ button.btnPrimary {
   border-radius: 0px 0px 100px 0px;
   padding: 4rem 4rem 4rem 0;
 }
+.sign-up-component {
+  position: fixed;
+  z-index: 99;
+  right: -140%;
+  top: 0;
+  transition: all 0.5s;
+  width: 85%;
+}
+.sign-up-component.toggled {
+  right: 0;
+  transition: all 0.5s;
+}
+.close-btnn {
+  position: absolute;
+  top: 10px;
+  left: 21px;
+  background-color: transparent;
+  border: none;
+}
 
 .signbox1 .content {
   margin-bottom: 2.6rem;
@@ -172,7 +193,7 @@ button.btnPrimary {
 }
 
 .signbox1 form {
-  width: 486px;
+  max-width: 486px;
   padding: 50px 50px 50px 40px;
   border-radius: 0px 50px 50px 0px;
   background: rgba(255, 255, 255, 0.7);
@@ -268,7 +289,8 @@ button.btnsign {
 }
 
 .signbox2 .staticImg img {
-  width: 160px;
+  max-width: 160px;
+  width: 100%;
 }
 
 .signbox2 p {
@@ -320,7 +342,14 @@ button.btnsign {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 5px 30px 10px 15px;
+  padding: 15px 30px 10px 15px;
+}
+.welcomHeader img.mblWelcomescreen {
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
 }
 
 .welcomHeader h2 {
@@ -394,6 +423,7 @@ button.btnsign {
   position: relative;
   margin-bottom: 55px;
   text-align: center;
+  padding: 30px;
 }
 .cardBox img.leftBgsvg {
   position: absolute;
@@ -621,6 +651,7 @@ button.btnsign {
   position: absolute;
   right: 0;
   top: 0;
+  pointer-events: none;
 }
 
 .welcomMain .brandchoseBox img.leftBgsvg {
@@ -1900,4 +1931,118 @@ img.sideBarIcon:hover {
 
 img.sideBarIcon:active {
   filter: brightness(0.8); /* Reduces brightness on active state */
+}
+
+button.btn-mblPrfl {
+  border-radius: var(--Interactive-border-radius---radius-i-sm, 8px);
+  background: var(--White, #fff);
+  padding: 12px;
+  border: none;
+  box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.4),
+    0px 12px 12px -6px rgba(0, 0, 0, 0.16);
+}
+
+/* ------------responsive-section------------- */
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (max-width: 1200px) {
+  html {
+    font-size: 100%;
+  }
+}
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (max-width: 992px) {
+  html {
+    font-size: 80%;
+  }
+
+  .cardBox h2 {
+    margin-bottom: 30px;
+  }
+  .ChooseCategory .topdiv {
+    justify-content: center;
+    margin: 0 auto 30px;
+  }
+  .ChooseCategory .category .firstSlide p {
+    position: absolute;
+    color: #333;
+    font-weight: 700;
+    font-size: 2rem;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .signbox1 {
+    border-radius: 20px 0px 0px 20px;
+    padding: 4rem 30px 4rem;
+    background-color: white;
+    background-image: none;
+    text-align: center;
+  }
+  .signbox1 form {
+    width: 100%;
+    padding: 30px 0 0;
+    background: none;
+    margin: 0 auto;
+  }
+  .signbox1 form .havean {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translate(-50%);
+  }
+  .modal.loginModal .modal-content {
+    border-radius: 0 0 20px 20px;
+    background: white;
+    height: 99.6dvh;
+    margin: 0 0 0 10%;
+  }
+  .loginModal form {
+    padding: 10px 0px 0;
+  }
+  .loginModal .modal-header .btn-close {
+    margin: inherit !important;
+  }
+  .loginModal img.bgMblLogin {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+  .signbox1 img.bgMblLogin {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+  .loginModal .modal-dialog {
+    right: -100%;
+    margin-right: 0 !important;
+    margin-top: 0 !important;
+  }
+  .loginModal.show .modal-dialog {
+    right: -8px;
+    transition: all 0.5s;
+  }
+}
+@media only screen and (max-width: 768px) {
+  html {
+    font-size: 60%;
+  }
+  .signbox1 img.bgMblLogin {
+    bottom: 5%;
+  }
+  .loginModal img.bgMblLogin {
+    bottom: 5%;
+  }
+}
+@media only screen and (max-width: 576px) {
+  html {
+    font-size: 50%;
+  }
+  .signbox1 img.bgMblLogin {
+    bottom: 15%;
+  }
+}
+@media only screen and (max-width: 320px) {
+  html {
+    font-size: 40%;
+  }
 }

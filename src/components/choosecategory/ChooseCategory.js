@@ -9,18 +9,31 @@ const ChooseCategory = () => {
   return (
     <>
       <div className="ChooseCategory text-center">
-        <div className="topdiv">
-          <img src="/images/male-product-icon.svg" alt="male" />
+        <div className="topdiv ">
+          <img
+            className="d-none d-lg-block"
+            src="/images/male-product-icon.svg"
+            alt="male"
+          />
           <h2>
             Brands
             <span> Choose any one</span>
           </h2>
-          <img src="/images/female-product-icon.svg" alt="male" />
+          <img
+            className="d-none d-lg-block"
+            src="/images/female-product-icon.svg"
+            alt="male"
+          />
         </div>
         <div className="container">
           <Row className="category ">
             <Col lg={6}>
-              <div className="firstSlide">
+              <img
+                className="text-center d-lg-none"
+                src="/images/male-product-icon.svg"
+                alt="male"
+              />
+              <div className="firstSlide position-relative mb-5 mb-lg-0">
                 <Swiper
                   spaceBetween={10}
                   slidesPerView={4}
@@ -32,54 +45,102 @@ const ChooseCategory = () => {
                   autoplay={{
                     delay: 1000,
                   }}
+                  breakpoints={{
+                    320: {
+                      slidesPerView: 1,
+                      spaceBetween: 0,
+                    },
+
+                    576: {
+                      slidesPerView: 2,
+                      spaceBetween: 10,
+                    },
+
+                    992: {
+                      slidesPerView: 4,
+                      spaceBetween: 10,
+                    },
+                  }}
                 >
                   <SwiperSlide>
                     <div className="text-center">
-                      <img src="/images/choose1.png" alt="imge" className="w-100" />
+                      <img
+                        src="/images/choose1.png"
+                        alt="imge"
+                        className="w-100"
+                      />
                       <p>Jeans</p>
                     </div>
                   </SwiperSlide>
                   <SwiperSlide>
                     <div className="text-center">
-                      <img src="/images/choose2.png" alt="imge" className="w-100" />
+                      <img
+                        src="/images/choose2.png"
+                        alt="imge"
+                        className="w-100"
+                      />
                       <p>T-Shirts</p>
                     </div>
                   </SwiperSlide>
 
                   <SwiperSlide>
                     <div className="text-center">
-                      <img src="/images/choose3.png" alt="imge" className="w-100" />
+                      <img
+                        src="/images/choose3.png"
+                        alt="imge"
+                        className="w-100"
+                      />
                       <p>Suits</p>
                     </div>
                   </SwiperSlide>
                   <SwiperSlide>
                     <div className="text-center">
-                      <img src="/images/choose4.png" alt="imge" className="w-100" />
+                      <img
+                        src="/images/choose4.png"
+                        alt="imge"
+                        className="w-100"
+                      />
                       <p>Blazers</p>
                     </div>
                   </SwiperSlide>
                   <SwiperSlide>
                     <div className="text-center">
-                      <img src="/images/choose3.png" alt="imge" className="w-100" />
+                      <img
+                        src="/images/choose3.png"
+                        alt="imge"
+                        className="w-100"
+                      />
                       <p>Jeans</p>
                     </div>
                   </SwiperSlide>
                   <SwiperSlide>
                     <div className="text-center">
-                      <img src="/images/choose1.png" alt="imge" className="w-100" />
+                      <img
+                        src="/images/choose1.png"
+                        alt="imge"
+                        className="w-100"
+                      />
                       <p>T-Shirts</p>
                     </div>
                   </SwiperSlide>
                   <SwiperSlide>
                     {" "}
                     <div className="text-center">
-                      <img src="/images/choose4.png" alt="imge" className="w-100" />
+                      <img
+                        src="/images/choose4.png"
+                        alt="imge"
+                        className="w-100"
+                      />
                       <p>T-Shirts</p>
                     </div>
                   </SwiperSlide>
                   <SwiperSlide>
                     <div className="text-center">
-                      <img src="/images/choose2.png" alt="imge" className="w-100" />
+                      <img
+                        src="/images/choose2.png"
+                        alt="imge"
+                        className="w-100"
+                      />
                       <p>Jeans</p>
                     </div>
                   </SwiperSlide>
@@ -87,6 +148,11 @@ const ChooseCategory = () => {
               </div>
             </Col>
             <Col lg={6}>
+              <img
+                className="text-center d-lg-none"
+                src="/images/female-product-icon.svg"
+                alt="male"
+              />
               <div className="firstSlide">
                 <Swiper
                   spaceBetween={10}
@@ -99,54 +165,102 @@ const ChooseCategory = () => {
                   autoplay={{
                     delay: 1000,
                   }}
+                  breakpoints={{
+                    320: {
+                      slidesPerView: 1,
+                      spaceBetween: 0,
+                    },
+
+                    576: {
+                      slidesPerView: 2,
+                      spaceBetween: 10,
+                    },
+
+                    992: {
+                      slidesPerView: 4,
+                      spaceBetween: 10,
+                    },
+                  }}
                 >
                   <SwiperSlide>
                     <div className="text-center">
-                      <img src="/images/choose1.png" alt="imge" className="w-100" />
+                      <img
+                        src="/images/choose1.png"
+                        alt="imge"
+                        className="w-100"
+                      />
                       <p>Jeans</p>
                     </div>
                   </SwiperSlide>
                   <SwiperSlide>
                     <div className="text-center">
-                      <img src="/images/choose2.png" alt="imge" className="w-100" />
+                      <img
+                        src="/images/choose2.png"
+                        alt="imge"
+                        className="w-100"
+                      />
                       <p>T-Shirts</p>
                     </div>
                   </SwiperSlide>
 
                   <SwiperSlide>
                     <div className="text-center">
-                      <img src="/images/choose3.png" alt="imge" className="w-100" />
+                      <img
+                        src="/images/choose3.png"
+                        alt="imge"
+                        className="w-100"
+                      />
                       <p>Suits</p>
                     </div>
                   </SwiperSlide>
                   <SwiperSlide>
                     <div className="text-center">
-                      <img src="/images/choose4.png" alt="imge" className="w-100" />
+                      <img
+                        src="/images/choose4.png"
+                        alt="imge"
+                        className="w-100"
+                      />
                       <p>Blazers</p>
                     </div>
                   </SwiperSlide>
                   <SwiperSlide>
                     <div className="text-center">
-                      <img src="/images/choose3.png" alt="imge" className="w-100" />
+                      <img
+                        src="/images/choose3.png"
+                        alt="imge"
+                        className="w-100"
+                      />
                       <p>Jeans</p>
                     </div>
                   </SwiperSlide>
                   <SwiperSlide>
                     <div className="text-center">
-                      <img src="/images/choose1.png" alt="imge" className="w-100" />
+                      <img
+                        src="/images/choose1.png"
+                        alt="imge"
+                        className="w-100"
+                      />
                       <p>T-Shirts</p>
                     </div>
                   </SwiperSlide>
                   <SwiperSlide>
                     {" "}
                     <div className="text-center">
-                      <img src="/images/choose4.png" alt="imge" className="w-100" />
+                      <img
+                        src="/images/choose4.png"
+                        alt="imge"
+                        className="w-100"
+                      />
                       <p>Suits</p>
                     </div>
                   </SwiperSlide>
                   <SwiperSlide>
                     <div className="text-center">
-                      <img src="/images/choose2.png" alt="imge" className="w-100" />
+                      <img
+                        src="/images/choose2.png"
+                        alt="imge"
+                        className="w-100"
+                      />
                       <p>Jeans</p>
                     </div>
                   </SwiperSlide>

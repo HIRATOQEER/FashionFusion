@@ -41,6 +41,11 @@ const LoginModal = (props) => {
             </div>
           </Form>
         </Modal.Body>
+        <img
+          className="bgMblLogin d-lg-none"
+          src="/images/mbl-bg-login.png"
+          alt="bg-svg"
+        />
       </Modal>
     </>
   );

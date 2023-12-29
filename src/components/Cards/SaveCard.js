@@ -1,8 +1,5 @@
 import React from "react";
-
 import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
 import "swiper/css";
 import { Autoplay, EffectFade } from "swiper/modules";
 import { RatingStar } from "../Rating/RatingStar";
@@ -25,6 +22,18 @@ const SaveCard = () => {
             delay: 5000,
           }}
           breakpoints={{
+            320: {
+              slidesPerView: 1,
+              spaceBetween: 0,
+            },
+            480: {
+              slidesPerView: 1,
+              spaceBetween: 0,
+            },
+            576: {
+              slidesPerView: 1,
+              spaceBetween: 0,
+            },
             640: {
               slidesPerView: 1,
               spaceBetween: 0,
@@ -93,14 +102,6 @@ const SaveCard = () => {
                 cupiditate architecto consectetur.
               </p>
               <div className="RatingBox">
-                {/* <div className="d-flex align-items-center">
-                  <img src="/images/star.svg" alt="Rating" />
-                  <img src="/images/star.svg" alt="Rating" />
-                  <img src="/images/star.svg" alt="Rating" />
-                  <img src="/images/star.svg" alt="Rating" />
-                  <img src="/images/star.svg" alt="Rating" />
-                  <p className="point">5.0 RATING</p>
-                </div> */}
                 <RatingStar />
                 <h3>Rick Wright</h3>
               </div>
@@ -134,14 +135,6 @@ const SaveCard = () => {
                 cupiditate architecto consectetur.
               </p>
               <div className="RatingBox">
-                {/* <div className="d-flex align-items-center">
-                  <img src="/images/star.svg" alt="Rating" />
-                  <img src="/images/star.svg" alt="Rating" />
-                  <img src="/images/star.svg" alt="Rating" />
-                  <img src="/images/star.svg" alt="Rating" />
-                  <img src="/images/star.svg" alt="Rating" />
-                  <p className="point">5.0 RATING</p>
-                </div> */}
                 <RatingStar />
                 <h3>Rick Wright</h3>
               </div>
@@ -175,14 +168,6 @@ const SaveCard = () => {
                 cupiditate architecto consectetur.
               </p>
               <div className="RatingBox">
-                {/* <div className="d-flex align-items-center">
-                  <img src="/images/star.svg" alt="Rating" />
-                  <img src="/images/star.svg" alt="Rating" />
-                  <img src="/images/star.svg" alt="Rating" />
-                  <img src="/images/star.svg" alt="Rating" />
-                  <img src="/images/star.svg" alt="Rating" />
-                  <p className="point">5.0 RATING</p>
-                </div> */}
                 <RatingStar />
                 <h3>Rick Wright</h3>
               </div>
@@ -216,14 +201,6 @@ const SaveCard = () => {
                 cupiditate architecto consectetur.
               </p>
               <div className="RatingBox">
-                {/* <div className="d-flex align-items-center">
-                  <img src="/images/star.svg" alt="Rating" />
-                  <img src="/images/star.svg" alt="Rating" />
-                  <img src="/images/star.svg" alt="Rating" />
-                  <img src="/images/star.svg" alt="Rating" />
-                  <img src="/images/star.svg" alt="Rating" />
-                  <p className="point">5.0 RATING</p>
-                </div> */}
                 <RatingStar />
                 <h3>Rick Wright</h3>
               </div>

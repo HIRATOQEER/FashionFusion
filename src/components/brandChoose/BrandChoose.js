@@ -1,22 +1,22 @@
 import React from "react";
 
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 const BrandChoose = () => {
   const settings = {
     speed: 5000,
     autoplay: true,
     autoplaySpeed: 0,
     centerMode: true,
-    cssEase: 'linear',
+    cssEase: "linear",
     slidesToShow: 1,
     slidesToScroll: 1,
     variableWidth: true,
     infinite: true,
     initialSlide: 1,
     arrows: false,
-    buttons: false
+    buttons: false,
   };
 
   return (
@@ -26,14 +26,15 @@ const BrandChoose = () => {
           Brands
           <span> Choose any one</span>
         </h2>
-        <div className="Choose">
+        <div className="Choose ps-4 ps-lg-0">
           <div className="marquee-container">
             <Slider {...settings}>
               <div className="marquee-item">
                 <img src="/images/sabasafinazlogo.svg" alt="Brand logo" />
               </div>
               <div className="marquee-item">
-                <img src="/images/dinerlogo.svg" alt="Brand logo" /></div>
+                <img src="/images/dinerlogo.svg" alt="Brand logo" />
+              </div>
               <div className="marquee-item">
                 <img src="/images/levislogo.svg" alt="Brand logo" />
               </div>
@@ -44,7 +45,9 @@ const BrandChoose = () => {
               <div className="marquee-item">
                 <img src="/images/sabasafinazlogo.svg" alt="Brand logo" />
               </div>
-              <div className="marquee-item"> <img src="/images/dinerlogo.svg" alt="Brand logo" />
+              <div className="marquee-item">
+                {" "}
+                <img src="/images/dinerlogo.svg" alt="Brand logo" />
               </div>
               <div className="marquee-item">
                 <img src="/images/levislogo.svg" alt="Brand logo" />

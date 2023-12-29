@@ -14,11 +14,7 @@ function App() {
     <Router>
       <Routes>
         <Route exact path="/pages/signUp/SignUps" element={<SignUp />} />
-        <Route
-          exact
-          path="/pages/welcomScreen/WelcomeScreen"
-          element={<WelcomeScreen />}
-        />
+        <Route exact path="/" element={<WelcomeScreen />} />
         <Route
           exact
           path="/pages/AsGuest/createWardrobe/CreateWardrobe"
@@ -41,7 +37,11 @@ function App() {
           path="/pages/Wardrobe/WardrobeOne"
           element={<WardrobeOne />}
         />
-        <Route exact path="/" element={<FavoritesProduct />} />
+        <Route
+          exact
+          path="/pages/Favorites/FavoritesProduct"
+          element={<FavoritesProduct />}
+        />
       </Routes>
     </Router>
   );
