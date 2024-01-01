@@ -14,12 +14,12 @@ function App() {
     <Router>
       <Routes>
         <Route exact path="/pages/signUp/SignUps" element={<SignUp />} />
-        <Route exact path="/" element={<WelcomeScreen />} />
         <Route
           exact
-          path="/pages/AsGuest/createWardrobe/CreateWardrobe"
-          element={<CreateWardrobe />}
+          path="/pages/welcomScreen/WelcomeScreen"
+          element={<WelcomeScreen />}
         />
+        <Route exact path="/" element={<CreateWardrobe />} />
         <Route
           exact
           path="/pages/AsGuest/genratedWardrobe/GenratedResult"

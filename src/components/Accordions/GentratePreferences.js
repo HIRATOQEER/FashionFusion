@@ -59,8 +59,8 @@ const GentratePreferences = (event) => {
     <>
       <Accordion defaultActiveKey="0">
         <Card className="preferencesGenrat">
-          <Card.Header className="d-flex align-items-start justify-content-between">
-            <div>
+          <Card.Header className="d-md-flex align-items-start justify-content-between">
+            <div className="mb-3 mb-md-0">
               <span className="gnrspan">
                 <img className="me-2" src="/images/card-Icon.svg" alt="icon" />
                 Generate by your Custom Preferences
@@ -73,17 +73,19 @@ const GentratePreferences = (event) => {
               <span className="tagg">
                 <img src="/images/card-whiteIcon.svg" alt="icon" />2 Preferences
               </span>
-              <p className="acnumber mx-2">
+              <p className="acnumber mx-2 d-none d-md-block">
                 <span>15</span>
                 <span>/20</span>
               </p>
-              <CustomToggle eventKey="0">
-                <img
-                  className="arrowSvg"
-                  src="/images/downarrow.svg"
-                  alt="icon"
-                />
-              </CustomToggle>
+              <div className="d-none d-md-block">
+                <CustomToggle eventKey="0" as={Button}>
+                  <img
+                    className="arrowSvg"
+                    src="/images/downarrow.svg"
+                    alt="icon"
+                  />
+                </CustomToggle>
+              </div>
             </div>
           </Card.Header>
           <Accordion.Collapse eventKey="0">
@@ -115,7 +117,7 @@ const GentratePreferences = (event) => {
                   <Accordion.Collapse eventKey="nested-0">
                     <Card.Body className="nestedAcrdn">
                       <Row className="p-3">
-                        <Col md={6} xs={12} className="ps-0">
+                        <Col md={6} xs={12} className="ps-md-0">
                           <Form.Label>Category</Form.Label>
                           <InputGroup className="mb-3">
                             <Button className="searchIcon">
@@ -130,7 +132,7 @@ const GentratePreferences = (event) => {
                             <Button className="srchClr">Clear</Button>
                           </InputGroup>
                         </Col>
-                        <Col md={6} xs={12} className="pe-0">
+                        <Col md={6} xs={12} className="pe-md-0">
                           <Form.Label>Brand</Form.Label>
                           <InputGroup>
                             <Button className="searchIcon">
@@ -145,7 +147,7 @@ const GentratePreferences = (event) => {
                             <Button className="srchClr">Clear</Button>
                           </InputGroup>
                         </Col>
-                        <Col md={6} xs={12}>
+                        <Col md={6} xs={12} className="order-1 order-md-0">
                           <Row>
                             <Col md={6}>
                               <div>
@@ -179,9 +181,9 @@ const GentratePreferences = (event) => {
                                       key={color}
                                       onClick={() => handleColorClick(color)}
                                       style={{
-                                        width: "27px",
-                                        height: "27px",
-                                        borderRadius: "21px",
+                                        width: "10%",
+                                        // height: "10%",
+                                        borderRadius: "100%",
                                         backgroundColor: color,
                                         margin: "5px",
                                         cursor: "pointer",
@@ -190,9 +192,9 @@ const GentratePreferences = (event) => {
                                   ))}
                                   <img
                                     style={{
-                                      width: "27px",
-                                      height: "27px",
-                                      borderRadius: "21px",
+                                      width: "10%",
+                                      height: "10%",
+                                      borderRadius: "100%",
 
                                       margin: "5px",
                                       cursor: "pointer",
@@ -281,6 +283,15 @@ const GentratePreferences = (event) => {
               </Button>
             </Card.Body>
           </Accordion.Collapse>
+          <div className="card-header d-flex justify-content-center d-md-none ">
+            <CustomToggle eventKey="0" as={Button}>
+              <img
+                className="arrowSvg"
+                src="/images/downarrow.svg"
+                alt="icon"
+              />
+            </CustomToggle>
+          </div>
         </Card>
       </Accordion>
       <Button className="btnPrimary mx-auto mt-5 mb-3">

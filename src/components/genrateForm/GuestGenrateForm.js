@@ -23,7 +23,9 @@ const GuestGenrateForm = () => {
                       src="/images/question-mark-Icon.svg"
                       alt="icon"
                     />
-                    <p>Total of 20 products will be generated</p>
+                    <p className="totlgnrteprdt">
+                      Total of 20 products will be generated
+                    </p>
                   </Popover.Body>
                 </Popover>
               }

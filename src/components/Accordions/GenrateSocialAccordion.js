@@ -24,8 +24,8 @@ const GenrateSocialAccordion = () => {
   return (
     <Accordion defaultActiveKey="0">
       <Card className="socialGenrat">
-        <Card.Header className="d-flex align-items-start justify-content-between">
-          <div>
+        <Card.Header className="d-md-flex align-items-start justify-content-between">
+          <div className="mb-3 mb-md-0">
             <span className="gnrspan">
               <img className="me-2" src="/images/link-Icon.svg" alt="icon" />
               Generate by Social Media Posts
@@ -40,19 +40,21 @@ const GenrateSocialAccordion = () => {
               <img src="/images/links-white-Icon.svg" alt="icon" />
               Links
             </span>
-            <CustomToggle eventKey="0" as={Button}>
-              <img
-                className="arrowSvg"
-                src="/images/downarrow.svg"
-                alt="icon"
-              />
-            </CustomToggle>
+            <div className="d-none d-md-block">
+              <CustomToggle eventKey="0" as={Button}>
+                <img
+                  className="arrowSvg"
+                  src="/images/downarrow.svg"
+                  alt="icon"
+                />
+              </CustomToggle>
+            </div>
           </div>
         </Card.Header>
         <Accordion.Collapse eventKey="0">
-          <Card.Body>
+          <Card.Body className="px-0">
             <Row>
-              <Col className="position-relative">
+              <Col xs={12} lg={6} className="position-relative mb-3 mb-lg-0">
                 <FormControl type="text" placeholder="Facebook link" />
                 <img
                   className="inptlogo"
@@ -60,7 +62,7 @@ const GenrateSocialAccordion = () => {
                   alt="facebook icon"
                 />
               </Col>
-              <Col className="position-relative">
+              <Col xs={12} lg={6} className="position-relative">
                 <FormControl type="text" placeholder="Instagram link" />
                 <img
                   className="inptlogo"
@@ -71,6 +73,11 @@ const GenrateSocialAccordion = () => {
             </Row>
           </Card.Body>
         </Accordion.Collapse>
+        <div className="card-header d-flex justify-content-center d-md-none ">
+          <CustomToggle eventKey="0" as={Button}>
+            <img className="arrowSvg" src="/images/downarrow.svg" alt="icon" />
+          </CustomToggle>
+        </div>
       </Card>
     </Accordion>
   );

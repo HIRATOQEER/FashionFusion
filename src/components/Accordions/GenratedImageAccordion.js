@@ -25,8 +25,8 @@ const GenratedImageAccordion = () => {
   return (
     <Accordion defaultActiveKey="0">
       <Card className="imageGenrat">
-        <Card.Header className="d-flex align-items-start justify-content-between">
-          <div>
+        <Card.Header className="d-md-flex align-items-start justify-content-between">
+          <div className="mb-3 mb-md-0">
             <span className="gnrspan">
               <img className="me-2" src="/images/picture-Icon.svg" alt="icon" />
               Generate by image
@@ -37,13 +37,15 @@ const GenratedImageAccordion = () => {
             <span className="tagg">
               <img src="/images/up-img-Icon.svg" alt="icon" />2 images
             </span>
-            <CustomToggle eventKey="0" as={Button}>
-              <img
-                className="arrowSvg"
-                src="/images/downarrow.svg"
-                alt="icon"
-              />
-            </CustomToggle>
+            <div className="d-none d-md-block">
+              <CustomToggle eventKey="0" as={Button}>
+                <img
+                  className="arrowSvg"
+                  src="/images/downarrow.svg"
+                  alt="icon"
+                />
+              </CustomToggle>
+            </div>
           </div>
         </Card.Header>
         <Accordion.Collapse eventKey="0">
@@ -54,20 +56,27 @@ const GenratedImageAccordion = () => {
                 <p>Browse or drag and drop any image to upload </p>
               </Button>
             </div>
-            <div className="uploadingItems d-flex justify-content-start align-items-center gap-2">
-              <img src="/images/blue-img-Icon.svg" alt="items" />
-              <p className="itemsName">Purple_Shirt.jpg</p>
-              <ProgressBar
-                now={now}
-                label={`${now}%`}
-                visuallyHidden
-                className="uplod-progress"
-              />
+            <div className="uploadingItems d-flex justify-content-sm-start justify-content-between align-items-center gap-2">
+              <div className="d-flex justify-content-start align-items-center gap-2">
+                <img src="/images/blue-img-Icon.svg" alt="items" />
+                <p className="itemsName">Purple_Shirt.jpg</p>
+                <ProgressBar
+                  now={now}
+                  label={`${now}%`}
+                  visuallyHidden
+                  className="uplod-progress"
+                />
+              </div>
               {/* ------when item uploaded then show this close icon------ */}
-              {/* <CloseButton aria-label="Hide" /> */}
+              <CloseButton aria-label="Hide" />
             </div>
           </Card.Body>
         </Accordion.Collapse>
+        <div className="card-header d-flex justify-content-center d-md-none ">
+          <CustomToggle eventKey="0" as={Button}>
+            <img className="arrowSvg" src="/images/downarrow.svg" alt="icon" />
+          </CustomToggle>
+        </div>
       </Card>
     </Accordion>
   );

@@ -6,7 +6,7 @@ const CreateWrdrobeHeader = () => {
     <>
       <div className="crtWrdbHeader">
         <img
-          className="logo"
+          className="logo d-none d-lg-block"
           src="/images/create-wardrobe-headerlogo.png"
           alt="logo"
         />
