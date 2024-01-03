@@ -3,17 +3,21 @@ import CreateWrdrobeHeader from "../../../components/headers/CreateWrdrobeHeader
 import { Col, Row } from "react-bootstrap";
 import GuestSideBar from "../../../components/Sidebar/GuestSideBar";
 import GuestGenratedResult from "../../../components/guestGenratedResult.js/GuestGenratedResult";
+import WelcomeHeader from "../../../components/headers/WelcomeHeader";
 
 const GenratedResult = () => {
   return (
     <>
       <div className="crtWrdbMain">
+        <div className="d-lg-none">
+          <WelcomeHeader />
+        </div>
         <CreateWrdrobeHeader />
         <Row className="m-0 p-0">
-          <Col md={2} className="ps-0">
+          <Col md={2} className="ps-0 d-none d-lg-block">
             <GuestSideBar />
           </Col>
-          <Col md={10} className="pe-0">
+          <Col lg={10} className="pe-0">
             <div className="genratedResult">
               <GuestGenratedResult />
             </div>

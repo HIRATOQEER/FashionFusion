@@ -9,7 +9,7 @@ const BasedUponPrfrnc = () => {
         <p className="discptn mb-3">
           Products results based upon the given preferences
         </p>
-        <div className="givenPrefrnc d-flex align-items-center gap-4">
+        <div className="givenPrefrnc d-flex flex-column flex-lg-row align-items-lg-center gap-4">
           <div className="d-flex align-items-center gap-2">
             <img
               className="picIcon"
@@ -58,72 +58,92 @@ const BasedUponPrfrnc = () => {
               <Dropdown.Menu>
                 <Dropdown.Item
                   href="#/action-1"
-                  className="d-flex align-items-center gap-4"
+                  className="d-flex align-items-lg-center align-items-start gap-4"
                 >
-                  <span className="prfSrNmbr">1</span>
-                  <p>
-                    <span className="prfNameCmn">Brand</span>
-                    <span className="prfProductCmn">Furor</span>
-                  </p>
-                  <p>
-                    <span className="prfNameCmn">Category</span>
-                    <span className="prfProductCmn">Shirt</span>
-                  </p>
-                  <p>
-                    <span className="prfNameCmn">Colur</span>
-                    <span className="prColourCmn"></span>
-                  </p>
-                  <p>
-                    <span className="prfNameCmn">PRICE</span>
-                    <span className="prfProductCmn">0-5000 PKR</span>
-                  </p>
-                  <p>
-                    <span className="prfNameCmn">SIZE</span>
-                    <span className="prfProductCmn">Large</span>
-                  </p>
-                  <p>
-                    <span className="prfNameCmn">Quantity</span>
-                    <span className="prfProductCmn">10</span>
-                  </p>
-                  <p>
-                    <span className="prfNameCmn">GENDER</span>
-                    <span className="prfProductCmn">Male</span>
-                  </p>
+                  <div>
+                    <span className="prfSrNmbr">1</span>
+                  </div>
+                  <div className=" d-flex  flex-column flex-lg-row gap-2 gap-lg-4">
+                    <p>
+                      <span className="prfNameCmn">Brand</span>
+                      <span className="prfProductCmn">Furor</span>
+                    </p>
+                    <div className="d-flex align-items-center gap-4">
+                      <p>
+                        <span className="prfNameCmn">Category</span>
+                        <span className="prfProductCmn">Shirt</span>
+                      </p>
+                      <p>
+                        <span className="prfNameCmn">Colur</span>
+                        <span className="prColourCmn"></span>
+                      </p>
+                    </div>
+                    <div className="d-flex align-items-center gap-4">
+                      <p>
+                        <span className="prfNameCmn">PRICE</span>
+                        <span className="prfProductCmn">0-5000 PKR</span>
+                      </p>
+                      <p>
+                        <span className="prfNameCmn">SIZE</span>
+                        <span className="prfProductCmn">Large</span>
+                      </p>
+                    </div>
+                    <div className="d-flex align-items-center gap-4">
+                      <p>
+                        <span className="prfNameCmn">Quantity</span>
+                        <span className="prfProductCmn">10</span>
+                      </p>
+                      <p>
+                        <span className="prfNameCmn">GENDER</span>
+                        <span className="prfProductCmn">Male</span>
+                      </p>
+                    </div>
+                  </div>
                 </Dropdown.Item>
                 <hr />
                 <Dropdown.Item
-                  href="#/action-2"
-                  className="d-flex align-items-center gap-4"
+                  href="#/action-1"
+                  className="d-flex align-items-lg-center align-items-start gap-4"
                 >
-                  <span className="prfSrNmbr">1</span>
-                  <p>
-                    <span className="prfNameCmn">Brand</span>
-                    <span className="prfProductCmn">Furor</span>
-                  </p>
-                  <p>
-                    <span className="prfNameCmn">Category</span>
-                    <span className="prfProductCmn">Shirt</span>
-                  </p>
-                  <p>
-                    <span className="prfNameCmn">Colur</span>
-                    <span className="prColourCmn"></span>
-                  </p>
-                  <p>
-                    <span className="prfNameCmn">PRICE</span>
-                    <span className="prfProductCmn">0-5000 PKR</span>
-                  </p>
-                  <p>
-                    <span className="prfNameCmn">SIZE</span>
-                    <span className="prfProductCmn">Large</span>
-                  </p>
-                  <p>
-                    <span className="prfNameCmn">Quantity</span>
-                    <span className="prfProductCmn">10</span>
-                  </p>
-                  <p>
-                    <span className="prfNameCmn">GENDER</span>
-                    <span className="prfProductCmn">Male</span>
-                  </p>
+                  <div>
+                    <span className="prfSrNmbr">2</span>
+                  </div>
+                  <div className=" d-flex  flex-column flex-lg-row gap-2 gap-lg-4">
+                    <p>
+                      <span className="prfNameCmn">Brand</span>
+                      <span className="prfProductCmn">Furor</span>
+                    </p>
+                    <div className="d-flex align-items-center gap-4">
+                      <p>
+                        <span className="prfNameCmn">Category</span>
+                        <span className="prfProductCmn">Shirt</span>
+                      </p>
+                      <p>
+                        <span className="prfNameCmn">Colur</span>
+                        <span className="prColourCmn"></span>
+                      </p>
+                    </div>
+                    <div className="d-flex align-items-center gap-4">
+                      <p>
+                        <span className="prfNameCmn">PRICE</span>
+                        <span className="prfProductCmn">0-5000 PKR</span>
+                      </p>
+                      <p>
+                        <span className="prfNameCmn">SIZE</span>
+                        <span className="prfProductCmn">Large</span>
+                      </p>
+                    </div>
+                    <div className="d-flex align-items-center gap-4">
+                      <p>
+                        <span className="prfNameCmn">Quantity</span>
+                        <span className="prfProductCmn">10</span>
+                      </p>
+                      <p>
+                        <span className="prfNameCmn">GENDER</span>
+                        <span className="prfProductCmn">Male</span>
+                      </p>
+                    </div>
+                  </div>
                 </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>

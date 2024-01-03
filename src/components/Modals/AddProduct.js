@@ -42,25 +42,23 @@ const AddProduct = (props) => {
                 <span className="tagg">Brand</span>
                 <span className="tagg">Gender</span>
               </div>
-
-              <RatingStar />
-
-              <textarea
-                className="addTxtCmnt mb-3 w-full d-block"
-                name=""
-                id=""
-                cols="30"
-                rows="1"
-                placeholder="Your Comment"
-              ></textarea>
             </div>
-
             <img
-              className="prvImage"
+              className="prvImage d-none d-lg-block"
               src="/images/modal-prview-image.png"
               alt="pic"
             />
           </div>
+          <RatingStar />
+
+          <textarea
+            className="addTxtCmnt mb-3 w-full d-block"
+            name=""
+            id=""
+            cols="30"
+            rows="1"
+            placeholder="Your Comment"
+          ></textarea>
         </Modal.Body>
         <Modal.Footer className="border-0 d-flex justify-content-between align-items-center">
           <p className="infoDis">

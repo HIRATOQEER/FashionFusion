@@ -19,12 +19,12 @@ function App() {
           path="/pages/welcomScreen/WelcomeScreen"
           element={<WelcomeScreen />}
         />
-        <Route exact path="/" element={<CreateWardrobe />} />
         <Route
           exact
-          path="/pages/AsGuest/genratedWardrobe/GenratedResult"
-          element={<GenratedResult />}
+          path="/pages/AsGuest/createWardrobe/CreateWardrobe"
+          element={<CreateWardrobe />}
         />
+        <Route exact path="/" element={<GenratedResult />} />
         <Route
           exact
           path="/pages/LogedIn/UserCreateWrdb"

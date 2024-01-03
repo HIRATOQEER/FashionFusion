@@ -1110,7 +1110,7 @@ button.addPerafrence:hover {
   padding: 8px 16px;
 }
 .yourWardrobe {
-  padding: 30px 40px;
+  padding: 25px 30px;
   border-radius: 24px;
   background: rgba(255, 255, 255, 0.7);
 }
@@ -1133,7 +1133,7 @@ button.addPerafrence:hover {
   border: 1px solid #595d62;
 }
 .yourWardrobe .youWrdrbInner {
-  padding: 20px 70px;
+  padding: 20px 50px;
   border-radius: var(--paddings-gaps-p-4, 16px);
   background: linear-gradient(
     180deg,
@@ -1146,14 +1146,14 @@ button.addPerafrence:hover {
   position: static !important;
 }
 .swiper.mySwiperRst .swiper-button-next {
-  right: 60px;
+  right: -45px;
   left: auto;
-  top: 407px;
+  top: 169px;
 }
 .swiper.mySwiperRst .swiper-button-prev {
-  left: 60px;
+  left: -45px;
   right: auto;
-  top: 407px;
+  top: 169px;
 }
 .yourWardrobe p.gnrtDiscrptn {
   color: var(--text-80, #5c5c5c);
@@ -1452,8 +1452,11 @@ button.addPerafrence:hover {
 }
 .prfAttached .dropdown-menu.show {
   inset: 5px auto auto 27px !important;
-  z-index: 9;
-  transform: translate(-370px, 50px) !important;
+  z-index: 20;
+  transform: translate(-50%, 45%) !important;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  height: 120px;
 }
 /* ----------UserSidebar--------  */
 .UserSidebar {
@@ -1908,8 +1911,11 @@ button.buyProduct {
 .swiper.FavoritProductSwiper .swiper-slide {
   text-align: center;
 }
-.swiper.FavoritProductSwiper .swiper-button-prev:after,
-.swiper-button-next:after {
+.swiper.FavoritProductSwiper .swiper-button-prev:after {
+  font-size: 25px;
+  color: #333;
+}
+.swiper.FavoritProductSwiper .swiper-button-next:after {
   font-size: 25px;
   color: #333;
 }
@@ -1944,6 +1950,10 @@ button.btn-mblPrfl {
 p.totlgnrteprdt {
   font-size: 1rem;
 }
+.prfrncResult {
+  position: relative;
+  margin-bottom: 60px;
+}
 /* ------------responsive-section------------- */
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (max-width: 1200px) {
@@ -1952,7 +1962,7 @@ p.totlgnrteprdt {
   }
 }
 /* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (max-width: 992px) {
+@media only screen and (max-width: 991px) {
   html {
     font-size: 80%;
   }
@@ -2202,12 +2212,43 @@ p.totlgnrteprdt {
   .favoritsProducts .detailBox p.yourCommentDtl {
     font-size: 1.05rem;
   }
+  .givenPrefrnc .dropdown-menu.show {
+    inset: 8px auto auto 42px !important;
+  }
+  .prfAttached .dropdown-menu.show {
+    transform: translate(3px, 52px) !important;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    height: 300px;
+  }
+  .swiper.mySwiperRst .swiper-button-next {
+    left: 50%;
+    transform: translate(80%, 460%);
+  }
+  .swiper.mySwiperRst .swiper-button-next::after {
+    font-size: x-large;
+  }
+  .swiper.mySwiperRst .swiper-button-prev {
+    left: 50%;
+    transform: translate(-185%, 460%);
+  }
+  .swiper.mySwiperRst .swiper-button-prev::after {
+    font-size: x-large;
+  }
+  .fade.productDtlMdl.modal.show p.tellResn {
+    font-size: 2.125rem;
+  }
 }
 @media only screen and (max-width: 768px) {
   html {
     font-size: 60%;
   }
-
+  .fade.productDtlMdl.modal.show .dtlTagg span.tagg {
+    padding: 5px 10px;
+  }
+  .fade.productDtlMdl.modal.show p.tellResn {
+    font-size: 2.125rem;
+  }
   button.btnPrimary {
     font-size: 1.8rem;
   }
@@ -2397,6 +2438,9 @@ p.totlgnrteprdt {
   .favoritsProducts .detailBox p.yourCommentDtl {
     font-size: 1.35rem;
   }
+  .fade.productDtlMdl.modal.show p.rmvPrdct {
+    font-size: 1.8rem;
+  }
 }
 @media only screen and (max-width: 576px) {
   html {
@@ -2469,13 +2513,13 @@ p.totlgnrteprdt {
   }
 
   .fade.productDtlMdl.modal.show button.cancelPrv {
-    font-size: 1.75rem;
+    font-size: 1.4rem;
   }
   .fade.productDtlMdl.modal.show button.btnPrfSubmit {
-    font-size: 1.75rem;
+    font-size: 1.4rem;
   }
   .fade.productDtlMdl.modal.show .dtlTagg span.tagg {
-    font-size: 1.75rem;
+    font-size: 1.6rem;
   }
   .yourWardrobe button.regenrete {
     font-size: 1.75rem;
@@ -2526,17 +2570,15 @@ p.totlgnrteprdt {
   .prfAttached.show.dropdown a.dropdown-item span.prfProductCmn {
     font-size: 2rem;
   }
-  .prfAttached.show.dropdown a.dropdown-item span.prfNameCmn {
-    font-size: 2rem;
-  }
+
   .prfAttached.show.dropdown a.dropdown-item span.prfSrNmbr {
     font-size: 2rem;
   }
   .rstLinksDrp.show.dropdown a.dropdown-item {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
   .fade.productDtlMdl.modal.show p.infoDis {
-    font-size: 2rem;
+    font-size: 1.6rem;
   }
   .yourWardrobe p.gnrtDiscrptn {
     font-size: 2rem;
@@ -2560,7 +2602,7 @@ p.totlgnrteprdt {
     font-size: 2rem;
   }
   .btncontinue {
-    font-size: 2rem;
+    font-size: 1.6rem;
   }
   .signbox1 form .havean button {
     font-size: 1.75;

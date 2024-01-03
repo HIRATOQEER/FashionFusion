@@ -40,6 +40,36 @@ const GuestGenratedResult = () => {
                 rows: 2,
                 fill: "row",
               }}
+              breakpoints={{
+                320: {
+                  slidesPerView: 1,
+                  rows: 2,
+                },
+                480: {
+                  slidesPerView: 1,
+                  rows: 2,
+                },
+                576: {
+                  slidesPerView: 1,
+                  rows: 2,
+                },
+                640: {
+                  slidesPerView: 2,
+                  rows: 2,
+                },
+                768: {
+                  slidesPerView: 2,
+                  rows: 2,
+                },
+                991: {
+                  slidesPerView: 3,
+                  rows: 2,
+                },
+                1200: {
+                  slidesPerView: 4,
+                  rows: 2,
+                },
+              }}
               spaceBetween={10}
               modules={[Grid, Navigation]}
               className="mySwiperRst"
