@@ -1172,8 +1172,8 @@ button.addPerafrence:hover {
   border-radius: var(--interactive-border-radius-radius-i-sm, 8px);
   border: 1px solid var(--main-trunks, #595d62);
   background-color: transparent;
-  float: right;
-  transform: translate(0, -41px);
+  /* float: right; */
+  /* transform: translate(0, -41px); */
 }
 .yourWardrobe button.saveWrdrb {
   display: flex;
@@ -1295,7 +1295,7 @@ button.addPerafrence:hover {
   border: none;
   padding: 0;
 }
-.viewReslt.show.dropdown p.rmvPrdct {
+.viewReslt.modal p.rmvPrdct {
   color: var(--text-100, #333);
   font-family: "Andika", sans-serif;
   font-size: 1.25rem;
@@ -1310,7 +1310,7 @@ button.addPerafrence:hover {
   padding: 8px 16px;
 }
 
-.viewReslt.show.dropdown button.btnrgtn {
+.viewReslt.modal button.btnrgtn {
   color: var(--text-100, #333);
   font-family: "Andika", sans-serif;
   font-size: 14px;
@@ -1321,13 +1321,13 @@ button.addPerafrence:hover {
   border: 1px solid var(--main-trunks, #595d62);
   background-color: transparent;
 }
-.viewReslt.show.dropdown p.tellResn {
+.viewReslt.modal p.tellResn {
   color: var(--text-100, #333);
   font-size: 1.125rem;
   font-family: "Andika", sans-serif;
   margin: 0 0 12px;
 }
-.viewReslt.show.dropdown textarea.addTxtCmnt {
+.viewReslt.modal textarea.addTxtCmnt {
   border-radius: var(--interactive-border-radius-radius-i-sm, 8px);
   border: 1px solid var(--main-beerus, #e2e2e2);
   background: var(--main-gohan, #fff);
@@ -1966,6 +1966,9 @@ p.totlgnrteprdt {
   html {
     font-size: 80%;
   }
+  .yourWardrobe button.saveWrdrb {
+    font-size: 1.225rem;
+  }
   p.totlgnrteprdt {
     font-size: 1.4rem;
   }
@@ -2155,7 +2158,7 @@ p.totlgnrteprdt {
   .viewReslt.show.dropdown span.rmvPrfTagg {
     font-size: 1.225rem;
   }
-  .viewReslt.show.dropdown button.btnrgtn {
+  .viewReslt.modal button.btnrgtn {
     font-size: 1.225rem;
   }
   .prfrncResult .prfrncResultShow button.btnFavourite {
@@ -2242,6 +2245,18 @@ p.totlgnrteprdt {
 @media only screen and (max-width: 768px) {
   html {
     font-size: 60%;
+  }
+  .yourWardrobe button.saveWrdrb {
+    font-size: 1.575rem;
+  }
+  .viewReslt.modal p.rmvPrdct {
+    font-size: 2rem;
+  }
+  .viewReslt.modal p.tellResn {
+    font-size: 2rem;
+  }
+  .viewReslt.modal textarea.addTxtCmnt {
+    font-size: 2rem;
   }
   .fade.productDtlMdl.modal.show .dtlTagg span.tagg {
     padding: 5px 10px;
@@ -2381,7 +2396,7 @@ p.totlgnrteprdt {
   .viewReslt.show.dropdown span.rmvPrfTagg {
     font-size: 1.575rem;
   }
-  .viewReslt.show.dropdown button.btnrgtn {
+  .viewReslt.modal button.btnrgtn {
     font-size: 1.575rem;
   }
   .prfrncResult .prfrncResultShow button.btnFavourite {
@@ -2446,6 +2461,22 @@ p.totlgnrteprdt {
   html {
     font-size: 50%;
   }
+  .yourWardrobe .youWrdrbInner {
+    padding: 10px 10px;
+  }
+  .yourWardrobe {
+    padding: 20px;
+  }
+  .yourWardrobe button.saveWrdrb {
+    font-size: 1.6rem;
+  }
+  .yourWardrobe button.saveWrdrb {
+    width: 130px;
+    padding: 8px 8px;
+  }
+  .yourWardrobe button.regenrete {
+    padding: 5px 8px;
+  }
   p.totlgnrteprdt {
   }
   .socialGenrat.card .card-body img.inptlogo {
@@ -2505,11 +2536,11 @@ p.totlgnrteprdt {
   .prfrncResult .prfrncResultShow button.btnFavourite {
     font-size: 1.75rem;
   }
-  .viewReslt.show.dropdown button.btnrgtn {
+  .viewReslt.modal button.btnrgtn {
     font-size: 1.75rem;
   }
   .viewReslt.show.dropdown span.rmvPrfTagg {
-    font-size: 1.75rem;
+    font-size: 1.4rem;
   }
 
   .fade.productDtlMdl.modal.show button.cancelPrv {
@@ -2522,7 +2553,7 @@ p.totlgnrteprdt {
     font-size: 1.6rem;
   }
   .yourWardrobe button.regenrete {
-    font-size: 1.75rem;
+    font-size: 1.4rem;
   }
   button.addPerafrence {
     font-size: 1.75rem;

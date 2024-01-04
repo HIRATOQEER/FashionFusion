@@ -9,10 +9,11 @@ import "swiper/css/navigation";
 import BasedUponPrfrnc from "../guestGenratedResult.js/BasedUponPrfrnc";
 import SuccessfullyRmvPrdct from "../Toasts/SuccessfullyRmvPrdct";
 import ProductOverview from "../Modals/ProductOverview";
+import RegenerateModal from "../Modals/RegenerateModal";
 
 const WardrobeOneResult = () => {
   const [modalOverViewShow, setModalOverViewShow] = React.useState(false);
-
+  const [modalShow, setModalShow] = React.useState(false);
   const [showToast, setShowToast] = useState(false);
 
   const handleButtonClick = () => {
@@ -195,36 +196,15 @@ const WardrobeOneResult = () => {
               showToast={showToast}
               onClose={handleCloseToast}
             />
-            <Dropdown className="viewReslt">
-              <Dropdown.Toggle id="dropdown-basic" className="regenrete">
-                <img src="/images/refresh-Icon.svg" alt="icon" /> Regenerate
-              </Dropdown.Toggle>
 
-              <Dropdown.Menu>
-                <div className="d-flex justify-content-between align-items-center px-3 pt-2">
-                  <p className="rmvPrdct">Regenerate</p>
-                  <Button className="btnCloseDrp">
-                    <img src="/images/close-Icon.svg" alt="icon" />
-                  </Button>
-                </div>
-                <hr />
-                <div className="p-3">
-                  <p className="tellResn">Tell us the reason (Optional)</p>
-                  <textarea
-                    className="addTxtCmnt mb-3 w-full d-block"
-                    name=""
-                    id=""
-                    cols="30"
-                    rows="1"
-                    placeholder="Comment"
-                  ></textarea>
-                  <div className="d-flex justify-content-end align-items-center gap-3">
-                    <Button className="btnrgtn">Cancel</Button>
-                    <Button className="btnPrfSubmit">Submit</Button>
-                  </div>{" "}
-                </div>
-              </Dropdown.Menu>
-            </Dropdown>
+            <Button className="regenrete" onClick={() => setModalShow(true)}>
+              <img src="/images/refresh-Icon.svg" alt="icon" /> Regenerate
+            </Button>
+
+            <RegenerateModal
+              show={modalShow}
+              onHide={() => setModalShow(false)}
+            />
           </div>
         </div>
       </div>

@@ -11,11 +11,14 @@ import ProductDtails from "../Modals/ProductDtails";
 import SuccessfullySavedToast from "../Toasts/SuccessfullySvedToast";
 import AddProduct from "../Modals/AddProduct";
 import ProductOverview from "../Modals/ProductOverview";
+import RegenerateModal from "../Modals/RegenerateModal";
 
 const GuestGenratedResult = () => {
   const [modalShow, setModalShow] = React.useState(false);
   const [modalAddShow, setModalAddShow] = React.useState(false);
   const [modalOverViewShow, setModalOverViewShow] = React.useState(false);
+  const [modalRegenrateShow, setModalRegenrateShow] = React.useState(false);
+
   const [showToast, setShowToast] = useState(false);
 
   const handleButtonClick = () => {
@@ -46,11 +49,11 @@ const GuestGenratedResult = () => {
                   rows: 2,
                 },
                 480: {
-                  slidesPerView: 1,
+                  slidesPerView: 2,
                   rows: 2,
                 },
                 576: {
-                  slidesPerView: 1,
+                  slidesPerView: 2,
                   rows: 2,
                 },
                 640: {
@@ -395,48 +398,34 @@ const GuestGenratedResult = () => {
             </Swiper>
           </div>
 
-          <div className="justify-content-between align-items-center mt-4 ">
-            <div className="d-flex flex-you justify-content-between">
-              <p className="gnrtDiscrptn">
+          <div className="d-flex justify-content-between align-items-center flex-column flex-xl-row mt-4">
+            <div className="d-flex align-items-center flex-column flex-lg-row mb-3 mb-xl-0">
+              <span className="d-block">
                 <img src="/images/question-mark-Icon.svg" alt="icon" />
+              </span>
+
+              <p className="gnrtDiscrptn text-center text-lg-start">
                 You can save this wardrobe as it is or you can regenerate for
                 some new results
               </p>
+            </div>
+            <div className="d-flex align-items-center gap-2">
               <Button className="saveWrdrb" onClick={handleButtonClick}>
                 Save Wardrobe
               </Button>
-            </div>
 
-            <Dropdown className="viewReslt">
-              <Dropdown.Toggle id="dropdown-basic" className="regenrete">
+              <Button
+                className="regenrete"
+                onClick={() => setModalRegenrateShow(true)}
+              >
                 <img src="/images/refresh-Icon.svg" alt="icon" /> Regenerate
-              </Dropdown.Toggle>
+              </Button>
 
-              <Dropdown.Menu>
-                <div className="d-flex justify-content-between align-items-center px-3 pt-2">
-                  <p className="rmvPrdct">Regenerate</p>
-                  <Button className="btnCloseDrp">
-                    <img src="/images/close-Icon.svg" alt="icon" />
-                  </Button>
-                </div>
-                <hr />
-                <div className="p-3">
-                  <p className="tellResn">Tell us the reason (Optional)</p>
-                  <textarea
-                    className="addTxtCmnt mb-3 w-full d-block"
-                    name=""
-                    id=""
-                    cols="30"
-                    rows="1"
-                    placeholder="Comment"
-                  ></textarea>
-                  <div className="d-flex justify-content-end align-items-center gap-3">
-                    <Button className="btnrgtn">Cancel</Button>
-                    <Button className="btnPrfSubmit">Submit</Button>
-                  </div>{" "}
-                </div>
-              </Dropdown.Menu>
-            </Dropdown>
+              <RegenerateModal
+                show={modalRegenrateShow}
+                onHide={() => setModalRegenrateShow(false)}
+              />
+            </div>
           </div>
         </div>
       </div>
