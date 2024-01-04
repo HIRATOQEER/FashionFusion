@@ -1497,7 +1497,6 @@ button.addPerafrence:hover {
   display: block;
 }
 .UserSidebar ul li span.sameStl {
-  display: block;
   color: var(--primary-10, #4b8bbe);
   font-size: 14px;
   font-family: "Andika", sans-serif;
@@ -1936,7 +1935,7 @@ img.sideBarIcon:hover {
 }
 
 img.sideBarIcon:active {
-  filter: brightness(0.8); /* Reduces brightness on active state */
+  filter: brightness(0) invert(1); /* Reduces brightness on active state */
 }
 
 button.btn-mblPrfl {
@@ -2241,6 +2240,76 @@ p.totlgnrteprdt {
   .fade.productDtlMdl.modal.show p.tellResn {
     font-size: 2.125rem;
   }
+  .crtWrdbMain {
+    padding-bottom: 80px;
+  }
+  .UserSidebar {
+    margin: 0;
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%);
+    z-index: 999;
+    padding: 1px 8px;
+    width: auto;
+    bottom: 15px;
+  }
+  .UserSidebar:hover {
+    width: auto;
+  }
+  .UserSidebar ul .innerOrder {
+    padding: 5px;
+  }
+  .UserSidebar ul li.active {
+    background-color: #4d66b9;
+    border-radius: 8px;
+  }
+
+  .UserSidebar:hover ul li span.sameStl {
+    display: none;
+  }
+  .UserSidebar:hover ul li span.prnName {
+    display: none;
+  }
+  .showDtl.dropdown .dropdown-menu.show {
+    transform: translate(-60px, -241px) !important;
+    border-radius: var(--interactive-border-radius-radius-i-md, 12px);
+    background: var(--main-gohan, #fff);
+    box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.4),
+      0px 8px 24px -6px rgba(0, 0, 0, 0.16);
+    padding: 4px;
+  }
+
+  .Notification.dropdown .Notifctns {
+    padding: 0 8px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    height: 230px;
+  }
+  .Notification.dropdown a.notificationNew.dropdown-item {
+    padding: 20px 10px;
+  }
+  .showDtl.Notification.dropdown .dropdown-menu.show {
+    transform: translate(-317px, -388px) !important;
+    border-radius: var(--interactive-border-radius-radius-i-md, 12px);
+    background: var(--main-gohan, #fff);
+    box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.4),
+      0px 8px 24px -6px rgba(0, 0, 0, 0.16);
+    padding: 4px;
+  }
+
+  .showDtl.Notification.dropdown .dropdown-menu.show {
+    width: 500px;
+  }
+  .UserSidebar ul .innerOrder li {
+    padding: 8px;
+  }
+  .showDtl.mainProfile.dropdown .dropdown-menu.show {
+    transform: translate(-80px, -151px) !important;
+  }
+  .UserSidebar ul li.firstUr {
+    padding: 8px;
+  }
 }
 @media only screen and (max-width: 768px) {
   html {
@@ -2456,10 +2525,22 @@ p.totlgnrteprdt {
   .fade.productDtlMdl.modal.show p.rmvPrdct {
     font-size: 1.8rem;
   }
+  .showDtl.Notification.dropdown .dropdown-menu.show {
+    transform: translate(-280px, -375px) !important;
+  }
 }
 @media only screen and (max-width: 576px) {
   html {
     font-size: 50%;
+  }
+  img.starIconHdr {
+    width: 100px;
+  }
+  .showDtl.Notification.dropdown .dropdown-menu.show {
+    width: 295px;
+  }
+  .showDtl.Notification.dropdown .dropdown-menu.show {
+    transform: translate(-218px, -368px) !important;
   }
   .yourWardrobe .youWrdrbInner {
     padding: 10px 10px;
@@ -2522,7 +2603,7 @@ p.totlgnrteprdt {
     font-size: 1.75rem;
   }
   .Notification.dropdown span.newNft {
-    font-size: 1.75rem;
+    font-size: 1.4rem;
   }
   .showDtl.dropdown a.dropdown-item {
     font-size: 1.75rem;
@@ -2596,7 +2677,7 @@ p.totlgnrteprdt {
     font-size: 2rem;
   }
   .Notification.dropdown p.newNft {
-    font-size: 2rem;
+    font-size: 1.4rem;
   }
   .prfAttached.show.dropdown a.dropdown-item span.prfProductCmn {
     font-size: 2rem;

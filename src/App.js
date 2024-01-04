@@ -24,12 +24,12 @@ function App() {
           path="/pages/AsGuest/createWardrobe/CreateWardrobe"
           element={<CreateWardrobe />}
         />
-        <Route exact path="/" element={<GenratedResult />} />
         <Route
           exact
-          path="/pages/LogedIn/UserCreateWrdb"
-          element={<UserCreateWrdb />}
+          path="/pages/AsGuest/genratedWardrobe/GenratedResult"
+          element={<GenratedResult />}
         />
+        <Route exact path="/" element={<UserCreateWrdb />} />
         <Route exact path="/pages/Home/HomePage" element={<HomePage />} />
 
         <Route
