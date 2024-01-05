@@ -1781,7 +1781,7 @@ button.btnRemoveEvry:hover {
 .HomeBox .MainCardBox {
   overflow-y: hidden;
   overflow-y: scroll;
-  height: calc(100dvh - 390px);
+  height: calc(100dvh - 410px);
 }
 .HomeFooter {
   display: flex;
