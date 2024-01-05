@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 const HomeHeader = () => {
   return (
     <>
-      <div className="crtWrdbHeader align-items-center">
+      <div className="crtWrdbHeader align-items-center justify-content-lg-start justify-content-center">
         <img
-          className="logo"
+          className="logo d-none d-lg-block"
           src="/images/create-wardrobe-headerlogo.png"
           alt="logo"
         />

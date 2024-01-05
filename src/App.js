@@ -29,8 +29,12 @@ function App() {
           path="/pages/AsGuest/genratedWardrobe/GenratedResult"
           element={<GenratedResult />}
         />
-        <Route exact path="/" element={<UserCreateWrdb />} />
-        <Route exact path="/pages/Home/HomePage" element={<HomePage />} />
+        <Route
+          exact
+          path="/pages/LogedIn/UserCreateWrdb"
+          element={<UserCreateWrdb />}
+        />
+        <Route exact path="/" element={<HomePage />} />
 
         <Route
           exact

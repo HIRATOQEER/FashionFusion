@@ -1221,6 +1221,8 @@ button.addPerafrence:hover {
   color: var(--Text-80, #5c5c5c);
   font-family: Barlow Semi Condensed;
   font-size: 1rem;
+  display: flex;
+  align-items: center;
 }
 .fade.productDtlMdl.modal.show button.btnPrfSubmit {
   border-radius: var(--interactive-border-radius-radius-i-sm, 8px);
@@ -1464,12 +1466,13 @@ button.addPerafrence:hover {
   background: var(--White, #fff);
   box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.4),
     0px 12px 12px -6px rgba(0, 0, 0, 0.16);
-
   width: 63px;
   margin: 60px 0 0 30px;
   padding: 20px 8px;
   text-align: center;
   transition: width 0.2s ease-in-out;
+  z-index: 99;
+  position: relative;
 }
 .UserSidebar:hover {
   width: 180px;
@@ -1533,6 +1536,9 @@ button.addPerafrence:hover {
   box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.4),
     0px 8px 24px -6px rgba(0, 0, 0, 0.16);
   padding: 4px;
+}
+.showDtl.Notification.dropdown .dropdown-menu.show {
+  transform: translate(167px, -100%) !important;
 }
 .dropdown-menu.show .wrdpss {
   overflow-x: hidden;
@@ -1729,7 +1735,7 @@ button.btnRemoveEvry:hover {
 }
 .HomeBox .HomeCard {
   position: relative;
-  padding: 25px;
+  padding: 20px;
   border-radius: var(--paddings-gaps-p-4, 16px);
   background: var(--White, #fff);
   z-index: 9;
@@ -1959,12 +1965,16 @@ p.totlgnrteprdt {
   html {
     font-size: 100%;
   }
+  .HomeBox .HomeCard {
+    padding: 15px;
+  }
 }
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (max-width: 991px) {
   html {
     font-size: 80%;
   }
+
   .yourWardrobe button.saveWrdrb {
     font-size: 1.225rem;
   }

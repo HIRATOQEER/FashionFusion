@@ -32,7 +32,7 @@ const AddProduct = (props) => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div className="d-flex justify-content-between align-items-start">
+          <div className="d-flex flex-lg-row flex-column flex-column-reverse justify-content-between align-items-start ">
             <div>
               <p className="tellResn">Tell us the reason of removing</p>
               <div className="dtlTagg d-flex align-items-center gap-2 mb-3">
@@ -44,7 +44,7 @@ const AddProduct = (props) => {
               </div>
             </div>
             <img
-              className="prvImage d-none d-lg-block"
+              className="prvImage mx-auto mx-lg-0"
               src="/images/modal-prview-image.png"
               alt="pic"
             />
@@ -60,16 +60,19 @@ const AddProduct = (props) => {
             placeholder="Your Comment"
           ></textarea>
         </Modal.Body>
-        <Modal.Footer className="border-0 d-flex justify-content-between align-items-center">
+        <Modal.Footer className="border-0 d-flex justify-content-between align-items-center pt-0">
           <p className="infoDis">
             <img className="me-1" src="/images/info-Icon.svg" alt="info icon" />
             Product will be saved with the comments and rating
           </p>
-          <div>
-            <Button onClick={props.onHide} className="cancelPrv">
+          <div className="w-100">
+            {/* <Button onClick={props.onHide} className="cancelPrv">
               Cancel
-            </Button>
-            <Button className="btnPrfSubmit ms-3" onClick={handleButtonClick}>
+            </Button> */}
+            <Button
+              className="btnPrfSubmit ms-3 w-100"
+              onClick={handleButtonClick}
+            >
               Done
             </Button>
             <AddFavoritToast showToast={showToast} onClose={handleCloseToast} />

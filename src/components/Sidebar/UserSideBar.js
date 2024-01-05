@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Dropdown, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
@@ -10,6 +10,26 @@ const UserSideBar = () => {
     { id: 2, name: "profile", isOpen: false },
   ]);
   let timeoutId;
+
+  useEffect(() => {
+    // Function to handle window resize
+    const handleResize = () => {
+      // Check the window width and set the state accordingly
+      if (window.innerWidth > 991) setShowNavs(true);
+      else setShowNavs(false);
+    };
+
+    // Initial check on component mount
+    handleResize();
+
+    // Add event listener for window resize
+    window.addEventListener("resize", handleResize);
+
+    // Remove event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const handleMouseEnter = (index) => {
     console.log("enter  ", dropdownStates);
@@ -42,7 +62,7 @@ const UserSideBar = () => {
                 <img src="/images/white-star-Group.svg" alt="icon" />
               </Link>
             </li>
-            <div className="innerOrder d-flex flex-row flex-lg-column gap-lg-4 gap-3">
+            <div className="innerOrder d-flex flex-row flex-lg-column align-items-center align-items-lg-start gap-lg-4 gap-3">
               <li className="active" onClick={() => setShowNavs(false)}>
                 <Link to="#">
                   <img
@@ -55,7 +75,12 @@ const UserSideBar = () => {
                 </Link>
               </li>
               {showNavs !== true && (
-                <Button onClick={() => setShowNavs(true)}>click</Button>
+                <Button
+                  className="bg-transparent border-0 d-lg-none"
+                  onClick={() => setShowNavs(true)}
+                >
+                  <img src="/images/right-arrow-Icon.svg" alt="Icon" />
+                </Button>
               )}
               {showNavs && (
                 <>
