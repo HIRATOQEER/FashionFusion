@@ -31,7 +31,7 @@ const WardrobeOneResult = () => {
           <div className="d-flex justify-content-between align-items-cemter mb-3">
             <p className="yur">10 Products</p>
             <Button className="btnRemoveEvry">
-              <img className="me-2" src="images/remove-icon.svg" alt="icon" />
+              <img className="me-2" src="/images/remove-icon.svg" alt="icon" />
               Delete
             </Button>
           </div>

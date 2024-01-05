@@ -73,7 +73,7 @@ const FavoriteProductCard = () => {
                   BUY NOW <img src="/images/buynow-Icon.svg" alt="icon" />
                 </Button>
                 <Button className="btnRemoveEvry border-0 ms-3">
-                  <img src="images/remove-icon.svg" alt="icon" />
+                  <img src="/images/remove-icon.svg" alt="icon" />
                 </Button>
               </div>
             </div>

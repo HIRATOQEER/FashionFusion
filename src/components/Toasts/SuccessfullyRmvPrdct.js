@@ -16,7 +16,7 @@ const SuccessfullyRmvPrdct = ({ showToast, onClose }) => {
           <p className="savedwrdb text-center">
             <img
               className="me-3"
-              src="images/tick-Icon-placeholder.svg"
+              src="/images/tick-Icon-placeholder.svg"
               alt="tick"
             />{" "}
             Products removed successfully
