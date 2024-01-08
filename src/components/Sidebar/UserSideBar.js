@@ -56,7 +56,7 @@ const UserSideBar = () => {
     <>
       <div className="UserSidebar">
         <Navbar>
-          <ul className="p-0 m-0 d-flex flex-row flex-lg-column gap-lg-4 gap-3">
+          <ul className="p-0 m-0 d-flex align-items-center flex-row flex-lg-column gap-lg-4 gap-3">
             <li className="firstUr">
               <Link to="#" className="me-0">
                 <img src="/images/white-star-Group.svg" alt="icon" />

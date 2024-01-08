@@ -10,11 +10,13 @@ import BasedUponPrfrnc from "../guestGenratedResult.js/BasedUponPrfrnc";
 import SuccessfullyRmvPrdct from "../Toasts/SuccessfullyRmvPrdct";
 import ProductOverview from "../Modals/ProductOverview";
 import RegenerateModal from "../Modals/RegenerateModal";
+import SuccessfullySavedToast from "../Toasts/SuccessfullySvedToast";
 
 const WardrobeOneResult = () => {
   const [modalOverViewShow, setModalOverViewShow] = React.useState(false);
   const [modalShow, setModalShow] = React.useState(false);
   const [showToast, setShowToast] = useState(false);
+  const [modalRegenrateShow, setModalRegenrateShow] = React.useState(false);
 
   const handleButtonClick = () => {
     setShowToast(true);
@@ -30,10 +32,20 @@ const WardrobeOneResult = () => {
         <div className="youWrdrbInner">
           <div className="d-flex justify-content-between align-items-cemter mb-3">
             <p className="yur">10 Products</p>
-            <Button className="btnRemoveEvry">
-              <img className="me-2" src="/images/remove-icon.svg" alt="icon" />
-              Delete
-            </Button>
+            <div>
+              <Button className="btnRemoveEvry" onClick={handleButtonClick}>
+                <img
+                  className="me-2"
+                  src="/images/remove-icon.svg"
+                  alt="icon"
+                />
+                Delete
+              </Button>
+              <SuccessfullyRmvPrdct
+                showToast={showToast}
+                onClose={handleCloseToast}
+              />
+            </div>
           </div>
           <div className="prfrncResult">
             <Swiper
@@ -43,6 +55,36 @@ const WardrobeOneResult = () => {
               grid={{
                 rows: 2,
                 fill: "row",
+              }}
+              breakpoints={{
+                320: {
+                  slidesPerView: 1,
+                  rows: 2,
+                },
+                480: {
+                  slidesPerView: 2,
+                  rows: 2,
+                },
+                576: {
+                  slidesPerView: 2,
+                  rows: 2,
+                },
+                640: {
+                  slidesPerView: 2,
+                  rows: 2,
+                },
+                768: {
+                  slidesPerView: 2,
+                  rows: 2,
+                },
+                991: {
+                  slidesPerView: 3,
+                  rows: 2,
+                },
+                1200: {
+                  slidesPerView: 4,
+                  rows: 2,
+                },
               }}
               spaceBetween={10}
               modules={[Grid, Navigation]}
@@ -177,38 +219,42 @@ const WardrobeOneResult = () => {
               </SwiperSlide>
             </Swiper>
           </div>
+          <div className="d-flex justify-content-between align-items-center flex-column flex-xl-row mt-4">
+            <div className="d-flex align-items-center flex-column flex-lg-row mb-3 mb-xl-0">
+              <span className="d-block">
+                <img src="/images/question-mark-Icon.svg" alt="icon" />
+              </span>
 
-          <div className="justify-content-between align-items-center mt-4 ">
-            <div className="d-flex flex-you justify-content-between">
-              <p className="gnrtDiscrptn">
-                <img
-                  className="me-2"
-                  src="/images/question-mark-Icon.svg"
-                  alt="icon"
-                />
+              <p className="gnrtDiscrptn text-center text-lg-start">
                 Update or Regenerate your wardrobe
               </p>
-              <Button className="saveWrdrb" onClick={handleButtonClick}>
-                Update
-              </Button>
             </div>
-            <SuccessfullyRmvPrdct
-              showToast={showToast}
-              onClose={handleCloseToast}
-            />
+            <div className="d-flex align-items-center gap-2">
+              <Button className="saveWrdrb" onClick={handleButtonClick}>
+                Update Changes
+              </Button>
 
-            <Button className="regenrete" onClick={() => setModalShow(true)}>
-              <img src="/images/refresh-Icon.svg" alt="icon" /> Regenerate
-            </Button>
+              <Button
+                className="regenrete"
+                onClick={() => setModalRegenrateShow(true)}
+              >
+                <img src="/images/refresh-Icon.svg" alt="icon" /> Regenerate
+              </Button>
 
-            <RegenerateModal
-              show={modalShow}
-              onHide={() => setModalShow(false)}
-            />
+              <RegenerateModal
+                show={modalRegenrateShow}
+                onHide={() => setModalRegenrateShow(false)}
+              />
+            </div>
           </div>
         </div>
       </div>
-      <div></div>
+      <div>
+        <SuccessfullySavedToast
+          showToast={showToast}
+          onClose={handleCloseToast}
+        />
+      </div>
       <Button className="btnPrimary mx-auto mt-5 mb-3">
         <img className="me-3" src="/images/staricon.svg" alt="star" /> Generate
         the magic

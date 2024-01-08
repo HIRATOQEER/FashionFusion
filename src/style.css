@@ -1513,6 +1513,7 @@ button.addPerafrence:hover {
   padding: 12px;
   border-radius: var(--interactive-border-radius-radius-i-sm, 8px);
   background: linear-gradient(135deg, #4e46b4 22.57%, #4b8bbe 124.39%);
+  width: 100%;
 }
 .UserSidebar ul .innerOrder {
   border-radius: var(--paddings-gaps-p-4, 16px);
@@ -1726,6 +1727,9 @@ button.btnRemoveEvry {
   border: 1px solid var(--Alert, #962d2d);
   padding: 8px 12px;
   background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 button.btnRemoveEvry:hover {
   color: var(--Alert, #962d2d);
@@ -1781,7 +1785,8 @@ button.btnRemoveEvry:hover {
 .HomeBox .MainCardBox {
   overflow-y: hidden;
   overflow-y: scroll;
-  height: calc(100dvh - 410px);
+  height: calc(100dvh - 350px);
+  padding: 0 16px 0 0px;
 }
 .HomeFooter {
   display: flex;
@@ -1833,17 +1838,19 @@ button.btnRemoveEvry:hover {
   color: #962d2d;
 }
 button.btnFeedBack {
-  margin: 10px 30px 10px 0;
   color: var(--White, #fff);
   font-size: 1rem;
   font-weight: 700;
   padding: 12px;
   border: none;
-  float: inline-end;
   border-radius: var(--Interactive-border-radius---radius-i-sm, 8px);
   background: var(--secondary-30, #4e46b4);
   box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.4),
     0px 12px 12px -6px rgba(0, 0, 0, 0.16);
+  position: absolute;
+  bottom: 140px;
+  right: 15px;
+  z-index: 999;
 }
 .NoHaveWardrobe {
   display: flex;
@@ -1931,11 +1938,12 @@ img.arrowSvg {
 img.arrowSvg:hover {
   transform: rotate(180deg); /* Rotate the arrow by 180 degrees on hover */
 }
-.FvrtProductBox button.btnFeedBack {
+/* .FvrtProductBox button.btnFeedBack {
   position: absolute;
   bottom: 0;
   right: 0;
-}
+} */
+
 img.sideBarIcon:hover {
   filter: brightness(0) invert(1); /* Inverts the colors on hover */
 }
@@ -1959,6 +1967,18 @@ p.totlgnrteprdt {
   position: relative;
   margin-bottom: 60px;
 }
+.SortBy.dropdown {
+  border-radius: var(--Interactive-border-radius---radius-i-md, 12px);
+  background: var(--Main-gohan, #fff);
+  box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.4),
+    0px 8px 24px -6px rgba(0, 0, 0, 0.16);
+}
+p.prdctName.mb-3 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+}
 /* ------------responsive-section------------- */
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (max-width: 1200px) {
@@ -1974,7 +1994,12 @@ p.totlgnrteprdt {
   html {
     font-size: 80%;
   }
-
+  button.btnFeedBack {
+    bottom: 110px;
+  }
+  .BasedUponPrfrnc p.discptn {
+    font-size: 1.8rem;
+  }
   .yourWardrobe button.saveWrdrb {
     font-size: 1.225rem;
   }
@@ -2072,7 +2097,7 @@ p.totlgnrteprdt {
     font-size: 1.8rem;
   }
   p {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
   }
   .btncontinue {
     font-size: 1.6rem;
@@ -2319,11 +2344,54 @@ p.totlgnrteprdt {
   }
   .UserSidebar ul li.firstUr {
     padding: 8px;
+    min-height: 41px;
   }
 }
 @media only screen and (max-width: 768px) {
   html {
     font-size: 60%;
+  }
+  .favoritsProducts {
+    padding: 16px 20px 16px 20px;
+  }
+  button.btnPrfSubmit {
+    width: 110px;
+  }
+  button.btnrgtn {
+    width: 110px;
+  }
+  .BasedUponPrfrnc p.discptn {
+    font-size: 1.8rem;
+  }
+  button.btnRemoveEvry {
+    padding: 6px;
+  }
+  .sortedBy {
+    padding: 0 15px 0 5px;
+  }
+  .SortBy.dropdown {
+    order: -1;
+    margin-bottom: 30px;
+  }
+  .HomeBox .HomeCard img.SmlProduct {
+    border-radius: 87.5px;
+    background: #fff;
+    box-shadow: 0px 0px 1.458px 0px rgba(0, 0, 0, 0.4),
+      0px 8.75px 8.75px -8.75px rgba(0, 0, 0, 0.16);
+    max-width: 65px;
+    width: 100%;
+  }
+  .mblCol.col-md-4 {
+    width: inherit;
+    margin: 0 -15px;
+  }
+  button.btnFeedBack {
+    margin: 0;
+    padding: 8px 12px;
+  }
+  .HomeBox .MainCardBox {
+    height: calc(100dvh - 387px);
+    padding: 0 5px 0 5px;
   }
   .yourWardrobe button.saveWrdrb {
     font-size: 1.575rem;
@@ -2675,10 +2743,10 @@ p.totlgnrteprdt {
     font-size: 1.75rem;
   }
   button.btnPrfSubmit {
-    font-size: 1.75rem;
+    font-size: 1.6rem;
   }
   button.btnrgtn {
-    font-size: 1.75rem;
+    font-size: 1.6rem;
   }
   button.btnFeedBack {
     font-size: 2rem;

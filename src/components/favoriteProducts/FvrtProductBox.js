@@ -10,7 +10,7 @@ const FvrtProductBox = () => {
     <>
       <div className="FvrtProductBox">
         <SortedBy />
-        <Row className="p-0 m-0">
+        <Row className="p-0 m-0 g-3">
           <Col md={6}>
             <FavoriteProductCard />
           </Col>

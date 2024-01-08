@@ -32,7 +32,7 @@ const RenameWardrobeModal = (props) => {
             className="renameWrb"
           />
         </Modal.Body>
-        <Modal.Footer className="border-0">
+        <Modal.Footer className="border-0 d-flex align-items-center">
           <Button onClick={props.onHide} className="btnrgtn">
             Cancel
           </Button>

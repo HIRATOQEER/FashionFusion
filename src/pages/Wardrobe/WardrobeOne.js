@@ -3,17 +3,21 @@ import { Col, Row } from "react-bootstrap";
 import UserSideBar from "../../components/Sidebar/UserSideBar";
 import HomeHeader from "../../components/headers/HomeHeader";
 import WardrobeOneResult from "../../components/WardrobeResult/WardrobeOneResult";
+import WelcomeHeader from "../../components/headers/WelcomeHeader";
 
 const WardrobeOne = () => {
   return (
     <>
       <div className="crtWrdbMain">
+        <div className="d-lg-none">
+          <WelcomeHeader />
+        </div>
         <HomeHeader />
         <Row className="m-0 p-0">
-          <Col md={2} className="ps-0">
+          <Col lg={2} className="ps-0">
             <UserSideBar />
           </Col>
-          <Col md={10} className="pe-0">
+          <Col xs={12} lg={10} className="pe-0">
             <div className="genratedResult">
               <WardrobeOneResult />
             </div>
