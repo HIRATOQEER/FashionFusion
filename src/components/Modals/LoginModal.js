@@ -25,7 +25,7 @@ const LoginModal = (props) => {
       const user = userCredential.user;
 
       //SHOW ALERT lOGGED iN  SUCCESSSFULLY
-      navigate("/");
+      navigate("/homepage");
 
     } catch (error) {
       //SHOW ALERT INVALID CREDNETAILS

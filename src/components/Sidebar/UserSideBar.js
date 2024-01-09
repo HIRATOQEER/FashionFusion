@@ -108,8 +108,10 @@ const UserSideBar = () => {
                           </Dropdown.Item>
                           <p className="whoDay">Yesterday</p>
                           <div className="wrdpss">
-                            <Dropdown.Item href="/wardroberesults">
+                            <Dropdown.Item >
+                              <Link to = '/wardroberesults'> 
                               Wardrobe 1
+                              </Link>
                             </Dropdown.Item>
                             <Dropdown.Item href="/action-3">
                               Wardrobe 2
@@ -248,7 +250,9 @@ const UserSideBar = () => {
                         src="/images/logout-icon.svg"
                         alt="icon"
                       />
+                      <Link to ='/' > 
                       Sign Out
+                      </Link>
                     </Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>

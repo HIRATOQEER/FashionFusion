@@ -68,7 +68,7 @@ const HomeBox = () => {
                   </Col>
                 </Row>
                 <div className="d-flex justify-content-between align-items-center mb-3">
-                <Link to="/details">
+                <Link to="/wardroberesults">
                   <p className="WrdbNmbr">Black Wardrobe 1</p>
                   </Link>
                   {/* <Button className="border-0 bg-transparent p-0">

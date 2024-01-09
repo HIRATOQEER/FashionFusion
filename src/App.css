@@ -40,7 +40,10 @@
   overflow: hidden;
   position: relative;
 }
-
+a{
+ text-decoration: none !important;
+ color: none !important;
+}
 .marquee-item {
   display: inline-block;
   padding: 0 20px;

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import BasedUponPrfrnc from "./BasedUponPrfrnc";
+import { useNavigate } from "react-router-dom";
 
 import { Button, Dropdown } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -14,6 +15,7 @@ import ProductOverview from "../Modals/ProductOverview";
 import RegenerateModal from "../Modals/RegenerateModal";
 
 const GuestGenratedResult = () => {
+  const navigate = useNavigate();
   const [modalShow, setModalShow] = React.useState(false);
   const [modalAddShow, setModalAddShow] = React.useState(false);
   const [modalOverViewShow, setModalOverViewShow] = React.useState(false);
@@ -21,6 +23,13 @@ const GuestGenratedResult = () => {
 
   const [showToast, setShowToast] = useState(false);
 
+
+  const handleChange= async () => {
+    
+      //SHOW ALERT lOGGED iN  SUCCESSSFULLY
+      navigate("/createwardrobe");
+
+  };
   const handleButtonClick = () => {
     setShowToast(true);
   };
@@ -435,7 +444,7 @@ const GuestGenratedResult = () => {
           onClose={handleCloseToast}
         />
       </div>
-      <Button className="btnPrimary mx-auto mt-5 mb-3">
+      <Button className="btnPrimary mx-auto mt-5 mb-3"   onClick={handleChange}>
         <img className="me-3" src="/images/staricon.svg" alt="star" /> Generate
         the magic
       </Button>
