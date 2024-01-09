@@ -13,7 +13,7 @@ const FavoriteProductCard = () => {
     <>
       <div className="favoritsProducts">
         <Row>
-          <Col xs={12} md={5}>
+          <Col xs={12} md={5} className="mb-3 mb-md-0">
             <Swiper
               slidesPerView={1}
               spaceBetween={0}

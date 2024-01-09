@@ -21,7 +21,7 @@ const FavoritesProduct = () => {
             <FvrtProductBox />
           </Col>
         </Row>
-        <div className="BlurSvg">
+        <div className="BlurSvg d-none d-lg-block">
           <img src="/images/attach-footer-blur.svg" alt="bg img" />
         </div>
       </div>

@@ -14,7 +14,7 @@ const RegenerateModal = (props) => {
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            <p className="rmvPrdct">Regenerate</p>
+            <p className="rmvPrdct">Generate New</p>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>

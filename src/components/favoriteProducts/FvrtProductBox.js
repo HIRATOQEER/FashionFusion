@@ -1,24 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import SortedBy from "../sorted/SortedBy";
 import { Button, Col, Row } from "react-bootstrap";
 import FavoriteProductCard from "../Cards/FavoriteProductCard";
 import FeedbackModal from "../Modals/FeedbackModal";
 
 const FvrtProductBox = () => {
-  const [modalShow, setModalShow] = React.useState(false);
+  const [modalShow, setModalShow] = useState(false);
+
+  const handleButtonClick = () => {
+    setModalShow(!modalShow); // Toggle the modal state
+  };
   return (
     <>
       <div className="FvrtProductBox">
         <SortedBy />
-        <Row className="p-0 m-0 g-3">
-          <Col md={6}>
+        <Row className="p-0 m-0 pe-3 g-3">
+          <Col xl={6}>
             <FavoriteProductCard />
           </Col>
-          <Col md={6}>
+          <Col xl={6}>
             <FavoriteProductCard />
           </Col>
         </Row>
-        <Button className="btnFeedBack my-4" onClick={() => setModalShow(true)}>
+        <Button className="btnFeedBack my-4" onClick={handleButtonClick}>
           <img src="/images/feedback-Icon.svg" alt="icon" />
           Feedback
         </Button>
