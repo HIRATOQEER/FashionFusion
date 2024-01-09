@@ -1,9 +1,37 @@
-import React from "react";
+import React , {useState} from "react";
+import { useNavigate } from "react-router-dom";
+
 import { Form, FormGroup } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import { getAuth,signInWithEmailAndPassword,  } from "firebase/auth";
+import firebaseApp from "../../firebase"; 
+
+
 
 const LoginModal = (props) => {
+  const navigate = useNavigate();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const auth = getAuth(firebaseApp);
+
+    const handleLogin = async () => {
+    try {
+      console.log("Logging in with:", email, password);
+
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+
+      //SHOW ALERT lOGGED iN  SUCCESSSFULLY
+      navigate("/");
+
+    } catch (error) {
+      //SHOW ALERT INVALID CREDNETAILS
+      console.error("Error logging in:", error.message);
+    }
+  };
   return (
     <>
       <Modal
@@ -18,13 +46,14 @@ const LoginModal = (props) => {
           <p>Just email and password and you’re good to go</p>
           <Form>
             <FormGroup className="mb-3" controlId="formBasicEmail">
-              <Form.Control type="email" placeholder="Enter email" />
+              <Form.Control type="email" placeholder="Enter email" onChange={(e) => setEmail(e.target.value)}/>
             </FormGroup>
 
             <FormGroup controlId="formBasicPassword">
-              <Form.Control type="password" placeholder="Password" />
+              <Form.Control type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}
+ />
             </FormGroup>
-            <Button className="btnsign">Sign up</Button>
+            <Button className="btnsign" onClick={handleLogin}>Sign In</Button>
             <div className="d-flex flex-column align-items-center">
               <Button className="btncontinue">
                 <img

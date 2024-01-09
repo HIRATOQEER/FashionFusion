@@ -18,7 +18,7 @@ const GenratedResult = () => {
             <GuestSideBar />
           </Col>
           <Col lg={10} className="pe-0">
-            <div className="genratedResult">
+            <div className="genratedResult px-3 ">
               <GuestGenratedResult />
             </div>
           </Col>

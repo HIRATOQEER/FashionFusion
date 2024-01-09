@@ -12,29 +12,35 @@ const ChooseCategory = () => {
     <>
       <div className="ChooseCategory text-center">
         <div className="topdiv ">
-          <img
-            className="d-none d-lg-block"
-            src="/images/male-product-icon.svg"
-            alt="male"
-          />
+          <Button className="border-0 bg-transparent p-0">
+            <img
+              className="d-none d-lg-block"
+              src="/images/male-product-icon.svg"
+              alt="male"
+            />
+          </Button>
           <h2>
             Brands
             <span> Choose any one</span>
           </h2>
-          <img
-            className="d-none d-lg-block"
-            src="/images/female-product-icon.svg"
-            alt="male"
-          />
+          <Button className="border-0 bg-transparent p-0">
+            <img
+              className="d-none d-lg-block"
+              src="/images/female-product-icon.svg"
+              alt="male"
+            />
+          </Button>
         </div>
         <div className="container">
           <Row className="category ">
             <Col lg={6}>
-              <img
-                className="text-center d-lg-none"
-                src="/images/male-product-icon.svg"
-                alt="male"
-              />
+              <Button className="border-0 bg-transparent p-0">
+                <img
+                  className="text-center d-lg-none"
+                  src="/images/male-product-icon.svg"
+                  alt="male"
+                />
+              </Button>
               <div className="firstSlide position-relative mb-5 mb-lg-0">
                 <Swiper
                   spaceBetween={10}
@@ -150,11 +156,13 @@ const ChooseCategory = () => {
               </div>
             </Col>
             <Col lg={6}>
-              <img
-                className="text-center d-lg-none"
-                src="/images/female-product-icon.svg"
-                alt="male"
-              />
+              <Button className="border-0 p-0 bg-transparent">
+                <img
+                  className="text-center d-lg-none"
+                  src="/images/female-product-icon.svg"
+                  alt="male"
+                />
+              </Button>
               <div className="firstSlide">
                 <Swiper
                   spaceBetween={10}
