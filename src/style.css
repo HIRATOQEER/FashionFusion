@@ -53,6 +53,7 @@ button.btnrgtn:hover {
   background-color: #3a81ba;
   color: white;
 }
+
 button.btnPrfSubmit {
   border-radius: var(--interactive-border-radius-radius-i-sm, 8px);
   background: var(--primary-10, #4b8bbe);
@@ -1381,7 +1382,7 @@ button.addPerafrence:hover {
 .btn.show,
 .btn:first-child:active,
 :not(.btn-check) + .btn:active {
-  color: transparent;
+  color: initial;
   background-color: white;
   border-color: white;
 }
@@ -1967,11 +1968,17 @@ p.totlgnrteprdt {
   position: relative;
   margin-bottom: 60px;
 }
-.SortBy.dropdown {
+.SortBy.dropdown .dropdown-menu.show {
   border-radius: var(--Interactive-border-radius---radius-i-md, 12px);
   background: var(--Main-gohan, #fff);
   box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.4),
     0px 8px 24px -6px rgba(0, 0, 0, 0.16);
+}
+.SortBy.dropdown .dropdown-menu.show a.dropdown-item {
+  color: var(--Text-100, #333);
+  font-family: "Andika", sans-serif;
+  font-size: 14px;
+  min-width: 190px;
 }
 p.prdctName.mb-3 {
   display: -webkit-box;
@@ -1999,6 +2006,9 @@ p.prdctName.mb-3 {
   }
   .BasedUponPrfrnc p.discptn {
     font-size: 1.8rem;
+  }
+  .SortBy.dropdown .dropdown-menu.show a.dropdown-item {
+    font-size: 2rem;
   }
   .yourWardrobe button.saveWrdrb {
     font-size: 1.225rem;
