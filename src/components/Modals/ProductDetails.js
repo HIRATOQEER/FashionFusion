@@ -2,7 +2,7 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
-const ProductDtails = (props) => {
+const ProductDetails = (props) => {
   return (
     <>
       <Modal
@@ -58,4 +58,4 @@ const ProductDtails = (props) => {
   );
 };
 
-export default ProductDtails;
+export default ProductDetails;

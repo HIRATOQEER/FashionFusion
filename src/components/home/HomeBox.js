@@ -2,12 +2,14 @@ import React from "react";
 import { Button, Col, Dropdown, Row } from "react-bootstrap";
 import FeedbackModal from "../Modals/FeedbackModal";
 import SortedBy from "../sorted/SortedBy";
-
+import { Link } from "react-router-dom"; // Add this line
 const HomeBox = () => {
   const [modalShow, setModalShow] = React.useState(false);
 
   return (
     <>
+    
+    
       <div className="HomeBox">
         <div className="gif-image d-none d-lg-block">
           <img src="/images/Home-screen.gif" alt="Gif Image" />
@@ -62,7 +64,9 @@ const HomeBox = () => {
                   </Col>
                 </Row>
                 <div className="d-flex justify-content-between align-items-center mb-3">
+                <Link to="/details">
                   <p className="WrdbNmbr">Black Wardrobe 1</p>
+                  </Link>
                   {/* <Button className="border-0 bg-transparent p-0">
                     <img src="/images/remove-icon.svg" alt="three doit" />
                   </Button> */}

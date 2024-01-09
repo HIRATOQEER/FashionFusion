@@ -1,7 +1,7 @@
 import React from "react";
 import LoginModal from "../Modals/LoginModal";
 import { Button, Col, Form, FormGroup, Row } from "react-bootstrap";
-
+import { Link } from "react-router-dom"; // Add this line
 const SignUpComp = ({ onClose }) => {
   const [modalShow, setModalShow] = React.useState(false);
 
@@ -22,7 +22,10 @@ const SignUpComp = ({ onClose }) => {
           <FormGroup controlId="formBasicPassword">
             <Form.Control type="password" placeholder="Password" />
           </FormGroup>
-          <Button className="btnsign">Sign up</Button>
+          <Link to="/homepage">
+           
+          <Button className="btnsign" >Sign up</Button>
+          </Link>
           <div className="d-flex flex-column align-items-center">
             <Button className="btncontinue">
               <img className="me-3" src="/images/googleIcon.svg" alt="goole" />

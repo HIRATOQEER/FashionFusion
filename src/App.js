@@ -1,51 +1,34 @@
-import "./App.css";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import SignUp from "./pages/signUp/SignUp";
+import React from "react";
 import WelcomeScreen from "./pages/welcomScreen/WelcomeScreen";
-import CreateWardrobe from "./pages/AsGuest/createWardrobe/CreateWardrobe";
-import GenratedResult from "./pages/AsGuest/genratedWardrobe/GenratedResult";
-import UserCreateWrdb from "./pages/LogedIn/UserCreateWrdb";
+
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import LoginModal from "./components/Modals/LoginModal";
+import Signup from "./components/sign-up/Signup";
 import HomePage from "./pages/Home/HomePage";
-import WardrobeOne from "./pages/Wardrobe/WardrobeOne";
+import CreateWardrobe from "./pages/AsGuest/createWardrobe/CreateWardrobe";
+import GuestGenratedResult from "./components/guestGenratedResult.js/GuestGenratedResult";
 import FavoritesProduct from "./pages/Favorites/FavoritesProduct";
+import WardrobeOneResult from "./components/WardrobeResult/WardrobeOneResult";
+import WardrobeOne from "./pages/Wardrobe/WardrobeOne";
+import ProductDetails from "./components/Modals/ProductDetails";
+
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route exact path="/pages/signUp/SignUps" element={<SignUp />} />
-        <Route
-          exact
-          path="/pages/welcomScreen/WelcomeScreen"
-          element={<WelcomeScreen />}
-        />
-        <Route
-          exact
-          path="/pages/AsGuest/createWardrobe/CreateWardrobe"
-          element={<CreateWardrobe />}
-        />
-        <Route
-          exact
-          path="/pages/AsGuest/genratedWardrobe/GenratedResult"
-          element={<GenratedResult />}
-        />
-        <Route
-          exact
-          path="/pages/LogedIn/UserCreateWrdb"
-          element={<UserCreateWrdb />}
-        />
-        <Route exact path="/" element={<HomePage />} />
 
-        <Route
-          exact
-          path="/pages/Wardrobe/WardrobeOne"
-          element={<WardrobeOne />}
-        />
-        <Route
-          exact
-          path="/pages/Favorites/FavoritesProduct"
-          element={<FavoritesProduct />}
-        />
+        <Route path="/" element={<WelcomeScreen />} />
+     
+        <Route path="/signup" element={<Signup/>} />
+        <Route path="/homepage" element={<HomePage/>} />
+        <Route path="/createwardrobe" element={<CreateWardrobe/>} />
+        <Route path="/guestresult" element={<GuestGenratedResult/>} />
+        <Route path="/favourite" element={<FavoritesProduct/>} />
+        <Route path="/wardroberesults" element={<WardrobeOne/>} />
+        <Route path="/details" element={<ProductDetails/>} />
+     
+      
       </Routes>
     </Router>
   );

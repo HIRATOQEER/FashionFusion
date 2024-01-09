@@ -64,7 +64,7 @@ const UserSideBar = () => {
             </li>
             <div className="innerOrder d-flex flex-row flex-lg-column align-items-center align-items-lg-start gap-lg-4 gap-3">
               <li className="active" onClick={() => setShowNavs(false)}>
-                <Link to="#">
+                <Link to="/homepage">
                   <img
                     className="sideBarIcon active"
                     src="/images/noun-home.svg"
@@ -108,10 +108,10 @@ const UserSideBar = () => {
                           </Dropdown.Item>
                           <p className="whoDay">Yesterday</p>
                           <div className="wrdpss">
-                            <Dropdown.Item href="#/action-2">
+                            <Dropdown.Item href="/wardroberesults">
                               Wardrobe 1
                             </Dropdown.Item>
-                            <Dropdown.Item href="#/action-3">
+                            <Dropdown.Item href="/action-3">
                               Wardrobe 2
                             </Dropdown.Item>
                             <Dropdown.Item href="#/action-3">
@@ -123,7 +123,7 @@ const UserSideBar = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link to="#">
+                    <Link to="/favourite">
                       <img
                         className="sideBarIcon"
                         src="/images/Generic-heart.svg"

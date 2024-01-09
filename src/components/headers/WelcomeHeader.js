@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom"; // Add this line
 import SignUpComp from "../signUp/SignUpComp";
 
 const WelcomeHeader = () => {
+ 
   const [isToggled, setToggled] = useState(false);
 
   const handleButtonClick = () => {
     setToggled(!isToggled);
   };
+
+
+  
   return (
     <>
       <div className="welcomHeader">
@@ -28,8 +33,12 @@ const WelcomeHeader = () => {
         <div className="makeAccount d-none d-lg-flex">
           <p>Make your products saved in your account</p>
 
-          <Button>Login</Button>
-          <Button>Sign up</Button>
+       
+            <Button>Login</Button>
+      
+          <Link to="/signup">
+            <Button>Sign up</Button>
+          </Link>
         </div>
         <div className="d-lg-none">
           <Button className="btn-mblPrfl" onClick={handleButtonClick}>

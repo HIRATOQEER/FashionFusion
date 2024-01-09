@@ -7,7 +7,7 @@ import { Grid, Navigation } from "swiper/modules";
 import "swiper/css/navigation";
 import "swiper/css";
 import "swiper/css/grid";
-import ProductDtails from "../Modals/ProductDtails";
+import ProductDetails from "../Modals/ProductDetails";
 import SuccessfullySavedToast from "../Toasts/SuccessfullySvedToast";
 import AddProduct from "../Modals/AddProduct";
 import ProductOverview from "../Modals/ProductOverview";
@@ -107,7 +107,7 @@ const GuestGenratedResult = () => {
                     Add to Favorites
                   </Button>
                 </div>
-                <ProductDtails
+                <ProductDetails
                   show={modalShow}
                   onHide={() => setModalShow(false)}
                 />

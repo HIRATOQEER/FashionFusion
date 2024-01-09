@@ -13,7 +13,7 @@ import { useAccordionButton } from "react-bootstrap/AccordionButton";
 import Card from "react-bootstrap/Card";
 import { useState } from "react";
 import MultiRangeSlider from "multi-range-slider-react";
-
+import { Link } from "react-router-dom"; // Add this line
 const GentratePreferences = (event) => {
   const CustomToggle = ({ children, eventKey }) => {
     const decoratedOnClick = useAccordionButton(eventKey, () =>
@@ -294,10 +294,16 @@ const GentratePreferences = (event) => {
           </div>
         </Card>
       </Accordion>
+      
+      <Link to="/guestresult">
+           
+           
+       
       <Button className="btnPrimary mx-auto mt-5 mb-3">
         <img className="me-3" src="/images/staricon.svg" alt="star" /> Generate
         the magic
       </Button>
+      </Link>
     </>
   );
 };

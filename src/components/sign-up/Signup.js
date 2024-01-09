@@ -5,7 +5,7 @@ import { Autoplay, EffectFade } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-fade";
 import SignUpComp from "../signUp/SignUpComp";
-
+import { Link } from "react-router-dom"; // Add this line
 const Signup = () => {
   return (
     <>
@@ -64,10 +64,15 @@ const Signup = () => {
             </div>
             <p>No Sign up, No Login</p>
             <div className="text-center d-flex justify-content-center">
+           
+           
               <Button className="btnPrimary">
                 <img className="me-3" src="/images/staricon.svg" alt="star" />{" "}
+                <Link to="/createwardrobe">
                 Try it now
+                </Link>
               </Button>
+             
             </div>
           </div>
         </Col>

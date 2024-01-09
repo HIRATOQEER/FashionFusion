@@ -4,6 +4,8 @@ import { Autoplay, EffectFade } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-fade";
 import { Button, Col, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
+
 
 const ChooseCategory = () => {
   return (
@@ -269,9 +271,13 @@ const ChooseCategory = () => {
             </Col>
           </Row>
         </div>
+        
         <Button className="btnPrimary mx-auto mt-5 mb-3">
-          <img className="me-3" src="/images/staricon.svg" alt="star" /> Try it
+          <img className="me-3" src="/images/staricon.svg" alt="star" />
+          <Link to = '/createwardrobe'> 
+          Try it
           now
+          </Link>
         </Button>
       </div>
     </>
