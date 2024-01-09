@@ -13,7 +13,7 @@ const WardrobeOne = () => {
           <WelcomeHeader />
         </div>
         <HomeHeader />
-        <Row className="m-0 p-0">
+        <Row className="m-0 p-0 pe-3">
           <Col lg={2} className="ps-0">
             <UserSideBar />
           </Col>

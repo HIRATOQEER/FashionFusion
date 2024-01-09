@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Col, Dropdown, Row } from "react-bootstrap";
 import FeedbackModal from "../Modals/FeedbackModal";
 import SortedBy from "../sorted/SortedBy";
 
 const HomeBox = () => {
-  const [modalShow, setModalShow] = React.useState(false);
+  const [modalShow, setModalShow] = useState(false);
+
+  const handleButtonClick = () => {
+    setModalShow(!modalShow); // Toggle the modal state
+  };
 
   return (
     <>
@@ -491,7 +495,7 @@ const HomeBox = () => {
             </Col>
           </Row>
         </div>
-        <Button className="btnFeedBack  " onClick={() => setModalShow(true)}>
+        <Button className="btnFeedBack  " onClick={handleButtonClick}>
           <img src="/images/feedback-Icon.svg" alt="icon" />
           Feedback
         </Button>
