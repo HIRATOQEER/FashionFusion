@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Button, Dropdown, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 const UserSideBar = () => {
   const [showNavs, setShowNavs] = useState(false);
+  const navigate= useNavigate();
   const [dropdownStates, setDropdownStates] = useState([
     { id: 0, name: "Wardrobe", isOpen: false },
     { id: 1, name: "notification", isOpen: false },
@@ -11,6 +12,10 @@ const UserSideBar = () => {
   ]);
   let timeoutId;
 
+  const Logout=()=>{
+    localStorage.clear();
+    navigate("/");
+  }
   useEffect(() => {
     // Function to handle window resize
     const handleResize = () => {
@@ -250,9 +255,9 @@ const UserSideBar = () => {
                         src="/images/logout-icon.svg"
                         alt="icon"
                       />
-                      <Link to ='/' > 
+                      <Button className="btn-sm btn-light" onClick ={Logout}>
                       Sign Out
-                      </Link>
+                      </Button>
                     </Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>

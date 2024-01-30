@@ -4,7 +4,7 @@ import { Button, Col, Form, FormGroup, Row } from "react-bootstrap";
 import { GoogleLogin } from "react-google-login";
 import { getAuth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { getFirestore, doc, setDoc } from "firebase/firestore";
-import firebaseApp from "../../firebase"; 
+import {firebaseApp} from "../../firebase"; 
 
 
 
@@ -83,7 +83,7 @@ const SignUpComp = ({ onClose }) => {
           <FormGroup controlId="formBasicPassword">
             <Form.Control type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
           </FormGroup>
-          <Button className="btnsign">Sign up</Button>
+          <Button className="btnsign" onClick={handleSignUp}>Sign up</Button>
           <div className="d-flex flex-column align-items-center">
            <GoogleLogin
           clientId={googleClientId}

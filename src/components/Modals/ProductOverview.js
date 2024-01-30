@@ -8,7 +8,11 @@ import "swiper/css";
 import "swiper/css/grid";
 import "swiper/css/navigation";
 import { FreeMode, Pagination } from "swiper/modules";
+import AddProduct from "../Modals/AddProduct";
+
 const ProductOverview = (props) => {
+  const [modalAddShow, setModalAddShow] = React.useState(false);
+
   return (
     <>
       <Modal
@@ -100,6 +104,10 @@ const ProductOverview = (props) => {
                   alt="product"
                 />
               </SwiperSlide>
+              <AddProduct
+                  show={modalAddShow}
+                  onHide={() => setModalAddShow(false)}
+                />
             </Swiper>
           </div>
           <p className="dtlThisPrdt">SMART FIT POLO SHIRT - FMTCP23-067</p>
@@ -109,7 +117,7 @@ const ProductOverview = (props) => {
           </div>
         </Modal.Body>
         <Modal.Footer className="border-0">
-          <Button className="cancelPrv py-1">
+          <Button className="cancelPrv py-1"   onClick={() => setModalAddShow(true)}>
             <img
               className="me-1"
               src="/images/heart-outline-Icon.svg"

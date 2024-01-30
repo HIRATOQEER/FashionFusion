@@ -3,6 +3,7 @@ import { Button, Col, Dropdown, Row } from "react-bootstrap";
 import FeedbackModal from "../Modals/FeedbackModal";
 import SortedBy from "../sorted/SortedBy";
 import { Link } from "react-router-dom"; // Add this line
+import "../../App.css"
 const HomeBox = () => {
   const [modalShow, setModalShow] = useState(false);
 

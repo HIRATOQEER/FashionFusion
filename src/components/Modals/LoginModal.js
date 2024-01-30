@@ -5,7 +5,7 @@ import { Form, FormGroup } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { getAuth,signInWithEmailAndPassword,  } from "firebase/auth";
-import firebaseApp from "../../firebase"; 
+import {firebaseApp} from "../../firebase"; 
 
 
 
@@ -23,7 +23,7 @@ const LoginModal = (props) => {
 
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
-
+      localStorage.setItem("token" , user);
       //SHOW ALERT lOGGED iN  SUCCESSSFULLY
       navigate("/homepage");
 

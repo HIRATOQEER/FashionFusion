@@ -42,7 +42,7 @@
 }
 a{
  text-decoration: none !important;
- color: none !important;
+ color: inherit !important;
 }
 .marquee-item {
   display: inline-block;

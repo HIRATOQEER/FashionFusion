@@ -1,7 +1,14 @@
 import React from "react";
 import { Button } from "react-bootstrap";
-import { Link } from "react-router-dom"; // Add this line
+import { useNavigate } from "react-router-dom"; // Add this line
 const HomeFooter = () => {
+
+  const navigate = useNavigate();
+
+  const handleChange =()=>{
+    navigate('/createwardrobe');
+  }
+
   return (
     <>
    
@@ -9,11 +16,9 @@ const HomeFooter = () => {
         <div className="HomeFooter">
           <h3>Create Your Own Wardrobes</h3>
          
-          <Button className="btnPrimary">
-          <Link className="me-3" to="/createwardrobe">
+          <Button className="btnPrimary" onClick={handleChange}>
             <img  src="/images/staricon.svg" alt="star" /> Let’s
             do this
-            </Link>
           </Button>
           
         </div>

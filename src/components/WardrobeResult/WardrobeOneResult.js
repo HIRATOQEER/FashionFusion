@@ -11,12 +11,14 @@ import SuccessfullyRmvPrdct from "../Toasts/SuccessfullyRmvPrdct";
 import ProductOverview from "../Modals/ProductOverview";
 import RegenerateModal from "../Modals/RegenerateModal";
 import SuccessfullySavedToast from "../Toasts/SuccessfullySvedToast";
+import { useNavigate } from "react-router-dom";
 
 const WardrobeOneResult = () => {
   const [modalOverViewShow, setModalOverViewShow] = React.useState(false);
   const [modalShow, setModalShow] = React.useState(false);
   const [showToast, setShowToast] = useState(false);
   const [modalRegenrateShow, setModalRegenrateShow] = React.useState(false);
+  const navigate = useNavigate();
 
   const handleButtonClick = () => {
     setShowToast(true);
@@ -25,6 +27,10 @@ const WardrobeOneResult = () => {
   const handleCloseToast = () => {
     setShowToast(false);
   };
+
+  const handleChange =()=>{
+    navigate("/createwardrobe");
+  }
   return (
     <>
       <BasedUponPrfrnc />
@@ -255,7 +261,7 @@ const WardrobeOneResult = () => {
           onClose={handleCloseToast}
         />
       </div>
-      <Button className="btnPrimary mx-auto mt-5 mb-3">
+      <Button className="btnPrimary mx-auto mt-5 mb-3" onClick={handleChange}>
         <img className="me-3" src="/images/staricon.svg" alt="star" /> Generate
         the magic
       </Button>

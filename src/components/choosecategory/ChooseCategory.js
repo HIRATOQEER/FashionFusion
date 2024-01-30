@@ -1,4 +1,5 @@
-import React from "react";
+import React  from "react";
+import { useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade } from "swiper/modules";
 import "swiper/css";
@@ -8,6 +9,11 @@ import { Link } from "react-router-dom";
 
 
 const ChooseCategory = () => {
+
+  const navigate = useNavigate();
+  const handleChange = ()=>{
+    navigate("/createwardrobe");
+  }
   return (
     <>
       <div className="ChooseCategory text-center">
@@ -280,12 +286,11 @@ const ChooseCategory = () => {
           </Row>
         </div>
         
-        <Button className="btnPrimary mx-auto mt-5 mb-3">
+        <Button className="btnPrimary mx-auto mt-5 mb-3" onClick={handleChange}>
           <img className="me-3" src="/images/staricon.svg" alt="star" />
-          <Link to = '/createwardrobe'> 
+       
           Try it
           now
-          </Link>
         </Button>
       </div>
     </>

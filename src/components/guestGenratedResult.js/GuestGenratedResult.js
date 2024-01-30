@@ -104,7 +104,7 @@ const GuestGenratedResult = () => {
                   >
                     <img src="/images/close-Icon.svg" alt="icon" />
                   </Button>
-                  <Button
+                  {/* <Button
                     className="btnFavourite"
                     onClick={() => setModalAddShow(true)}
                   >
@@ -114,7 +114,7 @@ const GuestGenratedResult = () => {
                       alt="icon"
                     />
                     Add to Favorites
-                  </Button>
+                  </Button> */}
                 </div>
                 <ProductDetails
                   show={modalShow}
@@ -419,9 +419,9 @@ const GuestGenratedResult = () => {
               </p>
             </div>
             <div className="d-flex align-items-center gap-2">
-              <Button className="saveWrdrb" onClick={handleButtonClick}>
+              { localStorage.getItem("token") && <Button className="saveWrdrb" onClick={handleButtonClick}>
                 Save Wardrobe
-              </Button>
+              </Button>}
 
               <Button
                 className="regenrete"

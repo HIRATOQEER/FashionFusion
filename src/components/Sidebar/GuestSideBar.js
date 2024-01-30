@@ -9,12 +9,12 @@ const GuestSideBar = () => {
         <Navbar>
           <ul>
             <li>
-              <Link to="#">
+              <Link to="/">
                 <img src="/images/white-star-Group.svg" alt="icon" />
               </Link>
             </li>
             <li>
-              <Link to="pages/signUp/SignUps">
+              <Link to="/signup">
                 <img src="/images/user-Generic.svg" alt="icon" />
               </Link>
             </li>
