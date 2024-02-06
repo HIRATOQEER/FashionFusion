@@ -1,16 +1,20 @@
-import React , {useState} from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import LoginModal from "../Modals/LoginModal";
-import { Button, Col, Form, FormGroup, Row } from "react-bootstrap";
-import { GoogleLogin } from "react-google-login";
+import { Button, Form, FormGroup } from "react-bootstrap";
 import { getAuth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { getFirestore, doc, setDoc } from "firebase/firestore";
-import {firebaseApp} from "../../firebase"; 
+import { firebaseApp } from "../../firebase";
 
+import {  useDispatch } from 'react-redux';
+import { updateName } from '../../store/actions';
 
-
-import { Link } from "react-router-dom"; // Add this line
 const SignUpComp = ({ onClose }) => {
-  const [modalShow, setModalShow] = React.useState(false);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+
+  const [modalShow, setModalShow] = useState(false);
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -20,61 +24,63 @@ const SignUpComp = ({ onClose }) => {
 
   const googleClientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
   
+  const handleGoogleSignIn = async (e) => {
+    e.preventDefault(); // Prevents the default form submission behavior
 
-  const handleGoogleSignIn = async (googleUser) => {
     try {
-      const credential = GoogleAuthProvider.credentialFromResult(googleUser);
-      const userCredential = await signInWithPopup(auth, credential);
+      const provider = new GoogleAuthProvider();
+      provider.setCustomParameters({
+        prompt: 'select_account', // This ensures that the user is always prompted to select their Google account
+      });
+      const userCredential = await signInWithPopup(auth, provider);
       const user = userCredential.user;
+      localStorage.setItem("token" , user);
+      dispatch(updateName(user));
+
+       //SHOW ALERT lOGGED iN  SUCCESSSFULLY
+       navigate("/");
+
       console.log("User signed in with Google:", user);
     } catch (error) {
       console.error("Error signing in with Google:", error.message);
     }
-  
-  
   };
-
-  const handleGoogleSignInFailure = (error) => {
-    console.error("Google Sign-In failure:", error);
-  };
-
   const handleSignUp = async () => {
     try {
       console.log("Signing up with:", email, password);
-      
+
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
-  
+
       console.log("User registered successfully:", user);
-  
+
       // Save additional user data to Firestore
       const userDocRef = doc(db, "users", user.uid);
       const userData = {
-        username: username,
+        displayName: username,
         email: email,
-        photo_uri: "",
-        
+        photoURL: "",
       };
-        //SHOW ALERT Registered Successfully
 
+      //SHOW ALERT Registered Successfully
       await setDoc(userDocRef, userData);
-      setModalShow(true)
+      setModalShow(true);
       console.log("User data saved to Firestore:", userData);
     } catch (error) {
-            //SHOW ALERT Already Registered
-
+      //SHOW ALERT Already Registered
       console.error("Error signing up:", error.message);
     }
   };
+
   return (
     <>
       <div className="signbox1">
         <div className="content">
           <h2>Sign up</h2>
-          <p>Create your free account 😎 </p>
+          <p>Create your free account 😎</p>
         </div>
         <Form>
-        <FormGroup className="mb-3" controlId="formBasicEmail">
+          <FormGroup className="mb-3" controlId="formBasicEmail">
             <Form.Control type="email" placeholder="Enter email" onChange={(e) => setEmail(e.target.value)} />
           </FormGroup>
           <FormGroup className="mb-3" controlId="formBasicUsername">
@@ -85,14 +91,11 @@ const SignUpComp = ({ onClose }) => {
           </FormGroup>
           <Button className="btnsign" onClick={handleSignUp}>Sign up</Button>
           <div className="d-flex flex-column align-items-center">
-           <GoogleLogin
-          clientId={googleClientId}
-          buttonText="Continue with Google"
-          onSuccess={handleGoogleSignIn}
-          onFailure={handleGoogleSignInFailure}
-          cookiePolicy={'single_host_origin'}
-          className="btncontinue"
-         />
+            <button className="btncontinue" onClick={handleGoogleSignIn}>
+            <img className="me-3" src="/images/googleIcon.svg" alt="goole" />
+
+              Continue with Google
+            </button>
             <Button className="btncontinue">
               <img className="me-3" src="/images/apleIcon.svg" alt="apple" />
               Continue with Apple

@@ -2,7 +2,22 @@ import React, { useEffect, useState } from "react";
 import { Button, Dropdown, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import {  useDispatch } from 'react-redux';
+import { updateName } from '../../store/actions';
+import {  useSelector } from 'react-redux';
+
 const UserSideBar = () => {
+  const dispatch = useDispatch();
+  const accessToken =  useSelector(state => state.name);
+
+  const [photo, setPhoto] = useState(
+    accessToken.photoURL ? accessToken.photoURL : "/images/sidebr-prf-image.png"
+  );
+  const [name, setName] = useState(
+    accessToken.displayName ? accessToken.displayName : "User"
+  );
+ 
+  
   const [showNavs, setShowNavs] = useState(false);
   const navigate= useNavigate();
   const [dropdownStates, setDropdownStates] = useState([
@@ -14,6 +29,7 @@ const UserSideBar = () => {
 
   const Logout=()=>{
     localStorage.clear();
+    dispatch(updateName(""));
     navigate("/");
   }
   useEffect(() => {
@@ -234,10 +250,10 @@ const UserSideBar = () => {
                 >
                   <Dropdown.Toggle id="dropdown-basic">
                     <img
-                      src="/images/sidebr-prf-image.png"
+                      src={photo}
                       alt="Profile Icon"
                     />
-                    <span className="prnName fw-bold ">Nick Anderson</span>
+                    <span className="prnName fw-bold ">{name}</span>
                   </Dropdown.Toggle>
 
                   <Dropdown.Menu>
@@ -250,13 +266,14 @@ const UserSideBar = () => {
                       Profile
                     </Dropdown.Item>
                     <Dropdown.Item href="#" className="profiledrp">
+                      
+                      <Button className="btn-sm btn-light" onClick ={Logout}>
                       <img
                         className="me-3"
                         src="/images/logout-icon.svg"
                         alt="icon"
                       />
-                      <Button className="btn-sm btn-light" onClick ={Logout}>
-                      Sign Out
+                      <b>Sign Out</b>
                       </Button>
                     </Dropdown.Item>
                   </Dropdown.Menu>
