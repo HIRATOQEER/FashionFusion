@@ -10,7 +10,6 @@ function PrivateRoute({ path }) {
 
    const accessToken =  useSelector(state => state.name);
 
-  console.log(accessToken)
   if (!accessToken) {
     return <WelcomeScreen />;
   }
