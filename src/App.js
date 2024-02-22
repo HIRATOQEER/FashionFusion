@@ -1,7 +1,6 @@
 import React from "react";
 
-import WelcomeScreen from "./pages/welcomScreen/WelcomeScreen";
-import HomePage from "./pages/Home/HomePage";
+
 import Signup from "./components/sign-up/Signup";
 import CreateWardrobe from "./pages/AsGuest/createWardrobe/CreateWardrobe";
 import GeneratedResult from "./pages/AsGuest/genratedWardrobe/GenratedResult";
