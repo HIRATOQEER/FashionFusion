@@ -37,8 +37,8 @@ const LoginModal = (props) => {
 
        //SHOW ALERT lOGGED iN  SUCCESSSFULLY
        navigate("/");
-
-      console.log("User signed in with Google:", user);
+      
+      console.log("User signed in with Google:", user.getIdToken());
     } catch (error) {
       console.error("Error signing in with Google:", error.message);
     }
@@ -48,7 +48,7 @@ const LoginModal = (props) => {
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
-  
+      
       // Retrieve additional user data from Firestore
       const userDocRef = doc(db, "users", user.uid);
       const userDocSnap = await getDoc(userDocRef);
@@ -61,8 +61,9 @@ const LoginModal = (props) => {
       } else {
         console.log("No user data found in Firestore");
       }
-  
       localStorage.setItem("token", user);
+      console.log("Token" , user.getIdToken())
+
       navigate("/");
     } catch (error) {
       console.error("Error logging in:", error.message);

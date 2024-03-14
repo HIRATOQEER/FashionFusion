@@ -38,6 +38,9 @@ const SignUpComp = ({ onClose }) => {
       const user = userCredential.user;
       localStorage.setItem("token" , user);
       dispatch(updateName(user));
+      console.log(user)
+      console.log(userCredential)
+
 
        //SHOW ALERT lOGGED iN  SUCCESSSFULLY
        navigate("/");
@@ -47,7 +50,6 @@ const SignUpComp = ({ onClose }) => {
       console.error("Error signing in with Google:", error.message);
     }
   };
-console.log(auth)
 const handleSignUp = async () => {
   try {
     
@@ -87,7 +89,7 @@ const handleSignUp = async () => {
     // Proceed with user creation after email verification
     const user = userCredential.user;
 
-    console.log("User registered successfully:", user);
+
 
     // Save additional user data to Firestore
     const userDocRef = doc(db, "users", user.uid);

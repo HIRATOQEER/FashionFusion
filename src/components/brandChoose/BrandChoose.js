@@ -3,6 +3,8 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+
+import Brands from "../../services/brandService";
 const BrandChoose = () => {
   const settings = {
     speed: 5000,
@@ -19,6 +21,7 @@ const BrandChoose = () => {
     buttons: false,
   };
 
+  Brands.getBrandsDetails()
   return (
     <>
       <div className="brandChoose text-center">
