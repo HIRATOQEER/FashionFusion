@@ -22,12 +22,14 @@ const SignUpComp = ({ onClose }) => {
   const [password, setPassword] = useState("");
 
   const auth = getAuth(firebaseApp);
+  console.log("AUTH " , auth)
   const db = getFirestore(firebaseApp);
 
   const googleClientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
   
   const handleGoogleSignIn = async (e) => {
     e.preventDefault(); // Prevents the default form submission behavior
+    console.log("AUTH " , auth)
 
     try {
       const provider = new GoogleAuthProvider();
@@ -37,7 +39,7 @@ const SignUpComp = ({ onClose }) => {
       const userCredential = await signInWithPopup(auth, provider);
       const user = userCredential.user;
       localStorage.setItem("token" , user);
-      dispatch(updateName(user));
+      dispatch(updateName(user.getIdToken()));
       console.log(user)
       console.log(userCredential)
 

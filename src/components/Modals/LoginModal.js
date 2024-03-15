@@ -32,7 +32,7 @@ const LoginModal = (props) => {
       });
       const userCredential = await signInWithPopup(auth, provider);
       const user = userCredential.user;
-      localStorage.setItem("token" , user);
+      localStorage.setItem("token" , user.getIdToken());
       dispatch(updateName(user));
 
        //SHOW ALERT lOGGED iN  SUCCESSSFULLY
@@ -49,6 +49,7 @@ const LoginModal = (props) => {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
       
+      
       // Retrieve additional user data from Firestore
       const userDocRef = doc(db, "users", user.uid);
       const userDocSnap = await getDoc(userDocRef);
@@ -61,8 +62,11 @@ const LoginModal = (props) => {
       } else {
         console.log("No user data found in Firestore");
       }
-      localStorage.setItem("token", user);
-      console.log("Token" , user.getIdToken())
+      const token = await user.getIdToken();
+      localStorage.setItem("token", token);
+      localStorage.setItem("user_id", user.email);
+
+            console.log("Token" , user.getIdToken())
 
       navigate("/");
     } catch (error) {
