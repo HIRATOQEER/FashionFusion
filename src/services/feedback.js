@@ -24,6 +24,6 @@ class Feedback {
 
   }
   
-  export const notificationSvc = new Feedback();
+  export const feedbackSvc = new Feedback();
   
   export default Feedback;

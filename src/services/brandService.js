@@ -18,6 +18,6 @@ class Brands {
       }
   }
   
-  export const notificationSvc = new Brands();
+  export const brandSvc = new Brands();
   
   export default Brands;

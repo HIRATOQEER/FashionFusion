@@ -49,6 +49,6 @@ class FavouriteProduct {
     
 }
   
-  export const notificationSvc = new FavouriteProduct();
+  export const favouriteProductSvc = new FavouriteProduct();
   
   export default FavouriteProduct;

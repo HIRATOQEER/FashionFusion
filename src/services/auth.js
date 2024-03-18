@@ -18,6 +18,6 @@ class Auth {
       }
   }
   
-  export const notificationSvc = new Auth();
+  export const authSvc = new Auth();
   
   export default Auth;
