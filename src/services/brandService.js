@@ -16,6 +16,18 @@ class Brands {
       }
 
       }
+
+      static async getWardrobeProducts(gender) {
+        try {
+            const response = await axios.get(`${apiBaseUrl}/brands?gender=${gender}`);
+            return response.data;
+          } catch (error) {
+            console.error('Error fetching users:', error);
+            throw error; // Re-throw for error handling in components
+          }
+    
+          }
+
   }
   
   export const brandSvc = new Brands();
