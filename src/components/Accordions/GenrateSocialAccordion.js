@@ -1,10 +1,32 @@
-import React from "react";
+
+import React, { useState } from "react";
 import { Button, Col, FormControl, Row } from "react-bootstrap";
 import Accordion from "react-bootstrap/Accordion";
 import { useAccordionButton } from "react-bootstrap/AccordionButton";
 import Card from "react-bootstrap/Card";
 
-const GenrateSocialAccordion = () => {
+const GenrateSocialAccordion = ({ onFacebookLinkChange, onInstagramLinkChange }) => {
+  const [facebookLink, setFacebookLink] = useState("");
+  const [instagramLink, setInstagramLink] = useState("");
+
+  const handleFacebookLinkChange = (e) => {
+    const { value } = e.target;
+    setFacebookLink(value);
+    onFacebookLinkChange(value);
+   
+    
+    // Call the parent component function to update the link
+   // onFacebookLinkChange(value);
+  };
+
+  const handleInstagramLinkChange = (e) => {
+    const { value } = e.target;
+    setInstagramLink(value);
+    onInstagramLinkChange(value);
+    
+    // Call the parent component function to update the link
+   // onInstagramLinkChange(value);
+  };
   const CustomToggle = ({ children, eventKey }) => {
     const decoratedOnClick = useAccordionButton(eventKey, () =>
       console.log("totally custom!")
@@ -55,7 +77,9 @@ const GenrateSocialAccordion = () => {
           <Card.Body className="px-0">
             <Row>
               <Col xs={12} lg={6} className="position-relative mb-3 mb-lg-0">
-                <FormControl type="text" placeholder="Facebook link" />
+                <FormControl type="text" placeholder="Facebook link"
+                 value={facebookLink}
+                 onChange={handleFacebookLinkChange} />
                 <img
                   className="inptlogo"
                   src="/images/fcbIcon.svg"
@@ -63,7 +87,9 @@ const GenrateSocialAccordion = () => {
                 />
               </Col>
               <Col xs={12} lg={6} className="position-relative">
-                <FormControl type="text" placeholder="Instagram link" />
+                <FormControl type="text" placeholder="Instagram link" 
+                 value={instagramLink}
+                  onChange={handleInstagramLinkChange}/>
                 <img
                   className="inptlogo"
                   src="/images/insta-Icon.svg"

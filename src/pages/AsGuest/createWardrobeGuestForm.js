@@ -1,11 +1,12 @@
 import React, { useState,useEffect } from 'react';
 import { Button, OverlayTrigger, Popover } from 'react-bootstrap';
-import GenratedImageAccordion from '../Accordions/GenratedImageAccordion';
-import GenrateSocialAccordion from '../Accordions/GenrateSocialAccordion';
-import GeneratePreferences from '../Accordions/GentratePreferences';
-import { useNavigate } from 'react-router-dom';
 
-const GuestGenrateForm = () => {
+import { useNavigate } from 'react-router-dom';
+import GenratedImageAccordion from '../../components/Accordions/GenratedImageAccordion';
+import GeneratePreferences from '../../components/Accordions/GentratePreferences';
+import GenrateSocialAccordion from '../../components/Accordions/GenrateSocialAccordion';
+
+const GuestForm = () => {
   const [uploadedImages, setUploadedImages] = useState([]);
   const [preferences, setPreferences] = useState([]); // Corrected state setter name
   const [facebookLink, setFacebookLink] = useState('');
@@ -83,10 +84,12 @@ const GuestGenrateForm = () => {
           </OverlayTrigger>
         ))}
       </div>
+    
       <GenratedImageAccordion
         uploadedImages={uploadedImages}
         onImageChange={handleImageChange}
       />
+   
       <GenrateSocialAccordion
         onFacebookLinkChange={handleFacebookLinkChange}
         onInstagramLinkChange={handleInstagramLinkChange}
@@ -100,4 +103,4 @@ const GuestGenrateForm = () => {
   );
 };
 
-export default GuestGenrateForm;
+export default  GuestForm;

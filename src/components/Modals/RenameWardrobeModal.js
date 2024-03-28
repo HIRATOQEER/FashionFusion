@@ -3,15 +3,23 @@ import { Button, Modal } from "react-bootstrap";
 import EditSavedToast from "../Toasts/EditSavedToast";
 
 const RenameWardrobeModal = (props) => {
-  const [showToast, setShowToast] = useState(false);
+  const [wardrobeName, setWardrobeName] = useState(""); // State for input value
+  const [showToast, setShowToast] = useState(false); // State for toast visibility
+
+  const handleInputChange = (e) => {
+    setWardrobeName(e.target.value); // Update input value state
+  };
 
   const handleButtonClick = () => {
-    setShowToast(true);
+    // Perform actions with the updated wardrobeName state (e.g., save it)
+    console.log("Wardrobe name saved:", wardrobeName);
+    setShowToast(true); // Show toast after saving
   };
 
   const handleCloseToast = () => {
-    setShowToast(false);
+    setShowToast(false); // Close toast
   };
+
   return (
     <>
       <Modal
@@ -30,6 +38,8 @@ const RenameWardrobeModal = (props) => {
             type="text"
             placeholder="Your Wardrobe"
             className="renameWrb"
+            value={wardrobeName}
+            onChange={handleInputChange} // Handle input change
           />
         </Modal.Body>
         <Modal.Footer className="border-0 d-flex align-items-center">

@@ -3,19 +3,99 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { RatingStar } from "../Rating/RatingStar";
 import AddFavoritToast from "../Toasts/AddFavoritToast";
+import axios from 'axios'; // Import Axios for HTTP requests
+import favouriteProductSvc from '../../services/favouriteProduct'
+import { useSelector } from "react-redux";
 
 const AddProduct = (props) => {
+  const { show, onHide, productData } = props;
+  const token = useSelector((state) => state.name); // Assuming state.name returns a Promise
+ 
+  const [comment, setComment] = useState("");
+  const [rating, setRating] = useState(0);
+  const [reasonsList, setReasonsList] = useState([
+    "Price",
+    "Size",
+    "Color",
+    "Brand",
+    "Gender"
+  ]);
+  const [selectedReasons, setSelectedReasons] = useState([]);
+  
   const [showToast, setShowToast] = useState(false);
 
-  const handleButtonClick = () => {
-    setShowToast(true);
+  const handleButtonClick = async () => {
+    // Prepare formData object
+    const formData = {
+      product_id: productData.product_id,
+      brand_name: productData.brand_name,
+      brand_logo: productData.brand_logo,
+      user_id: productData.user_id,
+      product_name: productData.product_name,
+      product_link: productData.product_link,
+      price: productData.price,
+      images_arr: productData.images_arr,
+      comment: comment,
+      rating: rating,
+      reasons: selectedReasons // Combine selected reasons as a string
+    };
+console.log("formdata", formData);
+    try {
+    
+   
+      // Call the API function to send feedback
+    //  console.log('Feedback submitted successfully:');
+      console.log("Token" , formData)
+      const response = await favouriteProductSvc.addToFavorites(formData,token);
+      // Handle successful response (e.g., show success message, close modal, etc.)
+      console.log('Feedback submitted successfully:', response);
+      props.onHide(); // Close the modal after successful submission
+    } catch (error) {
+      // Handle API errors (e.g., show error message)
+      console.error('Error submitting feedback:', error.message);
+      // Optionally, you can set state to display an error message to the user
+    }
   };
 
   const handleCloseToast = () => {
     setShowToast(false);
   };
+
+  const handleReasonChange = (reason) => {
+    const updatedReasons = [...selectedReasons];
+    const index = updatedReasons.indexOf(reason);
+  
+    if (index === -1) {
+      updatedReasons.push(reason); // Reason not found, add it
+    } else {
+      updatedReasons.splice(index, 1); // Reason found, remove it
+    }
+  
+    setSelectedReasons(updatedReasons); // Update selected reasons
+  };
+  
+
+
   return (
     <>
+
+<style>
+        {`
+        .tagg {
+          padding: 5px 10px;
+          margin-right: 10px;
+          cursor: pointer;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+        }
+        
+        .selected {
+          background-color: #007bff;
+          color: #fff;
+          border-color: #007bff;
+        }
+        `}
+      </style>
       <Modal
         {...props}
         size="lg"
@@ -36,20 +116,26 @@ const AddProduct = (props) => {
             <div>
               <p className="tellResn">Tell us the reason of removing</p>
               <div className="dtlTagg d-flex align-items-center gap-2 mb-3">
-                <span className="tagg">Price</span>
-                <span className="tagg">Size</span>
-                <span className="tagg">Color</span>
-                <span className="tagg">Brand</span>
-                <span className="tagg">Gender</span>
-              </div>
+  {reasonsList.map((reason) => (
+    <span
+      key={reason}
+      className={`tagg ${selectedReasons.includes(reason) ? "selected" : ""}`}
+      onClick={() => handleReasonChange(reason)}
+    >
+      {reason}
+    </span>
+  ))}
+</div>
+
             </div>
             <img
               className="prvImage mx-auto mx-lg-0"
               src="/images/modal-prview-image.png"
               alt="pic"
             />
+            {/* Add other content as needed */}
           </div>
-          <RatingStar />
+          <RatingStar onChange={(value) => setRating(value)} />
 
           <textarea
             className="addTxtCmnt mb-3 w-full d-block"
@@ -58,6 +144,8 @@ const AddProduct = (props) => {
             cols="30"
             rows="1"
             placeholder="Your Comment"
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
           ></textarea>
         </Modal.Body>
         <Modal.Footer className="border-0 d-flex justify-content-between align-items-center pt-0">
@@ -66,9 +154,6 @@ const AddProduct = (props) => {
             Product will be saved with the comments and rating
           </p>
           <div className="w-100">
-            {/* <Button onClick={props.onHide} className="cancelPrv">
-              Cancel
-            </Button> */}
             <Button
               className="btnPrfSubmit ms-3 w-100"
               onClick={handleButtonClick}

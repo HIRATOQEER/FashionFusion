@@ -12,7 +12,7 @@ const ChooseCategory = () => {
 
   const navigate = useNavigate();
   const handleChange = ()=>{
-    navigate("/createwardrobe");
+    navigate("/GuestCreateWardrobe");
   }
   return (
     <>

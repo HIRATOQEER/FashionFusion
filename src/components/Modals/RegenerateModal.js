@@ -1,8 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
 const RegenerateModal = (props) => {
+  // State variables
+  const [comment, setComment] = useState(""); // State for comment input
+
+  // Event handler for submitting the form
+  const handleSubmit = () => {
+    // Perform actions with the comment data here
+    console.log("Comment submitted:", comment);
+    // Close the modal
+    props.onHide();
+  };
+
   return (
     <>
       <Modal
@@ -26,13 +37,18 @@ const RegenerateModal = (props) => {
             cols="30"
             rows="1"
             placeholder="Comment"
+            value={comment}
+            onChange={(e) => setComment(e.target.value)} // Update comment state
           ></textarea>
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={props.onHide} className="btnrgtn">
             Cancel
           </Button>
-          <Button className="btnPrfSubmit">Submit</Button>
+          {/* Add event handler to submit button */}
+          <Button className="btnPrfSubmit" onClick={handleSubmit}>
+            Submit
+          </Button>
         </Modal.Footer>
       </Modal>
     </>

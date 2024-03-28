@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect} from 'react';
 import {
   Button,
   Col,
@@ -7,27 +7,81 @@ import {
   Form,
   InputGroup,
   Row,
-} from "react-bootstrap";
-import Accordion from "react-bootstrap/Accordion";
-import { useAccordionButton } from "react-bootstrap/AccordionButton";
-import Card from "react-bootstrap/Card";
-import { useState } from "react";
-import MultiRangeSlider from "multi-range-slider-react";
-import { useNavigate } from "react-router-dom"; // Add this line
-const GentratePreferences = (event) => {
+} from 'react-bootstrap';
+import Accordion from 'react-bootstrap/Accordion';
+import { useAccordionButton } from 'react-bootstrap/AccordionButton';
+import Card from 'react-bootstrap/Card';
+import MultiRangeSlider from 'multi-range-slider-react';
+import { CompactPicker } from 'react-color';
+import { useNavigate } from 'react-router-dom';
 
+const GeneratePreferences = ({onPreferencesChange, onSubmit }) => {
 
+  
+  
+  const [price, setMaxValue] = useState(0);
+  const [gender, setGender] = useState('MALE'); // Track selected gender
+  const [preferences, setPreferences] = useState([{ 
+    id: 1, 
+    gender: 'MALE', 
+    category: '', 
+    brand: '', 
+    color: '#000000',
+    size: '', 
+    quantity: 0, 
+    price:price
+  }]);
+  const MAX_PREFERENCES = 20;
   const navigate = useNavigate();
-  const handleChange = ()=>{
-    navigate("/guestresult");
-  }
+
+ 
+  const handleAddPreference = () => {
+    if (preferences.length < MAX_PREFERENCES) {
+      const newId = Date.now(); // Generate a unique ID
+      const newPreference = {
+        id: newId,
+        gender: gender,
+        category: '',
+        brand: '',
+        color: '#000000',
+        size: '',
+        quantity: 0,
+        price: price
+      };
+      const updatedPreferences = [...preferences, newPreference];
+      setPreferences(updatedPreferences);
+      onPreferencesChange(updatedPreferences);
+    }
+  };
+
+  const handleRemovePreference = (id) => {
+    const updatedPreferences = preferences.filter(
+      (preference) => preference.id !== id
+    );
+    setPreferences(updatedPreferences);
+    onPreferencesChange(updatedPreferences);
+   
+  };
+  const handleChange = () => {
+    // Call the prop function to send preferencesData to the parent component
+    
+    
+    // Handle form submission or other actions
+    //navigate('/GuestGeneratedForm', { state: { preferences } });
+
+  
+    onSubmit(preferences);
+  
+    // Navigate to the result page or perform other actions
+    // navigate('/wardroberesults');
+  };
 
   const CustomToggle = ({ children, eventKey }) => {
     const decoratedOnClick = useAccordionButton(eventKey, () =>
-      console.log("totally custom!")
+      console.log('totally custom!')
     );
 
- 
+    //navigate("/wardroberesults");
     return (
       <button
         type="button"
@@ -39,32 +93,43 @@ const GentratePreferences = (event) => {
     );
   };
 
-  // State to track the selected color
-  const [selectedColor, setSelectedColor] = useState(null);
-
-  // Array of available colors
-  const colors = [
-    "#FF0000",
-    "#0623BF",
-    "#52FF00",
-    "#FFD600",
-    "#00FFD1",
-    "#AD00FF",
-  ];
-
-  // Function to handle color click
-  const handleColorClick = (color) => {
-    setSelectedColor(color);
+  const handleGenderChange = (selectedGender) => {
+    setGender(selectedGender);
+    // Update gender for existing preferences as well
+    const updatedPreferences = preferences.map(preference => ({
+      ...preference,
+      gender: selectedGender,
+    }));
+    setPreferences(updatedPreferences);
+    onPreferencesChange(updatedPreferences);
   };
-
-  const [minValue, set_minValue] = useState(25);
-  const [maxValue, set_maxValue] = useState(75);
-  const handleInput = (e) => {
-    set_minValue(e.minValue);
-    set_maxValue(e.maxValue);
+  const handlePreferenceChange = (id, field, value) => {
+    console.log("Price",value);
+    const updatedPreferences = preferences.map((preference) => {
+      if (preference.id === id) {
+        // If the field is 'price', update min and max values separately
+        if (field === 'price') {
+          return {
+            ...preference,
+            price: {
+              min: value.min,
+              max: value.max,
+            },
+          };
+        
+        } else {
+          return { ...preference, [field]: value };
+        }
+      }
+      return preference;
+    });
+    setPreferences(updatedPreferences);
   };
+  
+
   return (
     <>
+ 
       <Accordion defaultActiveKey="0">
         <Card className="preferencesGenrat">
           <Card.Header className="d-md-flex align-items-start justify-content-between">
@@ -79,14 +144,53 @@ const GentratePreferences = (event) => {
             </div>
             <div className="d-flex align-items-center">
               <span className="tagg">
-                <img src="/images/card-whiteIcon.svg" alt="icon" />2 Preferences
+                <img src="/images/card-whiteIcon.svg" alt="icon" />{preferences.length} Preferences
               </span>
               <p className="acnumber mx-2 d-none d-md-block">
-                <span>15</span>
+                <span>{preferences.length}</span>
                 <span>/20</span>
               </p>
-              <div className="d-none d-md-block">
-                <CustomToggle eventKey="0" as={Button}>
+            </div>
+          </Card.Header>
+          <Accordion.Collapse eventKey="0">
+            <Card.Body>
+             
+              <div className="Gender mb-4">
+        <strong>Gender</strong>
+        <div className="d-flex align-items-center gap-3">
+          <Button
+            className={gender === 'MALE' ? 'active' : ''}
+            onClick={() => handleGenderChange('MALE')}
+          >
+            MALE
+          </Button>
+          <Button
+            className={gender === 'FEMALE' ? 'active' : ''}
+            onClick={() => handleGenderChange('FEMALE')}
+          >
+            FEMALE
+          </Button>
+        </div>
+      </div>
+            </Card.Body>
+          </Accordion.Collapse>
+        </Card>
+      </Accordion>
+      {preferences.map((preference, index) => (
+        <Accordion key={preference.id} defaultActiveKey={`0-${index}`}>
+          <Card className="preferencesGenrat">
+            <Card.Header className="d-md-flex align-items-start justify-content-between">
+              <div className="mb-3 mb-md-0">
+                <span className="gnrspan">Preference {index + 1}</span>
+              </div>
+              <div className="d-flex align-items-center">
+                <Button
+                  className="btnRemove"
+                  onClick={() => handleRemovePreference(preference.id)}
+                >
+                  Remove
+                </Button>
+                <CustomToggle eventKey={`0-${index}`} as={Button}>
                   <img
                     className="arrowSvg"
                     src="/images/downarrow.svg"
@@ -94,219 +198,178 @@ const GentratePreferences = (event) => {
                   />
                 </CustomToggle>
               </div>
-            </div>
-          </Card.Header>
-          <Accordion.Collapse eventKey="0">
-            <Card.Body>
-              <div className="Gender mb-4">
-                <strong>Gender</strong>
-                <div className="d-flex align-items-center gap-3">
-                  <Button className="active">MALE</Button>
-                  <Button>FEMAILE</Button>
-                </div>
-              </div>
-              <Accordion defaultActiveKey="nested-0" className="prfrnceNested">
-                <Card className="preferencesGenrat">
-                  <Card.Header className="d-flex align-items-start justify-content-between">
-                    <div>
-                      <span className="gnrspan">Preference 1</span>
-                    </div>
-                    <div className="d-flex align-items-center">
-                      <Button className="btnRemove">Remove</Button>
-                      <CustomToggle eventKey="nested-0" as={Button}>
-                        <img
-                          className="arrowSvg"
-                          src="/images/downarrow.svg"
-                          alt="icon"
-                        />{" "}
-                      </CustomToggle>
-                    </div>
-                  </Card.Header>
-                  <Accordion.Collapse eventKey="nested-0">
-                    <Card.Body className="nestedAcrdn">
-                      <Row className="p-3">
-                        <Col md={6} xs={12} className="ps-md-0">
-                          <Form.Label>Category</Form.Label>
-                          <InputGroup className="mb-3">
-                            <Button className="searchIcon">
-                              <img src="/images/search-Icon.svg" alt="icon" />
-                            </Button>
+            </Card.Header>
+            <Accordion.Collapse eventKey={`0-${index}`}>
+              <Card.Body className="nestedAcrdn">
+                <Row className="p-3">
+                  <Col md={6} xs={12} className="ps-md-0">
+                    <Form.Label>Category</Form.Label>
+                    <InputGroup className="mb-3">
+                      <Button className="searchIcon">
+                        <img src="/images/search-Icon.svg" alt="icon" />
+                      </Button>
+                      <Form.Control
+                        className="searchInput"
+                        aria-label="Example text with two button addons"
+                        placeholder="Search Category"
+                        value={preference.category}
+                        onChange={(e) =>
+                          handlePreferenceChange(
+                            preference.id,
+                            'category',
+                            e.target.value
+                          )
+                        }
+                      />
+                      <Button
+                        className="srchClr"
+                        onClick={() =>
+                          handlePreferenceChange(preference.id, 'category', '')
+                        }
+                      >
+                        Clear
+                      </Button>
+                    </InputGroup>
+                  </Col>
+                  <Col md={6} xs={12} className="pe-md-0">
+                    <Form.Label>Brand</Form.Label>
+                    <InputGroup>
+                      <Button className="searchIcon">
+                        <img src="/images/search-Icon.svg" alt="icon" />
+                      </Button>
+                      <Form.Control
+                        className="searchInput"
+                        aria-label="Example text with two button addons"
+                        placeholder="Furor"
+                        value={preference.brand}
+                        onChange={(e) =>
+                          handlePreferenceChange(
+                            preference.id,
+                            'brand',
+                            e.target.value
+                          )
+                        }
+                      />
+                      <Button
+                        className="srchClr"
+                        onClick={() =>
+                          handlePreferenceChange(preference.id, 'brand', '')
+                        }
+                      >
+                        Clear
+                      </Button>
+                    </InputGroup>
+                  </Col>
+                  <Col md={6} xs={12} className="order-1 order-md-0">
+                    <Row>
+                      <Col md={6}>
+                        <div>
+                          <Form.Label>Price</Form.Label>
+                          <MultiRangeSlider
+  style={{
+    border: 'none',
+    boxShadow: 'none',
+    padding: '13px 10px',
+  }}
+  label="false"
+  ruler="false"
+  min={preference.price.min}
+  max={preference.price.max}
+  step={5}
+  minValue={preference.price.min}
+  maxValue={preference.price.max}
+  
+   
+  
+  onChange={({ min, max }) => {
+    {console.log(preference.price.min);
+    }
+    const updatedPrice = { min: min, max: max};
+    handlePreferenceChange(preference.id, 'price',0);
+  }}
+/>
 
-                            <Form.Control
-                              className="searchInput"
-                              aria-label="Example text with two button addons"
-                              placeholder="Search Category"
-                            />
-                            <Button className="srchClr">Clear</Button>
-                          </InputGroup>
-                        </Col>
-                        <Col md={6} xs={12} className="pe-md-0">
-                          <Form.Label>Brand</Form.Label>
-                          <InputGroup>
-                            <Button className="searchIcon">
-                              <img src="/images/search-Icon.svg" alt="icon" />
-                            </Button>
+                        </div>
+                      </Col>
+                      <Col md={6}>
+                        <div className="colorPickr"style={{ marginLeft: "1px" }}>
+                          <Form.Label>Color</Form.Label>
+                          <CompactPicker
+                            color={preference.color}
+                            onChange={(color) =>
+                              handlePreferenceChange(
+                                preference.id,
+                                'color',
+                                color.hex
+                              )
+                            }
+                          />
+                        </div>
+                      </Col>
+                    </Row>
+                  </Col>
+                  <Col md={6} xs={12}>
+                    <Row>
+                    <Col md={6}>
+  <Form.Label>Size</Form.Label>
+  <InputGroup>
+    <Form.Select
+      className="selectSize"
+      aria-label="Size"
+      onChange={(e) =>
+        handlePreferenceChange(
+          preference.id,
+          'size',
+          e.target.value
+        )
+      }
+      value={preference.size} // Set the value to the selected size
+    >
+      <option value="">Select size</option>
+      <option value="Small">Small</option>
+      <option value="Medium">Medium</option>
+      <option value="Large">Large</option>
+      <option value="Xl">Xl</option>
+    </Form.Select>
+  </InputGroup>
+</Col>
 
-                            <Form.Control
-                              className="searchInput"
-                              aria-label="Example text with two button addons"
-                              placeholder="Furor"
-                            />
-                            <Button className="srchClr">Clear</Button>
-                          </InputGroup>
-                        </Col>
-                        <Col md={6} xs={12} className="order-1 order-md-0">
-                          <Row>
-                            <Col md={6}>
-                              <div>
-                                <Form.Label>Price</Form.Label>
-                                <MultiRangeSlider
-                                  min={0}
-                                  style={{
-                                    border: "none",
-                                    boxShadow: "none",
-                                    padding: "15px 10px",
-                                  }}
-                                  label="false"
-                                  ruler="false"
-                                  max={100}
-                                  step={5}
-                                  minValue={minValue}
-                                  maxValue={maxValue}
-                                  onInput={(e) => {
-                                    handleInput(e);
-                                  }}
-                                />
-                              </div>
-                            </Col>
-                            <Col md={6}>
-                              <div className="colorPickr">
-                                <Form.Label>Color</Form.Label>
-                                <div style={{ display: "flex" }}>
-                                  {/* Map through the colors and create color boxes */}
-                                  {colors.map((color) => (
-                                    <div
-                                      key={color}
-                                      onClick={() => handleColorClick(color)}
-                                      style={{
-                                        width: "10%",
-                                        // height: "10%",
-                                        borderRadius: "100%",
-                                        backgroundColor: color,
-                                        margin: "5px",
-                                        cursor: "pointer",
-                                      }}
-                                    ></div>
-                                  ))}
-                                  <img
-                                    style={{
-                                      width: "10%",
-                                      height: "10%",
-                                      borderRadius: "100%",
-
-                                      margin: "5px",
-                                      cursor: "pointer",
-                                    }}
-                                    src="/images/multicolor.svg"
-                                    alt="color"
-                                  />
-                                </div>
-                              </div>
-                            </Col>
-                          </Row>
-                        </Col>
-                        <Col md={6} xs={12}>
-                          <Row>
-                            <Col md={6}>
-                              <Form.Label>Size</Form.Label>
-                              <InputGroup>
-                                <Form.Control
-                                  className="selectSize"
-                                  aria-label="Text input with dropdown button"
-                                  placeholder="Select size"
-                                />
-
-                                <DropdownButton
-                                  className="slctSize"
-                                  title={
-                                    <span>
-                                      <img
-                                        src="/images/dropdown-arrow-Icon.svg"
-                                        alt="SVG Image"
-                                        width="20"
-                                        height="20"
-                                      />
-                                    </span>
-                                  }
-                                  id="input-group-dropdown-2"
-                                  align="end"
-                                >
-                                  <Dropdown.Item href="#">Small</Dropdown.Item>
-                                  <Dropdown.Item href="#">Medium</Dropdown.Item>
-                                  <Dropdown.Item href="#">Large</Dropdown.Item>
-                                  <Dropdown.Item href="#">Xl</Dropdown.Item>
-                                </DropdownButton>
-                              </InputGroup>
-                            </Col>
-                            <Col md={6}>
-                              <Form.Label>Quantity</Form.Label>
-                              <InputGroup>
-                                <Form.Control
-                                  className="selectSize"
-                                  aria-label="Text input with dropdown button"
-                                  placeholder="Select size"
-                                />
-
-                                <DropdownButton
-                                  className="slctSize"
-                                  title={
-                                    <span>
-                                      <img
-                                        src="/images/dropdown-arrow-Icon.svg"
-                                        alt="SVG Image"
-                                        width="20"
-                                        height="20"
-                                      />
-                                    </span>
-                                  }
-                                  id="input-group-dropdown-2"
-                                  align="end"
-                                >
-                                  <Dropdown.Item href="#">01</Dropdown.Item>
-                                  <Dropdown.Item href="#">10</Dropdown.Item>
-                                  <Dropdown.Item href="#">20</Dropdown.Item>
-                                  <Dropdown.Item href="#">30</Dropdown.Item>
-                                </DropdownButton>
-                              </InputGroup>
-                            </Col>
-                          </Row>
-                        </Col>
-                      </Row>
-                    </Card.Body>
-                  </Accordion.Collapse>
-                </Card>
-              </Accordion>
-              <Button className="addPerafrence">
-                <img src="/images/plus-Icon.svg" alt="plus" /> Add{" "}
-              </Button>
-            </Card.Body>
-          </Accordion.Collapse>
-          <div className="card-header d-flex justify-content-center d-md-none ">
-            <CustomToggle eventKey="0" as={Button}>
-              <img
-                className="arrowSvg"
-                src="/images/downarrow.svg"
-                alt="icon"
-              />
-            </CustomToggle>
-          </div>
-        </Card>
-      </Accordion>
-      
-    
-           
-           
-       
+                      <Col md={6}>
+                      <Form.Label>Quantity</Form.Label>
+  <InputGroup>
+    <Form.Select
+      className="selectQuantity"
+      aria-label="Quantity"
+      onChange={(e) =>
+        handlePreferenceChange(
+          preference.id,
+          'quantity',
+          parseInt(e.target.value)
+        )
+      }
+      value={preference.quantity} // Set the value to the selected quantity
+    >
+      <option value="">Select quantity</option>
+      <option value="1">1</option>
+      <option value="10">10</option>
+      <option value="20">20</option>
+      <option value="30">30</option>
+    </Form.Select>
+    {/* Display the selected quantity in the input field */}
+  
+  </InputGroup>
+                      </Col>
+                    </Row>
+                  </Col>
+                </Row>
+              </Card.Body>
+            </Accordion.Collapse>
+          </Card>
+        </Accordion>
+      ))}
+      <Button className="addPreference" onClick={handleAddPreference}>
+        <img src="/images/plus-Icon.svg" alt="plus" /> Add
+      </Button>
       <Button className="btnPrimary mx-auto mt-5 mb-3" onClick={handleChange}>
         <img className="me-3" src="/images/staricon.svg" alt="star" /> Generate
         the magic
@@ -315,4 +378,4 @@ const GentratePreferences = (event) => {
   );
 };
 
-export default GentratePreferences;
+export default GeneratePreferences;  

@@ -1,11 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, CloseButton, ProgressBar } from "react-bootstrap";
 import Accordion from "react-bootstrap/Accordion";
 import { useAccordionButton } from "react-bootstrap/AccordionButton";
 import Card from "react-bootstrap/Card";
 
-const GenratedImageAccordion = () => {
+const GenratedImageAccordion = ({ onImageChange }) => {
+  const [uploadedImages, setUploadedImages] = useState([]);
   const now = 60;
+  
+  const handleImageUpload = (event) => {
+    const newImage = event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(newImage);
+    reader.onload = () => {
+      const imageData = {
+        name: newImage.name,
+        dataURL: reader.result // Base64 encoded image data
+      };
+      setUploadedImages([...uploadedImages, imageData]);
+      onImageChange([...uploadedImages, imageData]);
+    };
+  };
+ 
+  const handleRemoveImage = (index) => {
+    const updatedImages = uploadedImages.filter((image, i) => i !== index);
+    setUploadedImages(updatedImages);
+    onImageChange(updatedImages);
+  };
+
   const CustomToggle = ({ children, eventKey }) => {
     const decoratedOnClick = useAccordionButton(eventKey, () =>
       console.log("totally custom!")
@@ -31,11 +53,11 @@ const GenratedImageAccordion = () => {
               <img className="me-2" src="/images/picture-Icon.svg" alt="icon" />
               Generate by image
             </span>
-            <p>Upload your images below to generate wardrobes </p>
+            <p>Upload your images below to generate wardrobes</p>
           </div>
           <div className="d-flex align-items-center">
             <span className="tagg">
-              <img src="/images/up-img-Icon.svg" alt="icon" />2 images
+              <img src="/images/up-img-Icon.svg" alt="icon" /> {uploadedImages.length} images
             </span>
             <div className="d-none d-md-block">
               <CustomToggle eventKey="0" as={Button}>
@@ -51,25 +73,31 @@ const GenratedImageAccordion = () => {
         <Accordion.Collapse eventKey="0">
           <Card.Body>
             <div className="upldItem">
-              <Button className="btUploadImg">
+              <label htmlFor="imageUpload" className="btUploadImg">
                 <img src="/images/picture-outline-Icon.svg" alt="icon" />
-                <p>Browse or drag and drop any image to upload </p>
-              </Button>
+                <p>Browse or drag and drop any image to upload</p>
+              </label>
+              <input
+                id="imageUpload"
+                type="file"
+                onChange={handleImageUpload}
+                style={{ display: "none" }}
+              />
             </div>
-            <div className="uploadingItems d-flex justify-content-sm-start justify-content-between align-items-center gap-2">
-              <div className="d-flex justify-content-start align-items-center gap-2">
-                <img src="/images/blue-img-Icon.svg" alt="items" />
-                <p className="itemsName">Purple_Shirt.jpg</p>
-                <ProgressBar
-                  now={now}
-                  label={`${now}%`}
-                  visuallyHidden
-                  className="uplod-progress"
-                />
+            {/* Display uploaded images */}
+            {uploadedImages.map((imageData, index) => (
+              <div key={index} className="uploadingItems d-flex justify-content-sm-start justify-content-between align-items-center gap-2">
+                <div className="d-flex justify-content-start align-items-center gap-2">
+              
+                <p className="imageName">{imageData.name}</p>
+                <ProgressBar now={60} label={`${60}%`} visuallyHidden className="uploadProgress" />
+                  <img src="/images/blue-img-Icon.svg" alt="items" />
+
+                 
+                </div>
+                <CloseButton aria-label="Hide" onClick={() => handleRemoveImage(index)} />
               </div>
-              {/* ------when item uploaded then show this close icon------ */}
-              <CloseButton aria-label="Hide" />
-            </div>
+            ))}
           </Card.Body>
         </Accordion.Collapse>
         <div className="card-header d-flex justify-content-center d-md-none ">

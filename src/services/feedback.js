@@ -7,6 +7,8 @@ class Feedback {
 
     
   static async giveFeedback(token , formData) {
+    console.log("token received",token);
+    console.log("; received",formData)
     try {
         const response = await axios.post(`${apiBaseUrl}/feedback/save?token=${token}`, formData, {
           headers: {

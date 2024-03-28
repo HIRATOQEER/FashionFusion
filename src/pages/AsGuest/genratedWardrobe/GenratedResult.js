@@ -4,8 +4,10 @@ import { Col, Row } from "react-bootstrap";
 import GuestSideBar from "../../../components/Sidebar/GuestSideBar";
 import GuestGenratedResult from "../../../components/guestGenratedResult.js/GuestGenratedResult";
 import WelcomeHeader from "../../../components/headers/WelcomeHeader";
-
+import { useLocation } from 'react-router-dom';
 const GenratedResult = () => {
+  
+
   return (
     <>
       <div className="crtWrdbMain">

@@ -38,8 +38,10 @@ const SignUpComp = ({ onClose }) => {
       });
       const userCredential = await signInWithPopup(auth, provider);
       const user = userCredential.user;
-      localStorage.setItem("token" , user);
-      dispatch(updateName(user.getIdToken()));
+      const idToken = await user.getIdToken();
+
+      localStorage.setItem("token" , idToken);
+      dispatch(updateName(idToken));
       console.log(user)
       console.log(userCredential)
 

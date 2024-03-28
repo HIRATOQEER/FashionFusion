@@ -32,8 +32,9 @@ const LoginModal = (props) => {
       });
       const userCredential = await signInWithPopup(auth, provider);
       const user = userCredential.user;
-      localStorage.setItem("token" , user.getIdToken());
-      dispatch(updateName(user));
+      const idToken = user.getIdToken()
+      localStorage.setItem("token" ,idToken );
+      dispatch(updateName(idToken));
 
        //SHOW ALERT lOGGED iN  SUCCESSSFULLY
        navigate("/");
@@ -56,7 +57,6 @@ const LoginModal = (props) => {
       if (userDocSnap.exists()) {
         const userData = userDocSnap.data();
         console.log("User data from Firestore:", userData);
-        dispatch(updateName(userData));
 
         // You can then dispatch an action to store this data in your Redux store if needed
       } else {
@@ -64,6 +64,8 @@ const LoginModal = (props) => {
       }
       const token = await user.getIdToken();
       localStorage.setItem("token", token);
+      dispatch(updateName(token));
+
       localStorage.setItem("user_id", user.email);
 
             console.log("Token" , user.getIdToken())

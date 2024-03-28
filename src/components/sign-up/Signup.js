@@ -68,7 +68,7 @@ const Signup = () => {
            
               <Button className="btnPrimary">
                 <img className="me-3" src="/images/staricon.svg" alt="star" />{" "}
-                <Link to="/createwardrobe">
+                <Link to="/GuestCreateWardrobe">
                 Try it now
                 </Link>
               </Button>

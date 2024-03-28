@@ -2,53 +2,69 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import Dropdown from "react-bootstrap/Dropdown";
 
-const BasedUponPrfrnc = () => {
+const BasedUponPrfrnc = ({ data }) => {
+  const { facebookLink = '', instagramLink = '', preferences = [], uploadedImages = [] } = data || {};
+  console.log("Preferces",data.preferences);
   return (
     <>
+    
+    
+    
       <div className="BasedUponPrfrnc mb-5 mt-3">
         <p className="discptn mb-3">
           Products results based upon the given preferences
         </p>
         <div className="givenPrefrnc d-flex flex-column flex-lg-row align-items-lg-center gap-4">
           <div className="d-flex align-items-center gap-2">
-            <img
-              className="picIcon"
-              src="/images/picture-Icon.svg"
-              alt="icon"
-            />
-            <p className="imageURL">purpleShirt.jpg</p>
-            <img
-              className="selectedImage"
-              src="/images/given-prefrnce-image-small.png"
-              alt="select image"
-            />
+          {uploadedImages.map((image, index) => (
+           <div key={index} className="d-flex align-items-center gap-2">
+          
+           <p className="imageURL">{image.name}</p>
+           <img
+             className="selectedImage"
+             src={image.dataURL} // Use the dataURL property
+             alt={`Uploaded Image ${index + 1}`}
+             style={{ maxWidth: "100px", maxHeight: "100px" }} // Adjust dimensions as needed
+           />
+         </div>
+       ))}
           </div>
           <div className="d-flex align-items-center gap-2">
-            <Dropdown className="rstLinksDrp">
-              <Dropdown.Toggle id="dropdown-basic" className="linksRslt">
-                <img src="/images/link-Icon.svg" alt="icon" />
-              </Dropdown.Toggle>
-
-              <Dropdown.Menu>
-                <Dropdown.Item href="#/action-1">
-                  <img
-                    className="me-3"
-                    src="/images/insta-Icon.svg"
-                    alt="icon"
-                  />
-                  <span> https://www.instagram.com/insta_profile/</span>
-                </Dropdown.Item>
-                <Dropdown.Item href="#/action-2">
-                  <img className="me-3" src="/images/fcbIcon.svg" alt="icon" />
-                  <span>https://www.facebook.com/fb_profile/</span>
-                </Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
+            {instagramLink && facebookLink && (
+              <Dropdown className="rstLinksDrp">
+                <Dropdown.Toggle id="dropdown-basic" className="linksRslt">
+                  <img src="/images/link-Icon.svg" alt="icon" />
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  {instagramLink && (
+                    <Dropdown.Item href={instagramLink}>
+                      <img
+                        className="me-3"
+                        src="/images/insta-Icon.svg"
+                        alt="icon"
+                      />
+                      <span>{instagramLink}</span>
+                    </Dropdown.Item>
+                  )}
+                  {facebookLink && (
+                    <Dropdown.Item href={facebookLink}>
+                      <img
+                        className="me-3"
+                        src="/images/fcbIcon.svg"
+                        alt="icon"
+                      />
+                      <span>{facebookLink}</span>
+                    </Dropdown.Item>
+                  )}
+                </Dropdown.Menu>
+              </Dropdown>
+            )}
             <p className="whoLink d-flex align-items-center gap-2">
-              <img src="/images/fcb-black-Icon.svg" alt="icon" />
-              <img src="/images/Instagram-black-icon.svg" alt="icon" />
+              {facebookLink && <img src="/images/fcb-black-Icon.svg" alt="icon" />}
+              {instagramLink && <img src="/images/Instagram-black-icon.svg" alt="icon" />}
             </p>
           </div>
+           
           <div className="d-flex align-items-center gap-2">
             <Dropdown className="prfAttached">
               <Dropdown.Toggle id="dropdown-basic" className="PrfrncResult">
@@ -56,118 +72,72 @@ const BasedUponPrfrnc = () => {
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
-                <Dropdown.Item
-                  href="#/action-1"
-                  className="d-flex align-items-lg-center align-items-start gap-4"
-                >
-                  <div>
-                    <span className="prfSrNmbr">1</span>
-                  </div>
-                  <div className=" d-flex  flex-column flex-lg-row gap-2 gap-lg-4">
-                    <p>
-                      <span className="prfNameCmn">Brand</span>
-                      <span className="prfProductCmn">Furor</span>
-                    </p>
-                    <div className="d-flex align-items-center gap-4">
-                      <p>
-                        <span className="prfNameCmn">Category</span>
-                        <span className="prfProductCmn">Shirt</span>
-                      </p>
-                      <p>
-                        <span className="prfNameCmn">Colur</span>
-                        <span className="prColourCmn"></span>
-                      </p>
+                {preferences.map((preference, index) => (
+                  <Dropdown.Item
+                    key={index}
+                    href="#/action-1"
+                    className="d-flex align-items-lg-center align-items-start gap-4"
+                  >
+                    <div>
+                      <span className="prfSrNmbr">{index + 1}</span>
                     </div>
-                    <div className="d-flex align-items-center gap-4">
+                    <div className=" d-flex  flex-column flex-lg-row gap-2 gap-lg-4">
                       <p>
-                        <span className="prfNameCmn">PRICE</span>
-                        <span className="prfProductCmn">0-5000 PKR</span>
+                        <span className="prfNameCmn">Brand</span>
+                        <span className="prfProductCmn">
+                          {preference.brand}
+                        </span>
                       </p>
-                      <p>
-                        <span className="prfNameCmn">SIZE</span>
-                        <span className="prfProductCmn">Large</span>
-                      </p>
+                      <div className="d-flex align-items-center gap-4">
+                        <p>
+                          <span className="prfNameCmn">Category</span>
+                          <span className="prfProductCmn">
+                            {preference.category}
+                          </span>
+                        </p>
+                        <p>
+                          <span className="prfNameCmn">Colur</span>
+                          <span className="prColourCmn">
+                            {preference.color}
+                          </span>
+                        </p>
+                      </div>
+                      <div className="d-flex align-items-center gap-4">
+                        <p>
+                          <span className="prfNameCmn">PRICE</span>
+                          <span className="prfProductCmn">
+                            {preference.price.min}-{preference.price.max} PKR
+                          </span>
+                        </p>
+                        <p>
+                          <span className="prfNameCmn">SIZE</span>
+                          <span className="prfProductCmn">
+                            {preference.size}
+                          </span>
+                        </p>
+                      </div>
+                      <div className="d-flex align-items-center gap-4">
+                        <p>
+                          <span className="prfNameCmn">Quantity</span>
+                          <span className="prfProductCmn">
+                            {preference.quantity}
+                          </span>
+                        </p>
+                        <p>
+                          <span className="prfNameCmn">GENDER</span>
+                          <span className="prfProductCmn">
+                            {preference.gender}
+                          </span>
+                        </p>
+                      </div>
                     </div>
-                    <div className="d-flex align-items-center gap-4">
-                      <p>
-                        <span className="prfNameCmn">Quantity</span>
-                        <span className="prfProductCmn">10</span>
-                      </p>
-                      <p>
-                        <span className="prfNameCmn">GENDER</span>
-                        <span className="prfProductCmn">Male</span>
-                      </p>
-                    </div>
-                  </div>
-                </Dropdown.Item>
-                <hr />
-                <Dropdown.Item
-                  href="#/action-1"
-                  className="d-flex align-items-lg-center align-items-start gap-4"
-                >
-                  <div>
-                    <span className="prfSrNmbr">2</span>
-                  </div>
-                  <div className=" d-flex  flex-column flex-lg-row gap-2 gap-lg-4">
-                    <p>
-                      <span className="prfNameCmn">Brand</span>
-                      <span className="prfProductCmn">Furor</span>
-                    </p>
-                    <div className="d-flex align-items-center gap-4">
-                      <p>
-                        <span className="prfNameCmn">Category</span>
-                        <span className="prfProductCmn">Shirt</span>
-                      </p>
-                      <p>
-                        <span className="prfNameCmn">Colur</span>
-                        <span className="prColourCmn"></span>
-                      </p>
-                    </div>
-                    <div className="d-flex align-items-center gap-4">
-                      <p>
-                        <span className="prfNameCmn">PRICE</span>
-                        <span className="prfProductCmn">0-5000 PKR</span>
-                      </p>
-                      <p>
-                        <span className="prfNameCmn">SIZE</span>
-                        <span className="prfProductCmn">Large</span>
-                      </p>
-                    </div>
-                    <div className="d-flex align-items-center gap-4">
-                      <p>
-                        <span className="prfNameCmn">Quantity</span>
-                        <span className="prfProductCmn">10</span>
-                      </p>
-                      <p>
-                        <span className="prfNameCmn">GENDER</span>
-                        <span className="prfProductCmn">Male</span>
-                      </p>
-                    </div>
-                  </div>
-                </Dropdown.Item>
+                  </Dropdown.Item>
+                ))}
               </Dropdown.Menu>
             </Dropdown>
-            <p className="muchPrfrnc">2 Preferences</p>
+            <p className="muchPrfrnc">{preferences.length} Preferences</p>
           </div>
         </div>
-
-        {/* -----when open save wardrobe then uncomment this code below----- */}
-        {/* 
-        <p className="discptn mb-3">
-          Wardrobe results for given social media link
-        </p>
-        <div className="givenPrefrnc d-flex align-items-center gap-4">
-          <div className="d-flex align-items-center gap-2">
-            <img className="socialLink" src="/images/fcbIcon.svg" alt="icon" />
-            <p className="imageURL">https://www.facebook.com/insta_profile/</p>
-            <img
-              className="socialLink"
-              src="/images/insta-Icon.svg"
-              alt="select image"
-            />
-            <p className="imageURL">https://www.instagram.com/insta_profile/</p>
-          </div>
-        </div> */}
       </div>
     </>
   );

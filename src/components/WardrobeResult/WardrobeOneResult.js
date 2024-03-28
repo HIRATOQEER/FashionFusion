@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import { Button, Dropdown, FormCheck } from "react-bootstrap";
+
+import React, { useState, useEffect } from "react";
+import { Button, FormCheck } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Grid, Navigation } from "swiper/modules";
 import "swiper/css/navigation";
@@ -12,13 +13,72 @@ import ProductOverview from "../Modals/ProductOverview";
 import RegenerateModal from "../Modals/RegenerateModal";
 import SuccessfullySavedToast from "../Toasts/SuccessfullySvedToast";
 import { useNavigate } from "react-router-dom";
-
+import { useLocation } from "react-router-dom";
 const WardrobeOneResult = () => {
   const [modalOverViewShow, setModalOverViewShow] = React.useState(false);
   const [modalShow, setModalShow] = React.useState(false);
   const [showToast, setShowToast] = useState(false);
   const [modalRegenrateShow, setModalRegenrateShow] = React.useState(false);
   const navigate = useNavigate();
+  const [selectedProducts, setSelectedProducts] = useState([]);
+  const location = useLocation();
+  
+  const { dataToSend } = location.state || {};
+  
+  useEffect(() => {
+    // Check if dataToSend is properly received
+    if (!dataToSend) {
+      console.error("No data received in WardrobeOneResult component");
+      // Optionally, redirect or handle the absence of data
+    } else {
+      console.log("Data received:", dataToSend);
+    }
+  }, [dataToSend]);
+
+ // Array of 10 products with dummy data
+ const [products, setProducts] = useState(
+  Array.from({ length: 10 }, (_, index) => ({
+    id: index + 1,
+    image: "/images/given-prefrnce-image-1.png", // Placeholder image URL
+  }))
+);
+
+const handleProductSelect = (productId) => {
+  if (selectedProducts.includes(productId)) {
+    setSelectedProducts(selectedProducts.filter((id) => id !== productId));
+  } else {
+    setSelectedProducts([...selectedProducts, productId]);
+  }
+};
+
+
+  
+const handleCheckboxChange = (productId) => {
+  if (selectedProducts.includes(productId)) {
+    setSelectedProducts(selectedProducts.filter((id) => id !== productId));
+  } else {
+    setSelectedProducts([...selectedProducts, productId]);
+  }
+};
+
+const handleDeleteSelectedProducts = () => {
+  const updatedProducts = products.filter(
+    (product) => !selectedProducts.includes(product.id)
+  );
+  setProducts(updatedProducts);
+  setShowToast(true);
+  setSelectedProducts([]); // Clear selected products after deletion
+};
+
+  const handleUpdateChanges = () => {
+    // Update changes logic here
+    console.log("Updating changes for selected products:", selectedProducts);
+  };
+
+  const handleRegenerate = () => {
+    // Regenerate logic here
+    console.log("Regenerating wardrobe");
+  };
 
   const handleButtonClick = () => {
     setShowToast(true);
@@ -28,29 +88,23 @@ const WardrobeOneResult = () => {
     setShowToast(false);
   };
 
-  const handleChange =()=>{
+  const handleChange = () => {
     navigate("/createwardrobe");
-  }
+  };
+
   return (
     <>
-      <BasedUponPrfrnc />
-      <div className="yourWardrobe">
+    <BasedUponPrfrnc data={dataToSend} />
+    <div className="yourWardrobe">
         <div className="youWrdrbInner">
-          <div className="d-flex justify-content-between align-items-cemter mb-3">
-            <p className="yur">10 Products</p>
+          <div className="d-flex justify-content-between align-items-center mb-3">
+            <p className="yur">{products.length} Products</p>
             <div>
-              <Button className="btnRemoveEvry" onClick={handleButtonClick}>
-                <img
-                  className="me-2"
-                  src="/images/remove-icon.svg"
-                  alt="icon"
-                />
+              <Button className="btnRemoveEvry" onClick={handleDeleteSelectedProducts}>
+                <img className="me-2" src="/images/remove-icon.svg" alt="icon" />
                 Delete
               </Button>
-              <SuccessfullyRmvPrdct
-                showToast={showToast}
-                onClose={handleCloseToast}
-              />
+              <SuccessfullyRmvPrdct showToast={showToast} onClose={() => setShowToast(false)} />
             </div>
           </div>
           <div className="prfrncResult">
@@ -96,133 +150,32 @@ const WardrobeOneResult = () => {
               modules={[Grid, Navigation]}
               className="mySwiperRst"
             >
-              <SwiperSlide>
-                <div className="prfrncResultShow">
-                  <Button
-                    className="resultImg"
-                    onClick={() => setModalOverViewShow(true)}
-                  >
-                    <img
-                      className="productImg"
-                      src="/images/given-prefrnce-image-1.png"
-                      alt="picture"
+     {products.map((product) => (
+      
+  <SwiperSlide key={product.id}>
+    <div className="prfrncResultShow">
+    <FormCheck
+                      className={`wrdbCheck ${selectedProducts.includes(product.id) ? "isChecked" : ""}`}
+                      aria-label="option 1"
+                      onChange={() => handleCheckboxChange(product.id)}
+                      checked={selectedProducts.includes(product.id)}
                     />
-                  </Button>
-                  <FormCheck className="wrdbCheck" aria-label="option 1" />
-                </div>
-                <ProductOverview
-                  show={modalOverViewShow}
-                  onHide={() => setModalOverViewShow(false)}
-                />
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="prfrncResultShow">
-                  <Button className="resultImg">
-                    <img
-                      className="productImg"
-                      src="/images/given-prefrnce-image-1.png"
-                      alt="picture"
-                    />
-                  </Button>
-                  <FormCheck className="wrdbCheck" aria-label="option 1" />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="prfrncResultShow">
-                  <Button className="resultImg">
-                    <img
-                      className="productImg"
-                      src="/images/given-prefrnce-image-1.png"
-                      alt="picture"
-                    />
-                  </Button>
-                  <FormCheck className="wrdbCheck" aria-label="option 1" />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="prfrncResultShow">
-                  <Button className="resultImg">
-                    <img
-                      className="productImg"
-                      src="/images/given-prefrnce-image-1.png"
-                      alt="picture"
-                    />
-                  </Button>
-                  <FormCheck className="wrdbCheck" aria-label="option 1" />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="prfrncResultShow">
-                  <Button className="resultImg">
-                    <img
-                      className="productImg"
-                      src="/images/given-prefrnce-image-1.png"
-                      alt="picture"
-                    />
-                  </Button>
-                  <FormCheck className="wrdbCheck" aria-label="option 1" />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="prfrncResultShow">
-                  <Button className="resultImg">
-                    <img
-                      className="productImg"
-                      src="/images/given-prefrnce-image-1.png"
-                      alt="picture"
-                    />
-                  </Button>
-                  <FormCheck className="wrdbCheck" aria-label="option 1" />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="prfrncResultShow">
-                  <Button className="resultImg">
-                    <img
-                      className="productImg"
-                      src="/images/given-prefrnce-image-1.png"
-                      alt="picture"
-                    />
-                  </Button>
-                  <FormCheck className="wrdbCheck" aria-label="option 1" />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="prfrncResultShow">
-                  <Button className="resultImg">
-                    <img
-                      className="productImg"
-                      src="/images/given-prefrnce-image-1.png"
-                      alt="picture"
-                    />
-                  </Button>
-                  <FormCheck className="wrdbCheck" aria-label="option 1" />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="prfrncResultShow">
-                  <Button className="resultImg">
-                    <img
-                      className="productImg"
-                      src="/images/given-prefrnce-image-1.png"
-                      alt="picture"
-                    />
-                  </Button>
-                  <FormCheck className="wrdbCheck" aria-label="option 1" />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="prfrncResultShow">
-                  <Button className="resultImg">
-                    <img
-                      className="productImg"
-                      src="/images/given-prefrnce-image-1.png"
-                      alt="picture"
-                    />
-                  </Button>
-                  <FormCheck className="wrdbCheck" aria-label="option 1" />
-                </div>
-              </SwiperSlide>
+      <Button className="resultImg" onClick={() => handleProductSelect(product.id)}>
+        <img className="productImg" src={product.image} alt="picture" />
+      </Button>
+      <ProductOverview
+        show={product.isModalOpen}
+        onHide={() => {
+          const updatedProducts = products.map(p =>
+            p.id === product.id ? { ...p, isModalOpen: false } : p
+          );
+          setProducts(updatedProducts);
+        }}
+      />
+    </div>
+  </SwiperSlide>
+))}
+
             </Swiper>
           </div>
           <div className="d-flex justify-content-between align-items-center flex-column flex-xl-row mt-4">
@@ -230,7 +183,6 @@ const WardrobeOneResult = () => {
               <span className="d-block">
                 <img src="/images/question-mark-Icon.svg" alt="icon" />
               </span>
-
               <p className="gnrtDiscrptn text-center text-lg-start">
                 Update or Regenerate your wardrobe
               </p>
@@ -239,14 +191,12 @@ const WardrobeOneResult = () => {
               <Button className="saveWrdrb" onClick={handleButtonClick}>
                 Update Changes
               </Button>
-
               <Button
                 className="regenrete"
                 onClick={() => setModalRegenrateShow(true)}
               >
                 <img src="/images/refresh-Icon.svg" alt="icon" /> Regenerate
               </Button>
-
               <RegenerateModal
                 show={modalRegenrateShow}
                 onHide={() => setModalRegenrateShow(false)}
@@ -258,7 +208,7 @@ const WardrobeOneResult = () => {
       <div>
         <SuccessfullySavedToast
           showToast={showToast}
-          onClose={handleCloseToast}
+          onClose={() => setShowToast(false)}
         />
       </div>
       <Button className="btnPrimary mx-auto mt-5 mb-3" onClick={handleChange}>
@@ -268,5 +218,4 @@ const WardrobeOneResult = () => {
     </>
   );
 };
-
 export default WardrobeOneResult;
