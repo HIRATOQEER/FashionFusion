@@ -1,7 +1,5 @@
 import React from "react";
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
-
+import { Button, Modal } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/navigation";
 import "swiper/css";
@@ -10,20 +8,32 @@ import "swiper/css/navigation";
 import { FreeMode, Pagination } from "swiper/modules";
 import AddProduct from "../Modals/AddProduct";
 
-const ProductOverview = (props) => {
+const ProductOverview = ({ product, show, onHide }) => {
   const [modalAddShow, setModalAddShow] = React.useState(false);
+  const {
+    brand_logo,
+    brand_name,
+    product_name,
+    price,
+    image,
+    size,
+    product_url,
+    _id,
+  } = product;
+
+  const handleAddToFavorites = () => {
+    setModalAddShow(true);
+    // Handle adding product to favorites or perform any other action
+  };
+  const handleClose = () => {
+    onHide(); // Call onHide function from props to close the modal
+  };
 
   return (
     <>
-      <Modal
-        {...props}
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-        className="productDtlMdl"
-      >
-        <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">
+     <Modal show={show} onHide={handleClose} size="lg" centered className="productDtlMdl">
+  <Modal.Header closeButton>
+          <Modal.Title>
             <p className="rmvPrdct">Product Overview</p>
           </Modal.Title>
         </Modal.Header>
@@ -35,97 +45,29 @@ const ProductOverview = (props) => {
               freeMode={true}
               centeredSlides={true}
               loop={true}
-              pagination={{
-                clickable: true,
-              }}
+              pagination={{ clickable: true }}
               modules={[FreeMode, Pagination]}
               className="OverView py-5"
             >
-              <SwiperSlide>
-                <img
-                  className="w-100"
-                  src="/images/overview-1.png"
-                  alt="product"
-                />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img
-                  className="w-100"
-                  src="/images/overview-2.png"
-                  alt="product"
-                />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img
-                  className="w-100"
-                  src="/images/overview-3.png"
-                  alt="product"
-                />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img
-                  className="w-100"
-                  src="/images/overview-1.png"
-                  alt="product"
-                />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img
-                  className="w-100"
-                  src="/images/overview-2.png"
-                  alt="product"
-                />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img
-                  className="w-100"
-                  src="/images/overview-3.png"
-                  alt="product"
-                />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img
-                  className="w-100"
-                  src="/images/overview-1.png"
-                  alt="product"
-                />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img
-                  className="w-100"
-                  src="/images/overview-2.png"
-                  alt="product"
-                />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img
-                  className="w-100"
-                  src="/images/overview-3.png"
-                  alt="product"
-                />
-              </SwiperSlide>
-              <AddProduct
-                  show={modalAddShow}
-                  onHide={() => setModalAddShow(false)}
-                />
+              {image.map((imageUrl, index) => (
+                <SwiperSlide key={index}>
+                  <img className="w-100" src={imageUrl} alt={`product-${index}`} />
+                </SwiperSlide>
+              ))}
             </Swiper>
           </div>
-          <p className="dtlThisPrdt">SMART FIT POLO SHIRT - FMTCP23-067</p>
+          <p className="dtlThisPrdt">{product_name}</p>
           <div className="d-flex justify-content-between align-items-center">
-            <p className="priceThis">PKR 1,395</p>
-            <img className="BrandThis" src="/images/furorlogo.svg" alt="icon" />
+            <p className="priceThis">{price}</p>
+            <img className="BrandThis" src={brand_logo} alt={brand_name} />
           </div>
         </Modal.Body>
         <Modal.Footer className="border-0">
-          <Button className="cancelPrv py-1"   onClick={() => setModalAddShow(true)}>
-            <img
-              className="me-1"
-              src="/images/heart-outline-Icon.svg"
-              alt="icon"
-            />
+          <Button className="cancelPrv py-1" onClick={handleAddToFavorites}>
+            <img className="me-1" src="/images/heart-outline-Icon.svg" alt="icon" />
             Add to Favorites
           </Button>
-          <Button className="btnPrfSubmit py-1">
+          <Button className="btnPrfSubmit py-1" href={product_url} target="_blank">
             BUY NOW <img src="/images/buynow-Icon.svg" alt="icon" />
           </Button>
         </Modal.Footer>

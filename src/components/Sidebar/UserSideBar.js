@@ -5,11 +5,11 @@ import { useNavigate } from "react-router-dom";
 import {  useDispatch } from 'react-redux';
 import { updateName } from '../../store/actions';
 import {  useSelector } from 'react-redux';
-
+import SaveWardrobe from "../../services/saveWardrobe";
 const UserSideBar = () => {
   const dispatch = useDispatch();
   const accessToken =  useSelector(state => state.name);
-
+  const [wardrobes, setWardrobe] = useState([]);
   const [photo, setPhoto] = useState(
     accessToken.photoURL ? accessToken.photoURL : "/images/sidebr-prf-image.png"
   );
@@ -17,7 +17,25 @@ const UserSideBar = () => {
     accessToken.displayName ? accessToken.displayName : "User"
   );
  
+
+  const userId = "user123";
+  useEffect(() => {
+    const fetchWardrobe = async () => {
+      try {
+        const data = await SaveWardrobe.getAllSaveWardrobes(userId,accessToken);
+        console.log("wardrobedata1", data);
+        setWardrobe(data); // Update state with fetched wardrobe products data
+      } catch (error) {
+        console.error("Error fetching wardrobe products:", error);
+        // Handle error or set an error state
+      }
+    };
+
+    fetchWardrobe();
+  }, [userId, accessToken]); 
   
+
+
   const [showNavs, setShowNavs] = useState(false);
   const navigate= useNavigate();
   const [dropdownStates, setDropdownStates] = useState([
@@ -26,6 +44,16 @@ const UserSideBar = () => {
     { id: 2, name: "profile", isOpen: false },
   ]);
   let timeoutId;
+
+  const handleWardrobeClick = async (wardrobeId) => {
+    try {
+      
+      // Navigate to wardrobe details page with wardrobeId as a parameter
+      navigate("/wardrobe", { state: { wardrobeId } }); // Assuming '/wardrobe/:wardrobeId' is your route
+    } catch (error) {
+      console.error("Error navigating to wardrobe details:", error);
+    }
+  };
 
   const Logout=()=>{
     localStorage.clear();
@@ -79,13 +107,13 @@ const UserSideBar = () => {
         <Navbar>
           <ul className="p-0 m-0 d-flex align-items-center flex-row flex-lg-column gap-lg-4 gap-3">
             <li className="firstUr">
-              <Link to="#" className="me-0">
+              <Link to="/createwardrobe" className="me-0">
                 <img src="/images/white-star-Group.svg" alt="icon" />
               </Link>
             </li>
             <div className="innerOrder d-flex flex-row flex-lg-column align-items-center align-items-lg-start gap-lg-4 gap-3">
               <li className="active" onClick={() => setShowNavs(false)}>
-                <Link to="/homepage">
+                <Link to="/home">
                   <img
                     className="sideBarIcon active"
                     src="/images/noun-home.svg"
@@ -124,23 +152,15 @@ const UserSideBar = () => {
 
                         <Dropdown.Menu>
                           <p className="whoDay">Today</p>
-                          <Dropdown.Item href="#/action-1">
-                            Wardrobe 1
-                          </Dropdown.Item>
-                          <p className="whoDay">Yesterday</p>
-                          <div className="wrdpss">
-                            <Dropdown.Item >
-                              <Link to = '/wardroberesults'> 
-                              Wardrobe 1
-                              </Link>
+                          {wardrobes.map((wardrobeItem, index) => (
+                            <Dropdown.Item
+                              key={index}
+                             
+                            >
+                             <Link to={`/wardrobe/${wardrobeItem.wardrobe_id}`}>{wardrobeItem.name}</Link>
+                             
                             </Dropdown.Item>
-                            <Dropdown.Item href="/action-3">
-                              Wardrobe 2
-                            </Dropdown.Item>
-                            <Dropdown.Item href="#/action-3">
-                              Wardrobe 3
-                            </Dropdown.Item>
-                          </div>
+                          ))}
                         </Dropdown.Menu>
                       </Dropdown>
                     </Link>

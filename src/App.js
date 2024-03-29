@@ -9,11 +9,13 @@ import Signup from "./components/sign-up/Signup";
 import CreateWardrobe from "./pages/AsGuest/createWardrobe/CreateWardrobe";
 import GeneratedResult from "./pages/AsGuest/genratedWardrobe/GenratedResult";
 import FavoritesProduct from "./pages/Favorites/FavoritesProduct";
-import WardrobeOne from "./pages/Wardrobe/WardrobeOne";
+
 import WardrobeOneResult from "./components/WardrobeResult/WardrobeOneResult";
 import GuestGenrateForm from "./components/genrateForm/GuestGenrateForm";
 import GuestCreateWardrobe from "./pages/AsGuest/createWardrobe/guestCreateWardrobe";
 import AddProduct from "./components/Modals/AddProduct";
+import HomePage from "./pages/Home/HomePage";
+import WardrobeOne from "./pages/Wardrobe/WardrobeOne";
 
 function App() {
   return (
@@ -21,16 +23,18 @@ function App() {
        
       <Router>
         <Routes>
+       
           <Route path="/" element={<PrivateRoute />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/createwardrobe" element={<CreateWardrobe />} />
           <Route path="/guestresult" element={<GeneratedResult />} />
           <Route path="/favourite" element={<FavoritesProduct />} />
-          <Route path="/wardroberesults" element={<WardrobeOne />} />
+          <Route path="/wardrobe/:wardrobeId" element={<WardrobeOne />} />
           <Route path="/wardrobe-one-result" element={<WardrobeOneResult />} />
           <Route path="/GuestGeneratedForm" element={<GuestGenrateForm />} />
           <Route path="/GuestCreateWardrobe" element={<GuestCreateWardrobe />} />
           <Route path="/Add" element={<AddProduct/>} />
+          <Route path="/home" element={<HomePage/>} />
 
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
