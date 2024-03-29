@@ -27,10 +27,9 @@ const AddProduct = (props) => {
   const handleButtonClick = async () => {
     // Prepare formData object
     const formData = {
-      product_id: productData.product_id,
+     
       brand_name: productData.brand_name,
       brand_logo: productData.brand_logo,
-      user_id: productData.user_id,
       product_name: productData.product_name,
       product_link: productData.product_link,
       price: productData.price,
@@ -46,7 +45,7 @@ console.log("formdata", formData);
       // Call the API function to send feedback
     //  console.log('Feedback submitted successfully:');
       console.log("Token" , formData)
-      const response = await favouriteProductSvc.addToFavorites(formData,token);
+      const response = await favouriteProductSvc.addToFavorites(token , formData);
       // Handle successful response (e.g., show success message, close modal, etc.)
       console.log('Feedback submitted successfully:', response);
       props.onHide(); // Close the modal after successful submission

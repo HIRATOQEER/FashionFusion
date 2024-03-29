@@ -8,12 +8,7 @@ const FeedbackModal = (props) => {
   const [comment, setComment] = useState('');
   const token = useSelector((state) => state.name); // Assuming state.name returns a Promise
  
- const data = {
-    "user_id": "hira",
-    "feedback_id": "123",
-   "comments": comment
-  };
- 
+
 
 
   console.log("USERNAMETOKEN", token);
@@ -26,7 +21,7 @@ const FeedbackModal = (props) => {
    
       // Call the API function to send feedback
       console.log('Feedback submitted successfully:');
-      const response = await feedbackSvc.giveFeedback(token, data);
+      const response = await feedbackSvc.giveFeedback(token, comment);
       // Handle successful response (e.g., show success message, close modal, etc.)
       console.log('Feedback submitted successfully:', response);
       props.onHide(); // Close the modal after successful submission

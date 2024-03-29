@@ -20,7 +20,7 @@ const FvrtProductBox = () => {
     
     console.log("productid",favProductid);
     try {
-      const data = await favouriteProductSvc.deleteFavouriteProduct(token,favProductid,userId);
+      const data = await favouriteProductSvc.deleteFavouriteProduct(token,favProductid);
       // Handle success response (e.g., update state, show message)
       console.log("Product removed successfully:", data);
     } catch (error) {
@@ -33,7 +33,7 @@ const FvrtProductBox = () => {
     async function fetchFavoriteProducts() {
      
       try {
-        const data = await favouriteProductSvc. getAllFavouriteProducts(userId , token);
+        const data = await favouriteProductSvc.getAllFavouriteProducts(token);
         setFavoriteProducts(data); // Update state with fetched wardrobe products data
        // setLoading(false); // Set loading to false after data is fetched
       } catch (error) {

@@ -29,7 +29,7 @@ const GeneratePreferences = ({onPreferencesChange, onSubmit }) => {
     color: '#000000',
     size: '', 
     quantity: 0, 
-    price:price
+    price:0
   }]);
   const MAX_PREFERENCES = 20;
   const navigate = useNavigate();
@@ -46,7 +46,7 @@ const GeneratePreferences = ({onPreferencesChange, onSubmit }) => {
         color: '#000000',
         size: '',
         quantity: 0,
-        price: price
+        price: 0
       };
       const updatedPreferences = [...preferences, newPreference];
       setPreferences(updatedPreferences);
@@ -109,13 +109,7 @@ const GeneratePreferences = ({onPreferencesChange, onSubmit }) => {
       if (preference.id === id) {
         // If the field is 'price', update min and max values separately
         if (field === 'price') {
-          return {
-            ...preference,
-            price: {
-              min: value.min,
-              max: value.max,
-            },
-          };
+         return 0;
         
         } else {
           return { ...preference, [field]: value };

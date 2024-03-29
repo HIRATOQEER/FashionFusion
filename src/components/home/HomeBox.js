@@ -15,7 +15,7 @@ const HomeBox = () => {
   useEffect(() => {
     const fetchWardrobe = async () => {
       try {
-        const data = await SaveWardrobe.getAllSaveWardrobes(userId, token);
+        const data = await SaveWardrobe.getAllSaveWardrobes(token);
         console.log("wardrobedata", data);
         setWardrobe(data); // Update state with fetched wardrobe products data
       } catch (error) {
@@ -28,7 +28,7 @@ const HomeBox = () => {
   }, [userId, token]); // Run effect whenever userId or token changes
   const handleRemoveWardrobe = async (wardrobeId) => {
     try {
-      await SaveWardrobe.deleteSaveWardrobe(token, wardrobeId, userId);
+      await SaveWardrobe.deleteSaveWardrobe(token, wardrobeId);
       // Update state after successful deletion
      
     } catch (error) {
@@ -51,48 +51,25 @@ const HomeBox = () => {
         <SortedBy />
         <div className="MainCardBox">
           <Row className="g-3 me-0">
-            {wardrobes.map((wardrobeItem, index) => (
-              <Col key={index} xs={12} md={6} xl={3} lg={4}>
-                <div className="HomeCard">
-                <Row className="g-1 mb-4 justify-content-center justify-content-md-start">
-  {/* Render wardrobe images here */}
-  {wardrobeItem.products.slice(0, 6).map((product, imgIndex) => (
-    <Col key={imgIndex} md={4} className="mblCol">
-      <img className="SmlProduct" src={product.image[0]} alt={`product-${imgIndex}`} />
-    </Col>
-  ))}
-</Row>
-                  <div className="d-flex justify-content-between align-items-center mb-3">
-                    {/* Render wardrobe name */}
-                    <Link to={`/wardroberesults/${wardrobeItem.wardrobe_id}`}>
-                      <p className="WrdbNmbr">{wardrobeItem.name}</p>
-                    </Link>
-                    {/* Render dropdown */}
-                    <Dropdown className="twoOption">
-                      <Dropdown.Toggle id={`dropdown-${index}`} className="btnSimple">
-                        <img src="/images/three-Icon.svg" alt="three doit" />
-                      </Dropdown.Toggle>
-                      <Dropdown.Menu>
-                        <Dropdown.Item href="#/action-1">Save Wardrobe</Dropdown.Item>
-                        <Dropdown.Item onClick={() => handleRemoveWardrobe(wardrobeItem.wardrobe_id)}>
-                       Remove</Dropdown.Item>
-                      </Dropdown.Menu>
-                    </Dropdown>
-                  </div>
-                  {/* Render CreatedTime */}
-                  <div className="CreatedTime d-flex justify-content-between align-items-center">
-                    <Button className="BtnTaggCstm">
-                      <img src="/images/home-card-Icon.svg" alt="custom" />
-                      <span>Custom</span>
-                    </Button>
-                    <p className="AgaoTime">Created 2 mins ago</p>
-                  </div>
-                  <div className="BottomCurveImg">
-                    <img src="/images/bottom-bg-img.svg" alt="curve" />
-                  </div>
-                </div>
-              </Col>
-            ))}
+          {wardrobes && wardrobes.map((wardrobeItem, index) => (
+  <Col key={index} xs={12} md={6} xl={3} lg={4}>
+    <div className="HomeCard">
+      <Row className="g-1 mb-4 justify-content-center justify-content-md-start">
+        {/* Render wardrobe images here */}
+        {wardrobeItem.products && Array.isArray(wardrobeItem.products) && wardrobeItem.products.slice(0, 6).map((product, imgIndex) => (
+          <Col key={imgIndex} md={4} className="mblCol">
+            {product.image && product.image.length > 0 && (
+              <img className="SmlProduct" src={product.image[0]} alt={`product-${imgIndex}`} />
+            )}
+          </Col>
+        ))}
+      </Row>
+      {/* Remaining JSX for the card */}
+    </div>
+  </Col>
+))}
+
+
           </Row>
         </div>
         <Button className="btnFeedBack" onClick={handleButtonClick}>

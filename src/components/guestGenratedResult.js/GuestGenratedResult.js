@@ -77,8 +77,7 @@ useEffect(() => {
    
     try {
       const data2 = {
-        "user_id": "Hira",
-        "wardrobe_id": "d31db6e4-518c-4c1e-a494-210959eb92c0jjjjjj",
+  
         "name": "Hira's Wardrobe",
         "upload_images_arr": [
           "string"
@@ -93,7 +92,7 @@ useEffect(() => {
      
       // Call the API function to send feedback
       console.log('Feedback submitted successfully:');
-      const response = await SaveWardrobe.saveWardrobe(data2, token);
+      const response = await SaveWardrobe.saveWardrobe( token , data2);
       // Handle successful response (e.g., show success message, close modal, etc.)
       console.log('Feedback submitted successfully:', response);
     //  props.onHide(); // Close the modal after successful submission

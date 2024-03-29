@@ -7,9 +7,9 @@ class Notifications {
 
     
     
-  static async getNotifications(user_id , token ) {
+  static async getNotifications(  token ) {
     try {
-        const response = await axios.get(`${apiBaseUrl}/notifications/${user_id}?token=${token}`);
+        const response = await axios.get(`${apiBaseUrl}/notifications?token=${token}`);
         return response.data;
       } catch (error) {
         console.error('Error fetching notificatios:', error);
@@ -18,9 +18,9 @@ class Notifications {
 
       }
 
-      static async getRecentNotificationsCount(user_id , token ) {
+      static async getRecentNotificationsCount(  token ) {
         try {
-            const response = await axios.get(`${apiBaseUrl}/notifications/${user_id}/unread-count?token=${token}`);
+            const response = await axios.get(`${apiBaseUrl}/notifications/unread-count?token=${token}`);
             return response.data;
           } catch (error) {
             console.error('Error fetching recent notifications count:', error);

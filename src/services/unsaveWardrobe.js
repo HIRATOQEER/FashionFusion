@@ -24,9 +24,9 @@ class UnSaveWardrobe {
       }
 
 
-    static async getAllUnSaveWardrobes(userId , token) {
+    static async getAllUnSaveWardrobes(  token) {
         try {
-            const response = await axios.get(`${apiBaseUrl}/unsaved_wardrobes/${userId}?token=${token}`);
+            const response = await axios.get(`${apiBaseUrl}/unsaved_wardrobes?token=${token}`);
             return response.data;
           } catch (error) {
             console.error('Error fetching users:', error);
@@ -46,9 +46,9 @@ class UnSaveWardrobe {
         
               }
 
-    static async deleteUnSaveWardrobe(token , wardrobeId , userId) {
+    static async deleteUnSaveWardrobe(token , wardrobeId ) {
             try {
-                const response = await axios.delete(`${apiBaseUrl}/unsaved_wardrobes/${userId}/${wardrobeId}?token=${token}`);
+                const response = await axios.delete(`${apiBaseUrl}/unsaved_wardrobes/${wardrobeId}?token=${token}`);
                 return response.data;
               } catch (error) {
                 console.error('Error Deleteing Wardrobes:', error);

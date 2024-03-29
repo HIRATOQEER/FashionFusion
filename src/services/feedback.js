@@ -6,11 +6,11 @@ const apiBaseUrl = process.env.REACT_APP_API_URI;
 class Feedback {
 
     
-  static async giveFeedback(token , formData) {
+  static async giveFeedback(token , comment) {
     console.log("token received",token);
-    console.log("; received",formData)
+    console.log("; received",comment)
     try {
-        const response = await axios.post(`${apiBaseUrl}/feedback/save?token=${token}`, formData, {
+        const response = await axios.post(`${apiBaseUrl}/feedback/save?token=${token}&comment=${comment}`, comment, {
           headers: {
             'Content-Type': 'application/json'
           }

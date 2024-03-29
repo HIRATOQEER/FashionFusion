@@ -6,7 +6,7 @@ const apiBaseUrl = process.env.REACT_APP_API_URI;
 class FavouriteProduct {
      
 
-    static async addToFavorites(formData, token) {
+    static async addToFavorites(token , formData) {
     
         try {
           const response = await axios.post(`${apiBaseUrl}/favorite_products/save?token=${token}`, formData, {
@@ -24,9 +24,9 @@ class FavouriteProduct {
       }
 
 
-    static async getAllFavouriteProducts(userId , token) {
+    static async getAllFavouriteProducts( token) {
         try {
-            const response = await axios.get(`${apiBaseUrl}/favorite_products/${userId}?token=${token}`);
+            const response = await axios.get(`${apiBaseUrl}/favorite_products?token=${token}`);
             return response.data;
           } catch (error) {
             console.error('Error fetching users:', error);
@@ -35,9 +35,9 @@ class FavouriteProduct {
     
           }
 
-          static async deleteFavouriteProduct(token , productId , userId) {
+          static async deleteFavouriteProduct(token , productId ) {
             try {
-                const response = await axios.delete(`${apiBaseUrl}/favorite_products/${userId}/${productId}?token=${token}`);
+                const response = await axios.delete(`${apiBaseUrl}/favorite_products/${productId}?token=${token}`);
                 return response.data;
               } catch (error) {
                 console.error('Error fetching users:', error);

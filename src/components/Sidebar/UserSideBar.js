@@ -22,7 +22,7 @@ const UserSideBar = () => {
   useEffect(() => {
     const fetchWardrobe = async () => {
       try {
-        const data = await SaveWardrobe.getAllSaveWardrobes(userId,accessToken);
+        const data = await SaveWardrobe.getAllSaveWardrobes(accessToken);
         console.log("wardrobedata1", data);
         setWardrobe(data); // Update state with fetched wardrobe products data
       } catch (error) {

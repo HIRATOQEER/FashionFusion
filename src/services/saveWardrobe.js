@@ -6,7 +6,7 @@ const apiBaseUrl = process.env.REACT_APP_API_URI;
 class SaveWardrobe {
      
 
-    static async saveWardrobe(formData, token) {
+    static async saveWardrobe(token , formData) {
     
         try {
           const response = await axios.post(`${apiBaseUrl}/saved_wardrobes/save?token=${token}`, formData, {
@@ -24,9 +24,9 @@ class SaveWardrobe {
       }
 
 
-    static async getAllSaveWardrobes(userId , token) {
+    static async getAllSaveWardrobes( token) {
         try {
-            const response = await axios.get(`${apiBaseUrl}/saved_wardrobes/${userId}?token=${token}`);
+            const response = await axios.get(`${apiBaseUrl}/saved_wardrobes?token=${token}`);
             return response.data;
           } catch (error) {
             console.error('Error fetching users:', error);
@@ -35,9 +35,9 @@ class SaveWardrobe {
     
           }
 
-    static async getSaveWardrobeById(token , wardrobeId , userId) {
+    static async getSaveWardrobeById(token , wardrobeId ) {
             try {
-                const response = await axios.get(`${apiBaseUrl}/saved_wardrobes/${userId}/${wardrobeId}?token=${token}`);
+                const response = await axios.get(`${apiBaseUrl}/saved_wardrobes/${wardrobeId}?token=${token}`);
                 return response.data;
               } catch (error) {
                 console.error('Error Deleteing Wardrobes:', error);
@@ -46,9 +46,9 @@ class SaveWardrobe {
         
               }
 
-    static async deleteSaveWardrobe(token , wardrobeId , userId) {
+    static async deleteSaveWardrobe(token , wardrobeId ) {
             try {
-                const response = await axios.delete(`${apiBaseUrl}/saved_wardrobes/${userId}/${wardrobeId}?token=${token}`);
+                const response = await axios.delete(`${apiBaseUrl}/saved_wardrobes/${wardrobeId}?token=${token}`);
                 return response.data;
               } catch (error) {
                 console.error('Error Deleteing Wardrobes:', error);
