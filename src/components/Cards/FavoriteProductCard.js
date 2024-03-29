@@ -1,14 +1,39 @@
 import React from "react";
-
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/navigation";
 import "swiper/css";
-import { Keyboard, Pagination, Navigation } from "swiper/modules";
 import { Button, Col, Row } from "react-bootstrap";
 import { RatingStar } from "../Rating/RatingStar";
-import FeedbackModal from "../Modals/FeedbackModal";
 
-const FavoriteProductCard = () => {
+import { useSelector } from "react-redux";
+import favouriteProductSvc from '../../services/favouriteProduct'
+
+const FavoriteProductCard = ({ product ,onDelete}) => {
+  const {
+   product_id,
+    brand_name,
+    brand_logo,
+    product_name,
+    price,
+    images_arr,
+    comment,
+    rating,
+    reason,
+    // Assuming product ID is provided as _id
+  } = product;
+
+  const handleDeleteClick = () => {
+  
+    onDelete(product_id); // Pass favProductid to onDelete
+  };
+  const token = useSelector((state) => state.name); // Assuming state.name returns a Promise
+  const userId="user123";
+ 
+  const handleBuyNow = () => {
+    // Redirect user to the buy now page or any desired page
+    //history.push("/buy-now");
+  };
+console.log("ImagesArray",images_arr);
   return (
     <>
       <div className="favoritsProducts">
@@ -22,58 +47,40 @@ const FavoriteProductCard = () => {
                 clickable: true,
               }}
               navigation={true}
-              modules={[Pagination, Navigation]}
               className="FavoritProductSwiper"
             >
-              <SwiperSlide>
-                <img src="/images/favorite-product-1.png" alt="product" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src="/images/favorite-product-2.png" alt="product" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src="/images/favorite-product-1.png" alt="product" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src="/images/favorite-product-1.png" alt="product" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src="/images/favorite-product-2.png" alt="product" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src="/images/favorite-product-1.png" alt="product" />
-              </SwiperSlide>
+              {images_arr.map((image, index) => (
+    <SwiperSlide key={index}>
+      <img
+        src={image}
+        alt={`product-${index}`}
+        onLoad={() => console.log(`Image ${index} loaded successfully`)}
+        onError={(e) => console.error(`Error loading image ${index}:`, e)}
+      />
+    </SwiperSlide>
+  ))}
             </Swiper>
           </Col>
           <Col xs={12} md={7}>
             <div className="detailBox">
-              <p className="prdctName mb-3">
-                SMART FIT POLO SHIRT - FMTCP23-067
-              </p>
+              <p className="prdctName mb-3">{product_name}</p>
               <div className="d-flex justify-content-between align-items-center mb-3">
-                <p className="priceThis">PKR 1,395</p>
-                <img
-                  className="BrandThis"
-                  src="/images/furorlogo.svg"
-                  alt="icon"
-                />
+                <p className="priceThis">{price}</p>
+                <img className="BrandThis" src={brand_logo} alt="brand" />
               </div>
               <strong>Your Comments</strong>
-              <p className="yourCommentDtl">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum
-                nemo nesciunt provident molestias dolore velit? Odit optio
-                voluptate reprehenderit nulla obcaecati aut tempore! Alias
-                adipisci ea distinctio, rem autem suscipit!
-              </p>
+              <p className="yourCommentDtl">{comment}</p>
               <div className="d-flex align-items-center mb-3">
-                <RatingStar />
+                <RatingStar rating={rating} />
               </div>
               <div className="d-flex align-items-center mb-3">
+             
+
                 <Button className="buyProduct">
                   BUY NOW <img src="/images/buynow-Icon.svg" alt="icon" />
                 </Button>
-                <Button className="btnRemoveEvry border-0 ms-3">
-                  <img src="/images/remove-icon.svg" alt="icon" />
+                <Button className="btnRemoveEvry border-0 ms-3"  onClick={handleDeleteClick}>
+                  <img src="/images/remove-icon.svg" alt="remove" />
                 </Button>
               </div>
             </div>

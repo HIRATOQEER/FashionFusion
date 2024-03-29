@@ -1,19 +1,41 @@
 import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import EditSavedToast from "../Toasts/EditSavedToast";
-
+import SaveWardrobe from "../../services/saveWardrobe";
+import { useSelector } from "react-redux";
 const RenameWardrobeModal = (props) => {
   const [wardrobeName, setWardrobeName] = useState(""); // State for input value
   const [showToast, setShowToast] = useState(false); // State for toast visibility
-
+  const token = useSelector((state) => state.name);
   const handleInputChange = (e) => {
     setWardrobeName(e.target.value); // Update input value state
   };
 
+
+  
+
+
   const handleButtonClick = () => {
-    // Perform actions with the updated wardrobeName state (e.g., save it)
-    console.log("Wardrobe name saved:", wardrobeName);
+  
+    
+    /*try {
+     
+      // Call the API function to send feedback
+     
+      console.log('Feedback submitted successfully:');
+      const response = await renameWardrobe.saveWardrobe(wardrobeId, token,newName);
+      // Handle successful response (e.g., show success message, close modal, etc.)
+      console.log('Feedback submitted successfully:', response);
+    //  props.onHide(); // Close the modal after successful submission
+    } catch (error) {
+      // Handle API errors (e.g., show error message)
+      console.error('Error submitting feedback:', error.message);
+      // Optionally, you can set state to display an error message to the user
+    }
+
+    setShowToast(true);
     setShowToast(true); // Show toast after saving
+   */
   };
 
   const handleCloseToast = () => {

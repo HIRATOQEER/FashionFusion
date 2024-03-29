@@ -48,13 +48,7 @@ const GuestGenratedResult = () => {
     // Logic to handle change
     navigate("/createwardrobe");
   };
- // Array of 10 products with dummy data
- const [products, setProducts] = useState(
-  Array.from({ length: 10 }, (_, index) => ({
-    id: index + 1,
-    image: "/images/given-prefrnce-image-1.png", // Placeholder image URL
-  }))
-);
+ 
  
 const [wardrobeProducts, setWardrobeProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -62,6 +56,7 @@ useEffect(() => {
   const fetchWardrobeProducts = async () => {
     try {
       const data = await brandSvc.getWardrobeProducts("women");
+      console.log("wardrobedata", data);
       setWardrobeProducts(data); // Update state with fetched wardrobe products data
       setLoading(false); // Set loading to false after data is fetched
     } catch (error) {
@@ -73,12 +68,6 @@ useEffect(() => {
 
   fetchWardrobeProducts();
 }, ["women"]); // Run effect whenever gender changes
-const handleDeleteProduct = (productId) => {
-  const updatedProducts = products.filter((product) => product.id !== productId);
-  setProducts(updatedProducts);
-  setShowToast(true);
-};
-  
 
   const handleCloseToast = () => {
     setShowToast(false);
@@ -88,9 +77,9 @@ const handleDeleteProduct = (productId) => {
    
     try {
       const data2 = {
-        "user_id": "string",
-        "wardrobe_id": "d31db6e4-518c-4c1e-a494-210959eb92c0",
-        "name": "string",
+        "user_id": "Hira",
+        "wardrobe_id": "d31db6e4-518c-4c1e-a494-210959eb92c0jjjjjj",
+        "name": "Hira's Wardrobe",
         "upload_images_arr": [
           "string"
         ],
@@ -120,18 +109,18 @@ const handleDeleteProduct = (productId) => {
 
 
 // Function to handle add to favorites click
-const handleAddToFavorites = (productId) => {
+const handleAddToFavorites = (product) => {
   console.log("Button clicked");
   // Find the selected product using productId or any other identifier
   const selectedProductData = {
-    product_id: "123",
-    brand_name: "Example Brand",
-    brand_logo: "example_logo.png",
+    product_id:product.productId,
+    brand_name: product.brand_name,
+    brand_logo: product.brand_logo,
     user_id: "user123",
-    product_name: "Example Product",
-    product_link: "https://example.com/product",
-    price: "$100",
-    images_arr: ["image1.png", "image2.png"],
+    product_name: product.product_name,
+    product_link: product.product_url,
+    price: product.price,
+    images_arr: [product.image[0],product.image[1]]
   };
 
   // Set the selected product data
@@ -186,26 +175,21 @@ const handleAddToFavorites = (productId) => {
           />
         </Button>
 
-        <ProductDetails
-                  show={modalShow}
-                  onHide={() => setModalShow(false)}
-                />
+        
                      <AddProduct
             show={modalAddShow}
         onHide={() => setModalAddShow(false)}
         productData={selectedProduct} // Pass product data as props
       />
+  
 
-                <ProductOverview
-                  show={modalOverViewShow}
-                  onHide={() => setModalOverViewShow(false)}
-                />
+                
         <div className="buttonGroup">
           {/* Add to Favorites Button */}
           <Button
             className="btnFavourite"
             onClick={() =>
-              handleAddToFavorites(product.id)
+              handleAddToFavorites(product)
             }
           >
             <img
@@ -218,7 +202,7 @@ const handleAddToFavorites = (productId) => {
           {/* Close (Cross) Button */}
           <Button
                       className="btnRemoveClose"
-                      onClick={() => handleDeleteProduct(product.id)}
+                     
                     >
                       <img src="/images/close-Icon.svg" alt="delete" />
                     </Button>
