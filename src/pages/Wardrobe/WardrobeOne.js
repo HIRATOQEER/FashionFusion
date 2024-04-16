@@ -13,7 +13,7 @@ const WardrobeOne = () => {
  
 
   const { wardrobeId } = useParams();
-  const accessToken =  useSelector(state => state.name);
+  const accessToken =  useSelector(state => state.token);
 const [wardrobes, setWardrobe] = useState([]);
   const userId = "user123";
   useEffect(() => {

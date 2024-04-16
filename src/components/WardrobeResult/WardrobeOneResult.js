@@ -23,7 +23,7 @@ const WardrobeOneResult = () => {
   const [selectedProducts, setSelectedProducts] = useState([]);
   const location = useLocation();
   const { wardrobeId } = useParams();
-  const accessToken = useSelector(state => state.name);
+  const accessToken = useSelector(state => state.token);
   const [wardrobes, setWardrobe] = useState({ products: [] }); // Initialize with an empty products array
   const [modalRegenrateShow, setModalRegenrateShow] = useState(false);
 
@@ -40,7 +40,7 @@ const WardrobeOneResult = () => {
   useEffect(() => {
     const fetchWardrobe = async () => {
       try {
-        const data = await SaveWardrobe.getSaveWardrobeById(accessToken, wardrobeId, userId);
+        const data = await SaveWardrobe.getSaveWardrobeById(accessToken, wardrobeId);
         console.log("wardrobedata1mmmmm", data);
         setWardrobe(data); // Update state with fetched wardrobe products data
       } catch (error) {
