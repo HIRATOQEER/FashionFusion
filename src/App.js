@@ -18,6 +18,7 @@ import HomePage from "./pages/Home/HomePage";
 import WardrobeOne from "./pages/Wardrobe/WardrobeOne";
 
 function App() {
+  
   return (
     <Provider store={store}>
        

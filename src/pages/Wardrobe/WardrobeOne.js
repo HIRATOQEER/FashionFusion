@@ -19,7 +19,7 @@ const [wardrobes, setWardrobe] = useState([]);
   useEffect(() => {
     const fetchWardrobe = async () => {
       try {
-        const data = await SaveWardrobe. getSaveWardrobeById(accessToken , wardrobeId, userId);
+        const data = await SaveWardrobe.getSaveWardrobeById(accessToken , wardrobeId);
         console.log("wardrobedata1mmmmm", data);
         setWardrobe(data); // Update state with fetched wardrobe products data
       } catch (error) {
