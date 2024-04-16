@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 
 const HomeBox = () => {
   const userId = "user123";
-  const token = useSelector((state) => state.name);
+  const token = useSelector((state) => state.token);
   const [modalShow, setModalShow] = useState(false);
   const [wardrobes, setWardrobe] = useState([]);
 

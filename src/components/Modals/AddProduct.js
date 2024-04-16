@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 
 const AddProduct = (props) => {
   const { show, onHide, productData } = props;
-  const token = useSelector((state) => state.name); // Assuming state.name returns a Promise
+  const token = useSelector((state) => state.token); // Assuming state.name returns a Promise
  
   const [comment, setComment] = useState("");
   const [rating, setRating] = useState(0);

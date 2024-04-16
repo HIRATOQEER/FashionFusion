@@ -6,7 +6,7 @@ import feedbackSvc from '../../services/feedback'
 
 const FeedbackModal = (props) => {
   const [comment, setComment] = useState('');
-  const token = useSelector((state) => state.name); // Assuming state.name returns a Promise
+  const token = useSelector((state) => state.token); // Assuming state.name returns a Promise
  
 
 

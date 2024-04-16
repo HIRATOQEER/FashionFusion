@@ -1,17 +1,25 @@
 // reducer.js
-import { UPDATE_NAME } from './actionTypes';
+import { UPDATE_ACCESS_TOKEN } from './actionTypes';
+import { UPDATE_USER_TOKEN } from './actionTypes';
+
 
 const initialState = {
-  name: '',
+  token: '',
+  userToken: '',
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case UPDATE_NAME:
+    case UPDATE_ACCESS_TOKEN:
       return {
         ...state,
-        name: action.payload,
+        token: action.payload,
       };
+      case UPDATE_USER_TOKEN:
+        return {
+          ...state,
+          userToken: action.payload,
+        };
     default:
       return state;
   }

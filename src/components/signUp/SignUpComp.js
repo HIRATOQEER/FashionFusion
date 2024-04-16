@@ -7,7 +7,7 @@ import { getFirestore, doc, setDoc } from "firebase/firestore";
 import { firebaseApp } from "../../firebase";
 
 import {  useDispatch } from 'react-redux';
-import { updateName } from '../../store/actions';
+import { updateAccessToken , updateUserToken } from '../../store/actions';
 import { onAuthStateChanged } from 'firebase/auth';
 
 
@@ -41,7 +41,9 @@ const SignUpComp = ({ onClose }) => {
       const idToken = await user.getIdToken();
 
       localStorage.setItem("token" , idToken);
-      dispatch(updateName(idToken));
+      dispatch(updateAccessToken(idToken));
+      dispatch(updateUserToken(user));
+
       console.log(user)
       console.log(userCredential)
 

@@ -6,7 +6,7 @@ import Modal from "react-bootstrap/Modal";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { firebaseApp } from "../../firebase";
 import {  useDispatch } from 'react-redux';
-import { updateName } from '../../store/actions';
+import { updateAccessToken , updateUserToken } from '../../store/actions';
 import {   GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { getFirestore, doc, getDoc } from "firebase/firestore";
 
@@ -32,9 +32,10 @@ const LoginModal = (props) => {
       });
       const userCredential = await signInWithPopup(auth, provider);
       const user = userCredential.user;
-      const idToken = user.getIdToken()
-      localStorage.setItem("token" ,idToken );
-      dispatch(updateName(idToken));
+      const idToken =await user.getIdToken()
+       localStorage.setItem("token" ,idToken );
+      dispatch(updateAccessToken(idToken));
+      dispatch(updateUserToken(user));
 
        //SHOW ALERT lOGGED iN  SUCCESSSFULLY
        navigate("/");
@@ -56,6 +57,8 @@ const LoginModal = (props) => {
       const userDocSnap = await getDoc(userDocRef);
       if (userDocSnap.exists()) {
         const userData = userDocSnap.data();
+        dispatch(updateUserToken(userData));
+
         console.log("User data from Firestore:", userData);
 
         // You can then dispatch an action to store this data in your Redux store if needed
@@ -64,7 +67,8 @@ const LoginModal = (props) => {
       }
       const token = await user.getIdToken();
       localStorage.setItem("token", token);
-      dispatch(updateName(token));
+      dispatch(updateAccessToken(token));
+      console.log(user.displayName)
 
       localStorage.setItem("user_id", user.email);
 

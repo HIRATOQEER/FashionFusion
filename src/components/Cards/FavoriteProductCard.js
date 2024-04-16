@@ -26,7 +26,7 @@ const FavoriteProductCard = ({ product ,onDelete}) => {
   
     onDelete(product_id); // Pass favProductid to onDelete
   };
-  const token = useSelector((state) => state.name); // Assuming state.name returns a Promise
+  const token = useSelector((state) => state.token); // Assuming state.name returns a Promise
   const userId="user123";
  
   const handleBuyNow = () => {

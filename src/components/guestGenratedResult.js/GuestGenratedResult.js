@@ -19,7 +19,7 @@ import { useSelector } from "react-redux";
 const GuestGenratedResult = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const token = useSelector((state) => state.name);
+  const token = useSelector((state) => state.token);
   const { dataToSend } = location.state || {};
   
   

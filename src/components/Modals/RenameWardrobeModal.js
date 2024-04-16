@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 const RenameWardrobeModal = (props) => {
   const [wardrobeName, setWardrobeName] = useState(""); // State for input value
   const [showToast, setShowToast] = useState(false); // State for toast visibility
-  const token = useSelector((state) => state.name);
+  const token = useSelector((state) => state.token);
   const handleInputChange = (e) => {
     setWardrobeName(e.target.value); // Update input value state
   };

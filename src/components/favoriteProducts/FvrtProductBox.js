@@ -12,7 +12,7 @@ const FvrtProductBox = () => {
 
   const [modalShow, setModalShow] = useState(false);
   const [favoriteProducts, setFavoriteProducts] = useState([]);
-  const token = useSelector((state) => state.name); // Assuming state.name returns a Promise
+  const token = useSelector((state) => state.token); // Assuming state.name returns a Promise
   const userId="user123";
 
 

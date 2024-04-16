@@ -8,7 +8,7 @@ import {  useSelector } from 'react-redux';
 function PrivateRoute({ path }) {
  
 
-   const accessToken =  useSelector(state => state.name);
+   const accessToken =  useSelector(state => state.token);
 
   if (!accessToken) {
     return <WelcomeScreen />;

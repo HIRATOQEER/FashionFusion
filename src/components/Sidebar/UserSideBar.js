@@ -3,18 +3,20 @@ import { Button, Dropdown, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import {  useDispatch } from 'react-redux';
-import { updateName } from '../../store/actions';
+import { updateAccessToken , updateUserToken } from '../../store/actions';
 import {  useSelector } from 'react-redux';
 import SaveWardrobe from "../../services/saveWardrobe";
 const UserSideBar = () => {
   const dispatch = useDispatch();
-  const accessToken =  useSelector(state => state.name);
+  const userToken =  useSelector(state => state.userToken);
+  const accessToken =  useSelector(state => state.token);
+  console.log("HASSAN" +userToken["displayName"])
   const [wardrobes, setWardrobe] = useState([]);
   const [photo, setPhoto] = useState(
-    accessToken.photoURL ? accessToken.photoURL : "/images/sidebr-prf-image.png"
+    userToken.photoURL ? userToken.photoURL : "/images/sidebr-prf-image.png"
   );
   const [name, setName] = useState(
-    accessToken.displayName ? accessToken.displayName : "User"
+    userToken.displayName ? userToken.displayName : "User"
   );
  
 
@@ -57,7 +59,9 @@ const UserSideBar = () => {
 
   const Logout=()=>{
     localStorage.clear();
-    dispatch(updateName(""));
+    dispatch(updateAccessToken(""));
+    dispatch(updateUserToken(""));
+
     navigate("/");
   }
   useEffect(() => {
