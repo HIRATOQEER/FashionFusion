@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/navigation";
@@ -9,7 +9,8 @@ import { FreeMode, Pagination } from "swiper/modules";
 import AddProduct from "../Modals/AddProduct";
 
 const ProductOverview = ({ product, show, onHide }) => {
-  const [modalAddShow, setModalAddShow] = React.useState(false);
+  const [modalAddShow, setModalAddShow] = useState(false);
+
   const {
     brand_logo,
     brand_name,
@@ -21,18 +22,22 @@ const ProductOverview = ({ product, show, onHide }) => {
     _id,
   } = product;
 
+  const handleClose = () => {
+    onHide();
+  };
+
   const handleAddToFavorites = () => {
     setModalAddShow(true);
-    // Handle adding product to favorites or perform any other action
   };
-  const handleClose = () => {
-    onHide(); // Call onHide function from props to close the modal
+
+  const handleModalHide = () => {
+    setModalAddShow(false);
   };
 
   return (
     <>
-     <Modal show={show} onHide={handleClose} size="lg" centered className="productDtlMdl">
-  <Modal.Header closeButton>
+      <Modal show={show} onHide={handleClose} size="lg" centered className="productDtlMdl">
+        <Modal.Header closeButton>
           <Modal.Title>
             <p className="rmvPrdct">Product Overview</p>
           </Modal.Title>
@@ -72,6 +77,19 @@ const ProductOverview = ({ product, show, onHide }) => {
           </Button>
         </Modal.Footer>
       </Modal>
+
+      <AddProduct
+        show={modalAddShow}
+        onHide={handleModalHide}
+        productData={{
+          brand_name,
+          brand_logo,
+          product_name,
+          product_link: product_url,
+          price,
+          images_arr: image,
+        }}
+      />
     </>
   );
 };

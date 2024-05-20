@@ -23,6 +23,7 @@ const SuccessfullyRmvPrdct = ({ showToast, onClose }) => {
           </p>
         </Toast.Body>
       </Toast>
+      
     </div>
   );
 };

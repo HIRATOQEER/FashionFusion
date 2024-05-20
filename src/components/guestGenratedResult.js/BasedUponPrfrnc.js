@@ -2,32 +2,30 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import Dropdown from "react-bootstrap/Dropdown";
 
+
 const BasedUponPrfrnc = ({ data }) => {
   const { facebookLink = '', instagramLink = '', preferences = [], uploadedImages = [] } = data || {};
-  console.log("Preferces",data.preferences);
+  console.log("Preferces", data.preferences);
   return (
     <>
-    
-    
-    
       <div className="BasedUponPrfrnc mb-5 mt-3">
         <p className="discptn mb-3">
           Products results based upon the given preferences
         </p>
         <div className="givenPrefrnc d-flex flex-column flex-lg-row align-items-lg-center gap-4">
           <div className="d-flex align-items-center gap-2">
-          {uploadedImages.map((image, index) => (
-           <div key={index} className="d-flex align-items-center gap-2">
-          
-           <p className="imageURL">{image.name}</p>
-           <img
-             className="selectedImage"
-             src={image.dataURL} // Use the dataURL property
-             alt={`Uploaded Image ${index + 1}`}
-             style={{ maxWidth: "100px", maxHeight: "100px" }} // Adjust dimensions as needed
-           />
-         </div>
-       ))}
+            {uploadedImages.map((image, index) => (
+              <div key={index} className="d-flex align-items-center gap-2">
+
+                <p className="imageURL">{image.name}</p>
+                <img
+                  className="selectedImage"
+                  src={image.dataURL} // Use the dataURL property
+                  alt={`Uploaded Image ${index + 1}`}
+                  style={{ maxWidth: "100px", maxHeight: "100px" }} // Adjust dimensions as needed
+                />
+              </div>
+            ))}
           </div>
           <div className="d-flex align-items-center gap-2">
             {instagramLink && facebookLink && (
@@ -64,7 +62,7 @@ const BasedUponPrfrnc = ({ data }) => {
               {instagramLink && <img src="/images/Instagram-black-icon.svg" alt="icon" />}
             </p>
           </div>
-           
+
           <div className="d-flex align-items-center gap-2">
             <Dropdown className="prfAttached">
               <Dropdown.Toggle id="dropdown-basic" className="PrfrncResult">
@@ -106,7 +104,7 @@ const BasedUponPrfrnc = ({ data }) => {
                         <p>
                           <span className="prfNameCmn">PRICE</span>
                           <span className="prfProductCmn">
-                            {preference.price.min}-{preference.price.max} PKR
+                           {preference.price} PKR
                           </span>
                         </p>
                         <p>

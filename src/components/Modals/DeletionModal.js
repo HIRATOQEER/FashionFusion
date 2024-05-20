@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
 const DeletionModal = (props) => {
+
+
   return (
     <>
       <Modal

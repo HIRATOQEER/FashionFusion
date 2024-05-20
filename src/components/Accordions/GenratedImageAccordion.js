@@ -33,6 +33,7 @@ const GenratedImageAccordion = ({ onImageChange }) => {
       console.log("totally custom!")
     );
 
+    
     return (
       <button
         type="button"
@@ -82,6 +83,7 @@ const GenratedImageAccordion = ({ onImageChange }) => {
                 type="file"
                 onChange={handleImageUpload}
                 style={{ display: "none" }}
+                multiple
               />
             </div>
             {/* Display uploaded images */}

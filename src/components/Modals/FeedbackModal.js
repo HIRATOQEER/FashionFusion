@@ -3,26 +3,24 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { useSelector } from "react-redux";
 import feedbackSvc from '../../services/feedback'
+import EditSavedToast from "../Toasts/EditSavedToast";
 
 const FeedbackModal = (props) => {
   const [comment, setComment] = useState('');
   const token = useSelector((state) => state.token); // Assuming state.name returns a Promise
- 
-
-
+  const [showToast, setShowToast] = useState(false);      // State to control the visibility of the toast
 
   console.log("USERNAMETOKEN", token);
-
- 
 
   const handleSubmit = async () => {
     try {
     
    
-      // Call the API function to send feedback
-      console.log('Feedback submitted successfully:');
+      // Calling the API function to send feedback
+     
       const response = await feedbackSvc.giveFeedback(token, comment);
       // Handle successful response (e.g., show success message, close modal, etc.)
+      setShowToast(true);
       console.log('Feedback submitted successfully:', response);
       props.onHide(); // Close the modal after successful submission
     } catch (error) {
@@ -71,6 +69,9 @@ const FeedbackModal = (props) => {
           <Button className="btnPrfSubmit" onClick={handleSubmit} >Submit </Button>
         </Modal.Footer>
       </Modal>
+
+      {/* Showing the feedback saved toast on successfull submission */}
+      <EditSavedToast showToast={showToast} onClose={() => setShowToast(false)} />
     </>
   );
 };

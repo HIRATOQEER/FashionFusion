@@ -4,8 +4,9 @@ import { Col, Row } from "react-bootstrap";
 import GuestSideBar from "../../../components/Sidebar/GuestSideBar";
 import GuestGenrateForm from "../../../components/genrateForm/GuestGenrateForm";
 import WelcomeHeader from "../../../components/headers/WelcomeHeader";
+import UpdateWardrobeHeader from "../../../components/headers/UpdateWardrobeHeader";
 
-const CreateWardrobe = () => {
+const UpdateWardrobe = () => {
   return (
     <>
     
@@ -13,7 +14,7 @@ const CreateWardrobe = () => {
         <div className="d-lg-none">
           <WelcomeHeader />
         </div>
-        <CreateWrdrobeHeader />
+        <UpdateWardrobeHeader />
 
         <Row className="m-0 p-0">
           <Col lg={2} className="ps-0 d-none d-lg-block">
@@ -28,4 +29,4 @@ const CreateWardrobe = () => {
   );
 };
 
-export default CreateWardrobe;
+export default UpdateWardrobe;

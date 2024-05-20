@@ -57,6 +57,16 @@ class UnSaveWardrobe {
         
               }
              
+              static async deleteAllUnSaveWardrobe(token) {
+                try {
+                  const response = await axios.delete(`${apiBaseUrl}/unsaved_wardrobes/?token=${token}`);
+                  return response.data;
+                } catch (error) {
+                  console.error('Error Deleteing Wardrobes:', error);
+                  throw error; // Re-throw for error handling in components
+                }
+            
+              }
     static async renameUnSaveWardrobe(  wardrobeId , token , newName) {
                 try {
                     const response = await axios.put(`${apiBaseUrl}/unsaved_wardrobes/${wardrobeId}/name?token=${token}$new_name=${newName}`);

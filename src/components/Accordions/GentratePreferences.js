@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Button,
   Col,
@@ -15,26 +15,27 @@ import MultiRangeSlider from 'multi-range-slider-react';
 import { CompactPicker } from 'react-color';
 import { useNavigate } from 'react-router-dom';
 
-const GeneratePreferences = ({onPreferencesChange, onSubmit }) => {
+const GeneratePreferences = ({ onPreferencesChange, onSubmit }) => {
 
-  
-  
-  const [price, setMaxValue] = useState(0);
+
   const [gender, setGender] = useState('MALE'); // Track selected gender
-  const [preferences, setPreferences] = useState([{ 
-    id: 1, 
-    gender: 'MALE', 
-    category: '', 
-    brand: '', 
+  const [preferences, setPreferences] = useState([{
+    id: 1,
+    gender: 'MALE',
+    category: '',
+    brand: '',
     color: '#000000',
-    size: '', 
-    quantity: 0, 
-    price:0
+    size: '',
+    quantity: 0,
+    price: 0
   }]);
   const MAX_PREFERENCES = 20;
   const navigate = useNavigate();
+  const [ priceError, setPriceError] = useState('');
 
- 
+  const PriceRegex = /^\d+(\.\d{1,2})?$/; // Allows prices with up to two decimal places
+
+
   const handleAddPreference = () => {
     if (preferences.length < MAX_PREFERENCES) {
       const newId = Date.now(); // Generate a unique ID
@@ -60,18 +61,16 @@ const GeneratePreferences = ({onPreferencesChange, onSubmit }) => {
     );
     setPreferences(updatedPreferences);
     onPreferencesChange(updatedPreferences);
-   
+
   };
   const handleChange = () => {
     // Call the prop function to send preferencesData to the parent component
-    
-    
     // Handle form submission or other actions
     //navigate('/GuestGeneratedForm', { state: { preferences } });
 
-  
+
     onSubmit(preferences);
-  
+
     // Navigate to the result page or perform other actions
     // navigate('/wardroberesults');
   };
@@ -103,27 +102,39 @@ const GeneratePreferences = ({onPreferencesChange, onSubmit }) => {
     setPreferences(updatedPreferences);
     onPreferencesChange(updatedPreferences);
   };
+
   const handlePreferenceChange = (id, field, value) => {
-    console.log("Price",value);
+    console.log("Price", value);
     const updatedPreferences = preferences.map((preference) => {
       if (preference.id === id) {
-        // If the field is 'price', update min and max values separately
-        if (field === 'price') {
-         return 0;
-        
-        } else {
-          return { ...preference, [field]: value };
-        }
+        return { ...preference, [field]: value };    // Update field value
       }
       return preference;
     });
     setPreferences(updatedPreferences);
   };
-  
+
+  // validation for restricting negative value of price
+  const validatePrice = (value) => {
+    if (!PriceRegex.test(value) || parseFloat(value) < 0) {
+      setPriceError('Price can not be negative');
+    } else {
+      setPriceError('');
+    }
+  };
+
+  const handlePriceBlur = (event) => {
+    validatePrice(event.target.value);
+  };
+
+  const handlePriceFocus = () => {
+    setPriceError('');
+  };
+
 
   return (
     <>
- 
+
       <Accordion defaultActiveKey="0">
         <Card className="preferencesGenrat">
           <Card.Header className="d-md-flex align-items-start justify-content-between">
@@ -148,28 +159,29 @@ const GeneratePreferences = ({onPreferencesChange, onSubmit }) => {
           </Card.Header>
           <Accordion.Collapse eventKey="0">
             <Card.Body>
-             
+
               <div className="Gender mb-4">
-        <strong>Gender</strong>
-        <div className="d-flex align-items-center gap-3">
-          <Button
-            className={gender === 'MALE' ? 'active' : ''}
-            onClick={() => handleGenderChange('MALE')}
-          >
-            MALE
-          </Button>
-          <Button
-            className={gender === 'FEMALE' ? 'active' : ''}
-            onClick={() => handleGenderChange('FEMALE')}
-          >
-            FEMALE
-          </Button>
-        </div>
-      </div>
+                <strong>Gender</strong>
+                <div className="d-flex align-items-center gap-3">
+                  <Button
+                    className={gender === 'MALE' ? 'active' : ''}
+                    onClick={() => handleGenderChange('MALE')}
+                  >
+                    MALE
+                  </Button>
+                  <Button
+                    className={gender === 'FEMALE' ? 'active' : ''}
+                    onClick={() => handleGenderChange('FEMALE')}
+                  >
+                    FEMALE
+                  </Button>
+                </div>
+              </div>
             </Card.Body>
           </Accordion.Collapse>
         </Card>
       </Accordion>
+
       {preferences.map((preference, index) => (
         <Accordion key={preference.id} defaultActiveKey={`0-${index}`}>
           <Card className="preferencesGenrat">
@@ -259,34 +271,27 @@ const GeneratePreferences = ({onPreferencesChange, onSubmit }) => {
                       <Col md={6}>
                         <div>
                           <Form.Label>Price</Form.Label>
-                          <MultiRangeSlider
-  style={{
-    border: 'none',
-    boxShadow: 'none',
-    padding: '13px 10px',
-  }}
-  label="false"
-  ruler="false"
-  min={preference.price.min}
-  max={preference.price.max}
-  step={5}
-  minValue={preference.price.min}
-  maxValue={preference.price.max}
-  
-   
-  
-  onChange={({ min, max }) => {
-    {console.log(preference.price.min);
-    }
-    const updatedPrice = { min: min, max: max};
-    handlePreferenceChange(preference.id, 'price',0);
-  }}
-/>
-
+                          <InputGroup>
+                            <Form.Control
+                              type="number"
+                              placeholder="Enter Price"
+                              value={preference.price}
+                              onChange={(e) =>
+                                handlePreferenceChange(
+                                  preference.id,
+                                  'price',
+                                  parseFloat(e.target.value)
+                                )
+                              }
+                              onBlur={handlePriceBlur}
+                              onFocus={handlePriceFocus}
+                            />
+                          </InputGroup>
                         </div>
+                        {priceError && <p style={{ color: "red" }} >{priceError}</p>}
                       </Col>
                       <Col md={6}>
-                        <div className="colorPickr"style={{ marginLeft: "1px" }}>
+                        <div className="colorPickr" style={{ marginLeft: "1px" }}>
                           <Form.Label>Color</Form.Label>
                           <CompactPicker
                             color={preference.color}
@@ -304,54 +309,54 @@ const GeneratePreferences = ({onPreferencesChange, onSubmit }) => {
                   </Col>
                   <Col md={6} xs={12}>
                     <Row>
-                    <Col md={6}>
-  <Form.Label>Size</Form.Label>
-  <InputGroup>
-    <Form.Select
-      className="selectSize"
-      aria-label="Size"
-      onChange={(e) =>
-        handlePreferenceChange(
-          preference.id,
-          'size',
-          e.target.value
-        )
-      }
-      value={preference.size} // Set the value to the selected size
-    >
-      <option value="">Select size</option>
-      <option value="Small">Small</option>
-      <option value="Medium">Medium</option>
-      <option value="Large">Large</option>
-      <option value="Xl">Xl</option>
-    </Form.Select>
-  </InputGroup>
-</Col>
+                      <Col md={6}>
+                        <Form.Label>Size</Form.Label>
+                        <InputGroup>
+                          <Form.Select
+                            className="selectSize"
+                            aria-label="Size"
+                            onChange={(e) =>
+                              handlePreferenceChange(
+                                preference.id,
+                                'size',
+                                e.target.value
+                              )
+                            }
+                            value={preference.size} // Set the value to the selected size
+                          >
+                            <option value="">Select size</option>
+                            <option value="Small">Small</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Large">Large</option>
+                            <option value="Xl">Xl</option>
+                          </Form.Select>
+                        </InputGroup>
+                      </Col>
 
                       <Col md={6}>
-                      <Form.Label>Quantity</Form.Label>
-  <InputGroup>
-    <Form.Select
-      className="selectQuantity"
-      aria-label="Quantity"
-      onChange={(e) =>
-        handlePreferenceChange(
-          preference.id,
-          'quantity',
-          parseInt(e.target.value)
-        )
-      }
-      value={preference.quantity} // Set the value to the selected quantity
-    >
-      <option value="">Select quantity</option>
-      <option value="1">1</option>
-      <option value="10">10</option>
-      <option value="20">20</option>
-      <option value="30">30</option>
-    </Form.Select>
-    {/* Display the selected quantity in the input field */}
-  
-  </InputGroup>
+                        <Form.Label>Quantity</Form.Label>
+                        <InputGroup>
+                          <Form.Select
+                            className="selectQuantity"
+                            aria-label="Quantity"
+                            onChange={(e) =>
+                              handlePreferenceChange(
+                                preference.id,
+                                'quantity',
+                                parseInt(e.target.value)
+                              )
+                            }
+                            value={preference.quantity} // Set the value to the selected quantity
+                          >
+                            <option value="">Select quantity</option>
+                            <option value="1">1</option>
+                            <option value="10">10</option>
+                            <option value="20">20</option>
+                            <option value="30">30</option>
+                          </Form.Select>
+                          {/* Display the selected quantity in the input field */}
+
+                        </InputGroup>
                       </Col>
                     </Row>
                   </Col>

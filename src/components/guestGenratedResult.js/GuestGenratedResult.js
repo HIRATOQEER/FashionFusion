@@ -13,17 +13,19 @@ import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import SuccessfullySavedToast from "../Toasts/SuccessfullySvedToast";
 import BasedUponPrfrnc from "./BasedUponPrfrnc";
-import  brandSvc  from "../../services/brandService"; // Import the API service
+import brandSvc from "../../services/brandService"; // Import the API service
 import SaveWardrobe from "../../services/saveWardrobe";
 import { useSelector } from "react-redux";
+
 const GuestGenratedResult = () => {
+
+  const [wardrobeId, setWardrobeId] = useState(null);
   const location = useLocation();
   const navigate = useNavigate();
   const token = useSelector((state) => state.token);
   const { dataToSend } = location.state || {};
-  
-  
-  
+  const [productModalVisible, setProductModalVisible] = useState({});
+
 
   useEffect(() => {
     // Check if dataToSend is properly received
@@ -35,181 +37,218 @@ const GuestGenratedResult = () => {
     }
   }, [dataToSend]);
 
- 
+
   const [modalShow, setModalShow] = useState(false);
   const [modalAddShow, setModalAddShow] = useState(false);
   const [modalOverViewShow, setModalOverViewShow] = useState(false);
   const [modalRegenrateShow, setModalRegenrateShow] = useState(false);
   const [showToast, setShowToast] = useState(false);
-  
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0); // State to track the index of the currently displayed image
+  const [selectedProducts, setSelectedProducts] = useState([]);
+  const accessToken = useSelector(state => state.token);
 
   const handleChange = () => {
     // Logic to handle change
     navigate("/createwardrobe");
   };
- 
- 
-const [wardrobeProducts, setWardrobeProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
-useEffect(() => {
-  const fetchWardrobeProducts = async () => {
-    try {
-      const data = await brandSvc.getWardrobeProducts("women");
-      console.log("wardrobedata", data);
-      setWardrobeProducts(data); // Update state with fetched wardrobe products data
-      setLoading(false); // Set loading to false after data is fetched
-    } catch (error) {
-      console.error("Error fetching wardrobe products:", error);
-      // Handle error or set an error state
-      setLoading(false); // Set loading to false on error
-    }
-  };
 
-  fetchWardrobeProducts();
-}, ["women"]); // Run effect whenever gender changes
+
+  const [wardrobeProducts, setWardrobeProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchWardrobeProducts = async () => {
+      try {
+        const data = await brandSvc.getWardrobeProducts("women");
+        console.log("wardrobedata", data);
+        setWardrobeProducts(data); // Update state with fetched wardrobe products data
+        setLoading(false); // Set loading to false after data is fetched
+      } catch (error) {
+        console.error("Error fetching wardrobe products:", error);
+        // Handle error or set an error state
+        setLoading(false); // Set loading to false on error
+      }
+    };
+
+    fetchWardrobeProducts();
+  }, ["women"]); // Run effect whenever gender changes
 
   const handleCloseToast = () => {
     setShowToast(false);
   };
- 
+
   const handleButtonClick = async () => {
-   
     try {
+
+      // Ensure that each image dataURL is properly encoded
+      const imageData = dataToSend.uploadedImages.map(image => ({
+        name: image.name,
+        dataURL: image.dataURL.includes(',') ? image.dataURL.split(',')[1] : image.dataURL     // Check if dataURL contains prefix
+      }));
+
+      console.log('Image Data:', imageData); // Log image data for verification
+
       const data2 = {
-  
-        "name": "Hira's Wardrobe",
-        "upload_images_arr": [
-          "string"
-        ],
+        "name": "My Wardrobe",
+        "upload_images_arr": dataToSend.uploadedImages.map((x)=> x.dataURL), // Updated image data
         "media_links": {
-          "Facebook":dataToSend.facebookLink,
+          "Facebook": dataToSend.facebookLink,
           "Instagram": dataToSend.instagramLink
         },
-        "manual_preferences":dataToSend.preferences,
+        "manual_preferences": dataToSend.preferences,
         "products": wardrobeProducts
-      }
-     
-      // Call the API function to send feedback
-      console.log('Feedback submitted successfully:');
-      const response = await SaveWardrobe.saveWardrobe( token , data2);
-      // Handle successful response (e.g., show success message, close modal, etc.)
-      console.log('Feedback submitted successfully:', response);
-    //  props.onHide(); // Close the modal after successful submission
+      };
+
+      const response = await SaveWardrobe.saveWardrobe(token, data2);
+      console.log('Wardrobe Saved successfully:', response);
+      console.log('WardrobeId', response.wardrobeId);
+
+
     } catch (error) {
-      // Handle API errors (e.g., show error message)
-      console.error('Error submitting feedback:', error.message);
+      console.error('Error saving wardrobe:', error.message);
       // Optionally, you can set state to display an error message to the user
     }
-
     setShowToast(true);
   };
-  
 
 
-// Function to handle add to favorites click
-const handleAddToFavorites = (product) => {
-  console.log("Button clicked");
-  // Find the selected product using productId or any other identifier
-  const selectedProductData = {
-    product_id:product.productId,
-    brand_name: product.brand_name,
-    brand_logo: product.brand_logo,
-    user_id: "user123",
-    product_name: product.product_name,
-    product_link: product.product_url,
-    price: product.price,
-    images_arr: [product.image[0],product.image[1]]
+  // Function to handle add to favorites click
+  const handleAddToFavorites = (product) => {
+    console.log("Button clicked");
+    // Find the selected product using productId or any other identifier
+    const selectedProductData = {
+      product_id: product.productId,
+      brand_name: product.brand_name,
+      brand_logo: product.brand_logo,
+      user_id: "user123",
+      product_name: product.product_name,
+      product_link: product.product_url,
+      price: product.price,
+      images_arr: [product.image[0], product.image[1]]
+    };
+
+    // Set the selected product data
+    //setSelectedProduct(selectedProductData);
+    // Show the AddProduct modal
+    setSelectedProduct(selectedProductData);
+    setModalAddShow(true);
   };
 
-  // Set the selected product data
-  //setSelectedProduct(selectedProductData);
-  // Show the AddProduct modal
-  setSelectedProduct(selectedProductData);
-  setModalAddShow(true);
-};
 
+  // Function to handle removing the current image
+  const handleRemoveImage = (productId) => {
+    // Filter out the product with the given productId
+    const updatedProducts = wardrobeProducts.filter(product => product._id !== productId);
+    // Update the wardrobeProducts state with the filtered array
+    setWardrobeProducts(updatedProducts);
+  };
+
+  const handleProductSelect = (productId) => {
+    if (selectedProducts.includes(productId)) {
+      setSelectedProducts(selectedProducts.filter((id) => id !== productId));
+    } else {
+      setSelectedProducts([...selectedProducts, productId]);
+    }
+  };
+
+  const toggleProductModal = (productId) => {
+    setProductModalVisible((prevState) => ({
+      ...prevState,
+      [productId]: !prevState[productId],
+    }));
+  };
 
   return (
     <>
-        <BasedUponPrfrnc data={dataToSend} />
+      <BasedUponPrfrnc data={dataToSend} />
       <div className="yourWardrobe">
         <div className="youWrdrbInner">
           <h3 className="yur">Your Wardrobe</h3>
           <div className="prfrncResult">
-          <Swiper
-  navigation={true}
-  direction="horizontal"
-  slidesPerView={4}
-  grid={{
-    rows: 2,
-    fill: "row",
-  }}
-  breakpoints={{
-    320: { slidesPerView: 1, rows: 2 },
-    480: { slidesPerView: 2, rows: 2 },
-    576: { slidesPerView: 2, rows: 2 },
-    640: { slidesPerView: 2, rows: 2 },
-    768: { slidesPerView: 2, rows: 2 },
-    991: { slidesPerView: 3, rows: 2 },
-    1200: { slidesPerView: 4, rows: 2 },
-  }}
-  spaceBetween={10}
-  modules={[Grid, Navigation]}
-  className="mySwiperRst"
->
-  {/* Iterate over products array */}
-  {wardrobeProducts.map((product) => (
-    <SwiperSlide key={product._id}>
-      <div className="prfrncResultShow">
-       
-        <Button
-          className="resultImg"
-          onClick={() => setModalOverViewShow(true)}
-        >
-          <img
-            className="productImg"
-            src={product.image[0]}
-            alt="picture"
-          />
-        </Button>
+            <Swiper
+              navigation={true}
+              direction="horizontal"
+              slidesPerView={4}
+              grid={{
+                rows: 2,
+                fill: "row",
+              }}
+              breakpoints={{
+                320: { slidesPerView: 1, rows: 2 },
+                480: { slidesPerView: 2, rows: 2 },
+                576: { slidesPerView: 2, rows: 2 },
+                640: { slidesPerView: 2, rows: 2 },
+                768: { slidesPerView: 2, rows: 2 },
+                991: { slidesPerView: 3, rows: 2 },
+                1200: { slidesPerView: 4, rows: 2 },
+              }}
+              spaceBetween={10}
+              modules={[Grid, Navigation]}
+              className="mySwiperRst"
+            >
 
-        
-                     <AddProduct
-            show={modalAddShow}
-        onHide={() => setModalAddShow(false)}
-        productData={selectedProduct} // Pass product data as props
-      />
-  
+              {/* Iterate over products array */}
+              {wardrobeProducts.map((product) => (
+                <SwiperSlide key={product._id}>
+                  <div className="prfrncResultShow">
 
-                
-        <div className="buttonGroup">
-          {/* Add to Favorites Button */}
-          <Button
-            className="btnFavourite"
-            onClick={() =>
-              handleAddToFavorites(product)
-            }
-          >
-            <img
-              className="me-2"
-              src="/images/fvrt-heart-Icon.svg"
-              alt="icon"
-            />
-            Add to Favorites
-          </Button>
-          {/* Close (Cross) Button */}
-          <Button
-                      className="btnRemoveClose"
-                     
+                    <Button
+                      className="resultImg"
+                      onClick={() => setModalOverViewShow(product._id)}
                     >
-                      <img src="/images/close-Icon.svg" alt="delete" />
+                      <img
+                        className="productImg"
+                        src={product.image[0]}
+                        alt="picture"
+                      />
                     </Button>
-        </div>
-      </div>
-    </SwiperSlide>
-  ))}
-</Swiper>
+
+                    <AddProduct
+                      show={modalAddShow}
+                      onHide={() => setModalAddShow(false)}
+                      productData={selectedProduct} // Pass product data as props
+                    />
+
+                    <div className="buttonGroup">
+                      {/* Add to Favorites Button */}
+                      <Button
+                        className="btnFavourite"
+                        onClick={() =>
+                          handleAddToFavorites(product)
+                        }
+                      >
+                        <img
+                          className="me-2"
+                          src="/images/fvrt-heart-Icon.svg"
+                          alt="icon"
+                        />
+                        Add to Favorites
+                      </Button>
+
+                      {/* Close (Cross) Button */}
+                      <Button
+                        className="btnRemoveClose"
+                        onClick={() => handleRemoveImage(product._id)}
+                      >
+                        <img src="/images/close-Icon.svg" alt="delete" />
+                      </Button>
+                    </div>
+                  </div>
+
+
+                  {/* Display ProductOverview modal */}
+                  <ProductOverview
+                    product={product}
+                    show={modalOverViewShow === product._id}
+                    onHide={() => setModalOverViewShow(null)}
+                    token={accessToken}
+                  />
+
+                </SwiperSlide>
+              ))}
+
+            </Swiper>
 
           </div>
 
@@ -247,10 +286,13 @@ const handleAddToFavorites = (product) => {
         </div>
       </div>
       <div>
-      <SuccessfullySavedToast
+
+        <SuccessfullySavedToast
           showToast={showToast}
           onClose={handleCloseToast}
+          wardrobeId={wardrobeId}
         />
+
       </div>
       <Button className="btnPrimary mx-auto mt-5 mb-3" onClick={handleChange}>
         <img className="me-3" src="/images/staricon.svg" alt="star" /> Generate

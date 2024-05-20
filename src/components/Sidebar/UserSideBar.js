@@ -2,15 +2,17 @@ import React, { useEffect, useState } from "react";
 import { Button, Dropdown, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import {  useDispatch } from 'react-redux';
-import { updateAccessToken , updateUserToken } from '../../store/actions';
-import {  useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { updateAccessToken, updateUserToken } from '../../store/actions';
+import { useSelector } from 'react-redux';
 import SaveWardrobe from "../../services/saveWardrobe";
+
 const UserSideBar = () => {
   const dispatch = useDispatch();
-  const userToken =  useSelector(state => state.userToken);
-  const accessToken =  useSelector(state => state.token);
-  console.log("HASSAN" +userToken["displayName"])
+  const [showNotifications, setShowNotifications] = useState(true);
+  const userToken = useSelector(state => state.userToken);
+  const accessToken = useSelector(state => state.token);
+  console.log("HASSAN" + userToken["displayName"])
   const [wardrobes, setWardrobe] = useState([]);
   const [photo, setPhoto] = useState(
     userToken.photoURL ? userToken.photoURL : "/images/sidebr-prf-image.png"
@@ -18,28 +20,10 @@ const UserSideBar = () => {
   const [name, setName] = useState(
     userToken.displayName ? userToken.displayName : "User"
   );
- 
-
-  const userId = "user123";
-  useEffect(() => {
-    const fetchWardrobe = async () => {
-      try {
-        const data = await SaveWardrobe.getAllSaveWardrobes(accessToken);
-        console.log("wardrobedata1", data);
-        setWardrobe(data); // Update state with fetched wardrobe products data
-      } catch (error) {
-        console.error("Error fetching wardrobe products:", error);
-        // Handle error or set an error state
-      }
-    };
-
-    fetchWardrobe();
-  }, [userId, accessToken]); 
-  
 
 
   const [showNavs, setShowNavs] = useState(false);
-  const navigate= useNavigate();
+  const navigate = useNavigate();
   const [dropdownStates, setDropdownStates] = useState([
     { id: 0, name: "Wardrobe", isOpen: false },
     { id: 1, name: "notification", isOpen: false },
@@ -49,7 +33,7 @@ const UserSideBar = () => {
 
   const handleWardrobeClick = async (wardrobeId) => {
     try {
-      
+
       // Navigate to wardrobe details page with wardrobeId as a parameter
       navigate("/wardrobe", { state: { wardrobeId } }); // Assuming '/wardrobe/:wardrobeId' is your route
     } catch (error) {
@@ -57,7 +41,7 @@ const UserSideBar = () => {
     }
   };
 
-  const Logout=()=>{
+  const Logout = () => {
     localStorage.clear();
     dispatch(updateAccessToken(""));
     dispatch(updateUserToken(""));
@@ -105,6 +89,11 @@ const UserSideBar = () => {
     }, 200); // Set the desired time duration in milliseconds (e.g., 500ms)
   };
   console.log("check  ", dropdownStates);
+
+  const handleCloseNotifications = () => {
+    setShowNotifications(false);
+  };
+
   return (
     <>
       <div className="UserSidebar">
@@ -151,7 +140,9 @@ const UserSideBar = () => {
                             src="/images/noun-wardrobe.svg"
                             alt="home"
                           />
-                          <span className="sameStl ">My Wardrobes</span>
+                          <Link to="/WardrobesCollection">
+                            <span className="sameStl ">My Wardrobes</span>
+                          </Link>
                         </Dropdown.Toggle>
 
                         <Dropdown.Menu>
@@ -159,10 +150,10 @@ const UserSideBar = () => {
                           {wardrobes.map((wardrobeItem, index) => (
                             <Dropdown.Item
                               key={index}
-                             
+
                             >
-                             <Link to={`/wardrobe/${wardrobeItem.wardrobe_id}`}>{wardrobeItem.name}</Link>
-                             
+                              <Link to={`/wardrobe/${wardrobeItem.wardrobe_id}`}>{wardrobeItem.name}</Link>
+
                             </Dropdown.Item>
                           ))}
                         </Dropdown.Menu>
@@ -199,7 +190,7 @@ const UserSideBar = () => {
                         <Dropdown.Menu>
                           <div className="ntfHdr d-flex justify-content-between align-items-center p-3 pb-0">
                             <p className="hding">Notifications</p>
-                            <Button className="btnSimple">
+                            <Button onClick={handleCloseNotifications} className="btnSimple">
                               <img src="/images/close-Icon.svg" alt="icon" />
                             </Button>
                           </div>
@@ -290,14 +281,14 @@ const UserSideBar = () => {
                       Profile
                     </Dropdown.Item>
                     <Dropdown.Item href="#" className="profiledrp">
-                      
-                      <Button className="btn-sm btn-light" onClick ={Logout}>
-                      <img
-                        className="me-3"
-                        src="/images/logout-icon.svg"
-                        alt="icon"
-                      />
-                      <b>Sign Out</b>
+
+                      <Button className="btn-sm btn-light" onClick={Logout}>
+                        <img
+                          className="me-3"
+                          src="/images/logout-icon.svg"
+                          alt="icon"
+                        />
+                        <b>Sign Out</b>
                       </Button>
                     </Dropdown.Item>
                   </Dropdown.Menu>

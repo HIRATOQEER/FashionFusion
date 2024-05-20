@@ -8,11 +8,14 @@ import favouriteProductSvc from '../../services/favouriteProduct'
 import { useSelector } from "react-redux";
 
 const AddProduct = (props) => {
+
   const { show, onHide, productData } = props;
   const token = useSelector((state) => state.token); // Assuming state.name returns a Promise
- 
+
   const [comment, setComment] = useState("");
   const [rating, setRating] = useState(0);
+  const [showToast, setShowToast] = useState(false);
+
   const [reasonsList, setReasonsList] = useState([
     "Price",
     "Size",
@@ -21,13 +24,12 @@ const AddProduct = (props) => {
     "Gender"
   ]);
   const [selectedReasons, setSelectedReasons] = useState([]);
-  
-  const [showToast, setShowToast] = useState(false);
 
   const handleButtonClick = async () => {
+    console.log("Rating before submission:", rating);
     // Prepare formData object
     const formData = {
-     
+
       brand_name: productData.brand_name,
       brand_logo: productData.brand_logo,
       product_name: productData.product_name,
@@ -36,49 +38,43 @@ const AddProduct = (props) => {
       images_arr: productData.images_arr,
       comment: comment,
       rating: rating,
-      reasons: selectedReasons // Combine selected reasons as a string
+      reasons: selectedReasons.join(', ') // Combine selected reasons as a string
     };
-console.log("formdata", formData);
+    console.log("formdata", formData);
     try {
-    
-   
-      // Call the API function to send feedback
-    //  console.log('Feedback submitted successfully:');
-      console.log("Token" , formData)
-      const response = await favouriteProductSvc.addToFavorites(token , formData);
-      // Handle successful response (e.g., show success message, close modal, etc.)
-      console.log('Feedback submitted successfully:', response);
-      props.onHide(); // Close the modal after successful submission
+
+      console.log("Token", formData)
+      const response = await favouriteProductSvc.addToFavorites(token, formData);
+
+      console.log('Feedback submitted & Product added to favourites:', response);
+      props.onHide();
+
     } catch (error) {
       // Handle API errors (e.g., show error message)
       console.error('Error submitting feedback:', error.message);
       // Optionally, you can set state to display an error message to the user
     }
-  };
 
-  const handleCloseToast = () => {
-    setShowToast(false);
+    setShowToast(true);
   };
 
   const handleReasonChange = (reason) => {
     const updatedReasons = [...selectedReasons];
     const index = updatedReasons.indexOf(reason);
-  
+
     if (index === -1) {
       updatedReasons.push(reason); // Reason not found, add it
     } else {
       updatedReasons.splice(index, 1); // Reason found, remove it
     }
-  
+
     setSelectedReasons(updatedReasons); // Update selected reasons
   };
-  
 
 
   return (
     <>
-
-<style>
+      <style>
         {`
         .tagg {
           padding: 5px 10px;
@@ -115,17 +111,16 @@ console.log("formdata", formData);
             <div>
               <p className="tellResn">Tell us the reason of removing</p>
               <div className="dtlTagg d-flex align-items-center gap-2 mb-3">
-  {reasonsList.map((reason) => (
-    <span
-      key={reason}
-      className={`tagg ${selectedReasons.includes(reason) ? "selected" : ""}`}
-      onClick={() => handleReasonChange(reason)}
-    >
-      {reason}
-    </span>
-  ))}
-</div>
-
+                {reasonsList.map((reason) => (
+                  <span
+                    key={reason}
+                    className={`tagg ${selectedReasons.includes(reason) ? "selected" : ""}`}
+                    onClick={() => handleReasonChange(reason)}
+                  >
+                    {reason}
+                  </span>
+                ))}
+              </div>
             </div>
             <img
               className="prvImage mx-auto mx-lg-0"
@@ -134,7 +129,7 @@ console.log("formdata", formData);
             />
             {/* Add other content as needed */}
           </div>
-          <RatingStar onChange={(value) => setRating(value)} />
+          <RatingStar onChange={(newRating) => setRating(newRating)} />
 
           <textarea
             className="addTxtCmnt mb-3 w-full d-block"
@@ -159,10 +154,13 @@ console.log("formdata", formData);
             >
               Done
             </Button>
-            <AddFavoritToast showToast={showToast} onClose={handleCloseToast} />
           </div>
         </Modal.Footer>
       </Modal>
+
+      {/* Showing the deleted successfully Toast component */}
+      <AddFavoritToast showToast={showToast} onClose={() => setShowToast(false)} />
+
     </>
   );
 };

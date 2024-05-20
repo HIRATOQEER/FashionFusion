@@ -1744,6 +1744,7 @@ button.btnRemoveEvry:hover {
   border-radius: var(--paddings-gaps-p-4, 16px);
   background: var(--White, #fff);
   z-index: 9;
+  margin-bottom: 11%;
 }
 .HomeBox .HomeCard img.SmlProduct {
   height: auto;

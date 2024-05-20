@@ -4,6 +4,7 @@ import UserSideBar from "../../components/Sidebar/UserSideBar";
 import HomeHeader from "../../components/headers/HomeHeader";
 import FvrtProductBox from "../../components/favoriteProducts/FvrtProductBox";
 import WelcomeHeader from "../../components/headers/WelcomeHeader";
+import { FavoritesHeader } from "../../components/headers/FavoritesHeader";
 
 const FavoritesProduct = () => {
   return (
@@ -12,7 +13,7 @@ const FavoritesProduct = () => {
         <div className="d-lg-none">
           <WelcomeHeader />
         </div>
-        <HomeHeader />
+        <FavoritesHeader />
         <Row className="m-0 p-0">
           <Col lg={2} className="ps-0">
             <UserSideBar />

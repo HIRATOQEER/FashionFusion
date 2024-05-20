@@ -5,10 +5,11 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { firebaseApp } from "../../firebase";
-import {  useDispatch } from 'react-redux';
-import { updateAccessToken , updateUserToken } from '../../store/actions';
-import {   GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { useDispatch } from 'react-redux';
+import { updateAccessToken, updateUserToken } from '../../store/actions';
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { getFirestore, doc, getDoc } from "firebase/firestore";
+import LoggedInSuccessfullyToast from "../Toasts/LoggedInSuccessfullyToast";
 
 
 const LoginModal = (props) => {
@@ -16,10 +17,10 @@ const LoginModal = (props) => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showToast, setShowToast] = useState(false);      // State to control the visibility of login toast
   const auth = getAuth(firebaseApp);
 
   const db = getFirestore(firebaseApp);
-
 
 
   const handleGoogleSignIn = async (e) => {
@@ -32,26 +33,30 @@ const LoginModal = (props) => {
       });
       const userCredential = await signInWithPopup(auth, provider);
       const user = userCredential.user;
-      const idToken =await user.getIdToken()
-       localStorage.setItem("token" ,idToken );
+      const idToken = await user.getIdToken()
+      localStorage.setItem("token", idToken);
       dispatch(updateAccessToken(idToken));
       dispatch(updateUserToken(user));
 
-       //SHOW ALERT lOGGED iN  SUCCESSSFULLY
-       navigate("/");
-      
+
+      navigate("/");
+      //SHOWING ALERT lOGGED iN  SUCCESSSFULLY
+      // Setting the state to show the login toast after successful sign-up
+      setShowToast(true);
+
       console.log("User signed in with Google:", user.getIdToken());
     } catch (error) {
       console.error("Error signing in with Google:", error.message);
     }
   };
-  
+
   const handleLogin = async () => {
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
-      
-      
+
+      // Setting the state to show the toast after successful sign-up
+      setShowToast(true);
       // Retrieve additional user data from Firestore
       const userDocRef = doc(db, "users", user.uid);
       const userDocSnap = await getDoc(userDocRef);
@@ -72,7 +77,7 @@ const LoginModal = (props) => {
 
       localStorage.setItem("user_id", user.email);
 
-            console.log("Token" , user.getIdToken())
+      console.log("Token", user.getIdToken())
 
       navigate("/");
     } catch (error) {
@@ -101,18 +106,22 @@ const LoginModal = (props) => {
             </FormGroup>
             <Button className="btnsign" onClick={handleLogin}>Sign In</Button>
             <div className="d-flex flex-column align-items-center">
-            <button className="btncontinue" onClick={handleGoogleSignIn}>
-            <img className="me-3" src="/images/googleIcon.svg" alt="goole" />
+              <button className="btncontinue" onClick={handleGoogleSignIn}>
+                <img className="me-3" src="/images/googleIcon.svg" alt="goole" />
 
-              Continue with Google
-            </button>
-              <Button className="btncontinue">
+                Continue with Google
+              </button>
+              {/* <Button className="btncontinue">
                 <img className="me-3" src="/images/apleIcon.svg" alt="apple" />
                 Continue with Apple
-              </Button>
+              </Button> */}
             </div>
           </Form>
         </Modal.Body>
+
+        {/* Showing the Successfully logged in toast */}
+        <LoggedInSuccessfullyToast showToast={showToast} onClose={() => setShowToast(false)} />
+
         <img
           className="bgMblLogin d-lg-none"
           src="/images/mbl-bg-login.png"

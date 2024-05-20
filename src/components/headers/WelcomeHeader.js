@@ -2,17 +2,19 @@ import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom"; // Add this line
 import SignUpComp from "../signUp/SignUpComp";
+import LoginModal from "../Modals/LoginModal";
 
 const WelcomeHeader = () => {
- 
+
   const [isToggled, setToggled] = useState(false);
 
+  const [modalShow, setModalShow] = useState(false);
+  
   const handleButtonClick = () => {
     setToggled(!isToggled);
   };
 
 
-  
   return (
     <>
       <div className="welcomHeader">
@@ -33,9 +35,9 @@ const WelcomeHeader = () => {
         <div className="makeAccount d-none d-lg-flex">
           <p>Make your products saved in your account</p>
 
-       
-            <Button>Login</Button>
-      
+          <Button onClick={() => setModalShow(true)}>Login</Button>
+            <LoginModal show={modalShow} onHide={() => setModalShow(false)} />
+
           <Link to="/signup">
             <Button>Sign up</Button>
           </Link>

@@ -3,8 +3,9 @@ import { Button, Toast } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import RenameWardrobeModal from "../Modals/RenameWardrobeModal";
 
-const SuccessfullySavedToast = ({ showToast, onClose }) => {
+const SuccessfullySavedToast = ({ showToast, onClose , wardrobeId }) => {
   const [modalShow, setModalShow] = React.useState(false);
+  
   return (
     <div>
       <Toast
@@ -20,7 +21,7 @@ const SuccessfullySavedToast = ({ showToast, onClose }) => {
         <Toast.Body>
           <div className="d-flex justify-content-between align-items-center gap-3">
             <p className="savedwrdb">
-              <span>Your Wardrobe 1</span> saved successfully
+              <span>Your Wardrobe</span> saved successfully
             </p>
             <Button className="svdEdtWrdb" onClick={() => setModalShow(true)}>
               <img src="/images/toast-edit-Icon.svg" alt="icon" />
@@ -28,7 +29,9 @@ const SuccessfullySavedToast = ({ showToast, onClose }) => {
             <RenameWardrobeModal
               show={modalShow}
               onHide={() => setModalShow(false)}
+              wardrobeId={wardrobeId}
             />
+
           </div>
         </Toast.Body>
       </Toast>

@@ -39,6 +39,7 @@ const Signup = () => {
                   disableOnInteraction: false,
                 }}
               >
+                
                 <SwiperSlide>
                   <img src="/images/Fancy-Wardrobe.svg" alt="text" />
                 </SwiperSlide>

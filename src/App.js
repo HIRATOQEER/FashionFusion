@@ -16,6 +16,9 @@ import GuestCreateWardrobe from "./pages/AsGuest/createWardrobe/guestCreateWardr
 import AddProduct from "./components/Modals/AddProduct";
 import HomePage from "./pages/Home/HomePage";
 import WardrobeOne from "./pages/Wardrobe/WardrobeOne";
+import LoginModal from "./components/Modals/LoginModal";
+import WardrobesCollecions from "./pages/Wardrobe/WardrobesCollecions";
+import UpdateWardrobe from "./pages/AsGuest/UpdateWardrobe/UpdateWardrobe";
 
 function App() {
   
@@ -27,6 +30,7 @@ function App() {
        
           <Route path="/" element={<PrivateRoute />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<LoginModal />} />
           <Route path="/createwardrobe" element={<CreateWardrobe />} />
           <Route path="/guestresult" element={<GeneratedResult />} />
           <Route path="/favourite" element={<FavoritesProduct />} />
@@ -36,6 +40,8 @@ function App() {
           <Route path="/GuestCreateWardrobe" element={<GuestCreateWardrobe />} />
           <Route path="/Add" element={<AddProduct/>} />
           <Route path="/home" element={<HomePage/>} />
+          <Route path="/WardrobesCollection" element={<WardrobesCollecions/>} />
+          <Route path="/UpdateWardrobe" element={<UpdateWardrobe/>} />
 
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>

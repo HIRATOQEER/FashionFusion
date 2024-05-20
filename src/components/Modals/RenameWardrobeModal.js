@@ -1,41 +1,39 @@
 import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import EditSavedToast from "../Toasts/EditSavedToast";
-import SaveWardrobe from "../../services/saveWardrobe";
 import { useSelector } from "react-redux";
+import SaveWardrobe from "../../services/saveWardrobe";
+
 const RenameWardrobeModal = (props) => {
+
   const [wardrobeName, setWardrobeName] = useState(""); // State for input value
   const [showToast, setShowToast] = useState(false); // State for toast visibility
   const token = useSelector((state) => state.token);
+
+
   const handleInputChange = (e) => {
     setWardrobeName(e.target.value); // Update input value state
   };
 
-
-  
-
-
-  const handleButtonClick = () => {
-  
-    
-    /*try {
-     
-      // Call the API function to send feedback
-     
-      console.log('Feedback submitted successfully:');
-      const response = await renameWardrobe.saveWardrobe(wardrobeId, token,newName);
-      // Handle successful response (e.g., show success message, close modal, etc.)
-      console.log('Feedback submitted successfully:', response);
-    //  props.onHide(); // Close the modal after successful submission
-    } catch (error) {
-      // Handle API errors (e.g., show error message)
-      console.error('Error submitting feedback:', error.message);
-      // Optionally, you can set state to display an error message to the user
+  const handleButtonClick = async () => {
+    if (!props.wardrobeId) {
+      console.error('Error: wardrobeId is undefined');
+      return;
     }
+    try {
+      // Calling the renameWardrobe API method with wardrobeId, token, and newName
+      await SaveWardrobe.renameWardrobe(props.wardrobeId, token, wardrobeName);
+      setShowToast(true); // Showing success toast
 
-    setShowToast(true);
-    setShowToast(true); // Show toast after saving
-   */
+      // Close the modal after 2 seconds
+      setTimeout(() => {
+        setShowToast(false); // Close the toast
+        props.onHide(); // Close the modal
+      }, 2000);
+
+    } catch (error) {
+      console.error('Error Renaming Wardrobe:', error);
+    }
   };
 
   const handleCloseToast = () => {

@@ -1,12 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Form } from "react-bootstrap";
 import StarRatings from "react-star-ratings";
 
-const RatingStar = () => {
-  const [rating, setRating] = useState(2);
+const RatingStar = ({ rating: initialRating, onChange }) => {
+  const [rating, setRating] = useState(initialRating); // Initialize rating with the provided initial value
+
+  useEffect(() => {
+    // Update the rating state when the initialRating prop changes
+    setRating(initialRating);
+  }, [initialRating]); // Re-run effect when the initialRating prop changes
 
   const changeRating = (newRating) => {
     setRating(newRating);
+    onChange(newRating); // Passing the new rating back to the parent component
   };
 
   return (

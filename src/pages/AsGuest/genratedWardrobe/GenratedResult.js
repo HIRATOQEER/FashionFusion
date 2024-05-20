@@ -1,4 +1,4 @@
-import React from "react";
+import React , {useState} from "react";
 import CreateWrdrobeHeader from "../../../components/headers/CreateWrdrobeHeader";
 import { Col, Row } from "react-bootstrap";
 import GuestSideBar from "../../../components/Sidebar/GuestSideBar";
@@ -6,7 +6,7 @@ import GuestGenratedResult from "../../../components/guestGenratedResult.js/Gues
 import WelcomeHeader from "../../../components/headers/WelcomeHeader";
 import { useLocation } from 'react-router-dom';
 const GenratedResult = () => {
-  
+  const [uploadedImages, setUploadedImages] = useState([]);
 
   return (
     <>

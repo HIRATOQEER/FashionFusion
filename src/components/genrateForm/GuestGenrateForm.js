@@ -6,10 +6,12 @@ import GeneratePreferences from '../Accordions/GentratePreferences';
 import { useNavigate } from 'react-router-dom';
 
 const GuestGenrateForm = () => {
+
   const [uploadedImages, setUploadedImages] = useState([]);
-  const [preferences, setPreferences] = useState([]); // Corrected state setter name
+  const [preferences, setPreferences] = useState([]);   // Corrected state setter name
   const [facebookLink, setFacebookLink] = useState('');
   const [instagramLink, setInstagramLink] = useState('');
+  
   const navigate = useNavigate();
   useEffect(() => {
     console.log('Updated Preferences:', preferences);
@@ -17,6 +19,8 @@ const GuestGenrateForm = () => {
 
   const handleSubmit = (submittedPreferences) => {
     console.log('Before navigation:', { uploadedImages, submittedPreferences, facebookLink, instagramLink });
+    
+    
     const dataToSend = {
       uploadedImages: uploadedImages,
       preferences: submittedPreferences, // Use the submitted preferences here
@@ -27,8 +31,18 @@ const GuestGenrateForm = () => {
   };
   
 
-  const handleImageChange = (newImages) => {
-    setUploadedImages(newImages);
+  const handleImageUpload = (event) => {
+    const newImage = event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(newImage);
+    reader.onload = () => {
+      const imageData = {
+        name: newImage.name,
+        dataURL: reader.result // Base64 encoded image data
+      };
+      setUploadedImages([...uploadedImages, imageData]);
+      // onImageChange([...uploadedImages, imageData]);
+    };
   };
 
   const handleFacebookLinkChange = (value) => {
@@ -85,8 +99,9 @@ const GuestGenrateForm = () => {
       </div>
       <GenratedImageAccordion
         uploadedImages={uploadedImages}
-        onImageChange={handleImageChange}
+        onImageChange={setUploadedImages}
       />
+      
       <GenrateSocialAccordion
         onFacebookLinkChange={handleFacebookLinkChange}
         onInstagramLinkChange={handleInstagramLinkChange}

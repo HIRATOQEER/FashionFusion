@@ -38,11 +38,12 @@ const HomeHeader = () => {
           {/* ------when open Favorites page then show this heading----- */}
           <h2>
             <img
-              className="me-3"
-              src="/images/Black-heart-icon.svg"
-              alt="start icon"
+              className="sideBarIcon active"
+              src="/images/noun-home.svg"
+              alt="home"
+              width="100%"
             />
-            Favorites
+            Home
           </h2>
         </div>
       </div>
