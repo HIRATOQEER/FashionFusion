@@ -10,6 +10,7 @@ import { updateAccessToken, updateUserToken } from '../../store/actions';
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { getFirestore, doc, getDoc } from "firebase/firestore";
 import LoggedInSuccessfullyToast from "../Toasts/LoggedInSuccessfullyToast";
+import InvalidCredentialsToast from "../Toasts/InavlidCredentialsToast";
 
 
 const LoginModal = (props) => {
@@ -21,7 +22,56 @@ const LoginModal = (props) => {
   const auth = getAuth(firebaseApp);
 
   const db = getFirestore(firebaseApp);
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
+  const [showInvalidToast, setShowInvalidToast] = useState(false); // State for invalid credentials toast
 
+  const validateEmail = (value) => {
+    if (!emailRegex.test(value)) {
+      setEmailError('Invalid email');
+    } else {
+      setEmailError('');
+    }
+  };
+
+  const validatePassword = (value) => {
+    let errors = [];
+    if (!/(?=.*[a-z])/.test(value)) {
+      errors.push("1 lowercase");
+    }
+    if (!/(?=.*[A-Z])/.test(value)) {
+      errors.push("1 uppercase");
+    }
+    if (!/(?=.*[!@#$%^&*()_+[\]{};':"\\|,.<>/?])/.test(value)) {
+      errors.push("1 special character");
+    }
+    if (value.length < 8) {
+      errors.push("8 length");
+    }
+    if (errors.length > 0) {
+      setPasswordError(` ${errors.join(", ")} is missing`);
+    } else {
+      setPasswordError('');
+    }
+  };
+
+  const handleEmailBlur = () => {
+    validateEmail(email);
+  };
+
+  const handleEmailFocus = () => {
+    setEmailError('');
+  };
+
+  const handlePasswordBlur = () => {
+    validatePassword(password);
+  };
+
+  const handlePasswordFocus = () => {
+    setPasswordError('');
+  };
 
   const handleGoogleSignIn = async (e) => {
     e.preventDefault(); // Prevents the default form submission behavior
@@ -51,10 +101,33 @@ const LoginModal = (props) => {
   };
 
   const handleLogin = async () => {
+
+    // Validation checks
+    let valid = true;
+    if (!email) {
+      setEmailError('Email is required');
+      valid = false;
+    } else if (!emailRegex.test(email)) {
+      setEmailError('Invalid email');
+      valid = false;
+    } else {
+      setEmailError('');
+    }
+
+    if (!password) {
+      setPasswordError('Password is required');
+      valid = false;
+    } else if (!passwordRegex.test(password)) {
+      setPasswordError('Invalid password');
+      valid = false;
+    } else {
+      setPasswordError('');
+    }
+
+    if (!valid) return; // Exit if validation fails
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
-
       // Setting the state to show the toast after successful sign-up
       setShowToast(true);
       // Retrieve additional user data from Firestore
@@ -82,6 +155,7 @@ const LoginModal = (props) => {
       navigate("/");
     } catch (error) {
       console.error("Error logging in:", error.message);
+      setShowInvalidToast(true); // Show invalid credentials toast
     }
   };
 
@@ -99,11 +173,16 @@ const LoginModal = (props) => {
           <p>Just email and password and you’re good to go</p>
           <Form>
             <FormGroup className="mb-3" controlId="formBasicEmail">
-              <Form.Control type="email" placeholder="Enter email" onChange={(e) => setEmail(e.target.value)} />
+              <Form.Control type="email" placeholder="Enter email" onChange={(e) => setEmail(e.target.value)} onBlur={handleEmailBlur}
+                onFocus={handleEmailFocus} />
             </FormGroup>
+            {emailError && <p style={{ color: 'red', textAlign: 'left', fontSize: '15px' }}>{emailError}</p>}
+
             <FormGroup controlId="formBasicPassword">
-              <Form.Control type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
+              <Form.Control type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} onBlur={handlePasswordBlur}
+                onFocus={handlePasswordFocus} />
             </FormGroup>
+            {passwordError && <p style={{ color: 'red', textAlign: 'left', fontSize: '15px' }}>{passwordError}</p>}
             <Button className="btnsign" onClick={handleLogin}>Sign In</Button>
             <div className="d-flex flex-column align-items-center">
               <button className="btncontinue" onClick={handleGoogleSignIn}>
@@ -121,7 +200,8 @@ const LoginModal = (props) => {
 
         {/* Showing the Successfully logged in toast */}
         <LoggedInSuccessfullyToast showToast={showToast} onClose={() => setShowToast(false)} />
-
+        {/* Showing Invalid Credentials toast */}
+        <InvalidCredentialsToast showToast={showInvalidToast} onClose={() => setShowInvalidToast(false)} />
         <img
           className="bgMblLogin d-lg-none"
           src="/images/mbl-bg-login.png"

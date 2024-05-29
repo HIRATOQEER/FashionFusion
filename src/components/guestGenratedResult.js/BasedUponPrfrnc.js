@@ -86,7 +86,7 @@ const BasedUponPrfrnc = ({ data }) => {
                           {preference.brand}
                         </span>
                       </p>
-                      <div className="d-flex align-items-center gap-4">
+                      <div className="d-flex align-items-center gap-4 me-1">
                         <p>
                           <span className="prfNameCmn">Category</span>
                           <span className="prfProductCmn">
@@ -95,9 +95,9 @@ const BasedUponPrfrnc = ({ data }) => {
                         </p>
                         <p>
                           <span className="prfNameCmn">Colur</span>
-                          <span className="prColourCmn">
-                            {preference.color}
+                          <span className="prColourCmn" style={{ width: 20, height: 20, borderRadius: '50%', backgroundColor: preference.color }}>
                           </span>
+                            <span>{preference.color}</span>
                         </p>
                       </div>
                       <div className="d-flex align-items-center gap-4">

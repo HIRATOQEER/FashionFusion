@@ -26,7 +26,7 @@ const ChooseCategory = () => {
             />
           </Button>
           <h2>
-            Brands
+            Category
             <span> Choose any one</span>
           </h2>
           <Button className="border-0 bg-transparent p-0">

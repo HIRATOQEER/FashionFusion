@@ -109,7 +109,7 @@ const AddProduct = (props) => {
         <Modal.Body>
           <div className="d-flex flex-lg-row flex-column flex-column-reverse justify-content-between align-items-start ">
             <div>
-              <p className="tellResn">Tell us the reason of removing</p>
+              <p className="tellResn">Rate Our Categories: (Optional) </p>
               <div className="dtlTagg d-flex align-items-center gap-2 mb-3">
                 {reasonsList.map((reason) => (
                   <span

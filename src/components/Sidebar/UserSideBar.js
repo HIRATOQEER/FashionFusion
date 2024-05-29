@@ -5,24 +5,26 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { updateAccessToken, updateUserToken } from '../../store/actions';
 import { useSelector } from 'react-redux';
-import SaveWardrobe from "../../services/saveWardrobe";
+import EditProfileModal from "../Modals/EditProfileModal";
 
-const UserSideBar = () => {
+const UserSideBar = ({ wardrobes = [] }) => {
+
   const dispatch = useDispatch();
   const [showNotifications, setShowNotifications] = useState(true);
   const userToken = useSelector(state => state.userToken);
   const accessToken = useSelector(state => state.token);
   console.log("HASSAN" + userToken["displayName"])
-  const [wardrobes, setWardrobe] = useState([]);
+
   const [photo, setPhoto] = useState(
     userToken.photoURL ? userToken.photoURL : "/images/sidebr-prf-image.png"
   );
+
   const [name, setName] = useState(
     userToken.displayName ? userToken.displayName : "User"
   );
 
-
   const [showNavs, setShowNavs] = useState(false);
+  const [showEditProfileModal, setShowEditProfileModal] = useState(false);
   const navigate = useNavigate();
   const [dropdownStates, setDropdownStates] = useState([
     { id: 0, name: "Wardrobe", isOpen: false },
@@ -48,6 +50,7 @@ const UserSideBar = () => {
 
     navigate("/");
   }
+
   useEffect(() => {
     // Function to handle window resize
     const handleResize = () => {
@@ -69,7 +72,6 @@ const UserSideBar = () => {
   }, []);
 
   const handleMouseEnter = (index) => {
-    console.log("enter  ", dropdownStates);
     clearTimeout(timeoutId);
     setDropdownStates((prevStates) => {
       const newState = [...prevStates];
@@ -79,7 +81,6 @@ const UserSideBar = () => {
   };
 
   const handleMouseLeave = (index) => {
-    console.log("leave  ", dropdownStates);
     timeoutId = setTimeout(() => {
       setDropdownStates((prevStates) => {
         const newState = [...prevStates];
@@ -91,8 +92,12 @@ const UserSideBar = () => {
   console.log("check  ", dropdownStates);
 
   const handleCloseNotifications = () => {
-    setShowNotifications(false);
+    const newState = [...dropdownStates];
+    newState[1].isOpen = false;
+    setDropdownStates(newState);
   };
+
+  const handleShowEditProfileModal = () => setShowEditProfileModal(true);
 
   return (
     <>
@@ -150,7 +155,6 @@ const UserSideBar = () => {
                           {wardrobes.map((wardrobeItem, index) => (
                             <Dropdown.Item
                               key={index}
-
                             >
                               <Link to={`/wardrobe/${wardrobeItem.wardrobe_id}`}>{wardrobeItem.name}</Link>
 
@@ -195,14 +199,6 @@ const UserSideBar = () => {
                             </Button>
                           </div>
                           <hr />
-                          {/* ----when you have no notification then show this img------ */}
-                          {/* <div className="NoNotifications">
-                      <img
-                      className="sideBarIcon"
-                        src="/images/No-notifications-1.png"
-                        alt="Nothing No"
-                      />
-                    </div> */}
                           <p className="whoDay">3 New Notifications</p>
                           <div className="Notifctns">
                             <Dropdown.Item href="#" className="notificationNew">
@@ -267,19 +263,24 @@ const UserSideBar = () => {
                     <img
                       src={photo}
                       alt="Profile Icon"
+                      style={{
+                        width: '40px', 
+                        height: '40px', 
+                        borderRadius: '50%' 
+                      }}
                     />
                     <span className="prnName fw-bold ">{name}</span>
                   </Dropdown.Toggle>
 
                   <Dropdown.Menu>
-                    <Dropdown.Item href="#" className="profiledrp">
+                    {<Dropdown.Item href="#" className="profiledrp" onClick={handleShowEditProfileModal}>
                       <img
                         className="me-3"
                         src="/images/profile-icon.svg"
                         alt="icon"
                       />
                       Profile
-                    </Dropdown.Item>
+                    </Dropdown.Item>}
                     <Dropdown.Item href="#" className="profiledrp">
 
                       <Button className="btn-sm btn-light" onClick={Logout}>
@@ -298,6 +299,8 @@ const UserSideBar = () => {
           </ul>
         </Navbar>
       </div>
+
+      <EditProfileModal show={showEditProfileModal} onHide={() => setShowEditProfileModal(false)} />
     </>
   );
 };

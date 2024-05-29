@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import EditSavedToast from "../Toasts/EditSavedToast";
 import { useSelector } from "react-redux";
-import SaveWardrobe from "../../services/saveWardrobe";
+import UnSaveWardrobe from "../../services/unsaveWardrobe";
 
-const RenameWardrobeModal = (props) => {
+
+const RenameDraftModal = (props) => {
 
   const [wardrobeName, setWardrobeName] = useState(""); // State for input value
   const [showToast, setShowToast] = useState(false); // State for toast visibility
@@ -17,12 +18,13 @@ const RenameWardrobeModal = (props) => {
 
   const handleButtonClick = async () => {
     if (!props.wardrobeId) {
-      console.error('Error: wardrobeId is undefined');
+      console.error('Error: Draft Id is undefined');
       return;
     }
     try {
+      
       // Calling the renameWardrobe API method with wardrobeId, token, and newName
-      await SaveWardrobe.renameWardrobe(props.wardrobeId, token, wardrobeName);
+      await UnSaveWardrobe.renameUnSaveWardrobe(props.wardrobeId, token, wardrobeName);
       setShowToast(true); // Showing success toast
 
       // Close the modal after 2 seconds
@@ -33,7 +35,7 @@ const RenameWardrobeModal = (props) => {
       }, 2000);
 
     } catch (error) {
-      console.error('Error Renaming Wardrobe:', error);
+      console.error('Error Renaming Draft:', error);
     }
   };
 
@@ -51,7 +53,7 @@ const RenameWardrobeModal = (props) => {
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            Rename Wardrobe
+            Rename Draft
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -81,4 +83,4 @@ const RenameWardrobeModal = (props) => {
   );
 };
 
-export default RenameWardrobeModal;
+export default RenameDraftModal;

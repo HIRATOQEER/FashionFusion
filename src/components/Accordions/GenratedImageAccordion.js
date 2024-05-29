@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, CloseButton, ProgressBar } from "react-bootstrap";
 import Accordion from "react-bootstrap/Accordion";
 import { useAccordionButton } from "react-bootstrap/AccordionButton";
 import Card from "react-bootstrap/Card";
 
-const GenratedImageAccordion = ({ onImageChange }) => {
+const GenratedImageAccordion = ({ uploadedImages: initialImages, onImageChange }) => {
   const [uploadedImages, setUploadedImages] = useState([]);
-  const now = 60;
-  
+
+  useEffect(() => {
+    setUploadedImages(initialImages);
+  }, [initialImages]);
+
   const handleImageUpload = (event) => {
     const newImage = event.target.files[0];
     const reader = new FileReader();
@@ -17,11 +20,12 @@ const GenratedImageAccordion = ({ onImageChange }) => {
         name: newImage.name,
         dataURL: reader.result // Base64 encoded image data
       };
-      setUploadedImages([...uploadedImages, imageData]);
-      onImageChange([...uploadedImages, imageData]);
+      const updatedImages = [...uploadedImages, imageData];
+      setUploadedImages(updatedImages);
+      onImageChange(updatedImages);
     };
   };
- 
+
   const handleRemoveImage = (index) => {
     const updatedImages = uploadedImages.filter((image, i) => i !== index);
     setUploadedImages(updatedImages);
@@ -33,7 +37,6 @@ const GenratedImageAccordion = ({ onImageChange }) => {
       console.log("totally custom!")
     );
 
-    
     return (
       <button
         type="button"

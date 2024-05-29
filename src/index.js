@@ -12,7 +12,6 @@ import { PersistGate } from 'redux-persist/integration/react';
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
 
-  <React.StrictMode>
     <Provider store={store}> {/* Wrap the entire application with Provider */}
     <PersistGate loading={null} persistor={persistor}>
 
@@ -21,7 +20,6 @@ root.render(
 
 </Provider>
 
-  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -7,8 +7,7 @@ import WelcomeHeader from "../../../components/headers/WelcomeHeader";
 
 const CreateWardrobe = () => {
   return (
-    <>
-    
+    <>  
       <div className="crtWrdbMain">
         <div className="d-lg-none">
           <WelcomeHeader />

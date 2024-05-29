@@ -18,20 +18,11 @@ import { CirclePicker } from "react-color";
 
 import { useNavigate } from 'react-router-dom';
 
-const GeneratePreferences = ({ onPreferencesChange, onSubmit }) => {
+const GeneratePreferencesTwo = ({  manualPreferences = [], onPreferencesChange, onSubmit }) => {
 
 
   const [gender, setGender] = useState('MALE'); // Track selected gender
-  const [preferences, setPreferences] = useState([{
-    id: 1,
-    gender: 'MALE',
-    category: '',
-    brand: '',
-    color: '#000000',
-    size: '',
-    quantity: 0,
-    price: 0
-  }]);
+  const [preferences, setPreferences] = useState(manualPreferences);    
   const MAX_PREFERENCES = 20;
   const navigate = useNavigate();
   const [priceError, setPriceError] = useState('');
@@ -107,7 +98,7 @@ const GeneratePreferences = ({ onPreferencesChange, onSubmit }) => {
   };
 
   const handlePreferenceChange = (id, field, value) => {
-    console.log(`Changing ${field} for ${id} to ${value}`); // Add this to debug
+    console.log("Price", value);
     const updatedPreferences = preferences.map((preference) => {
       if (preference.id === id) {
         return { ...preference, [field]: value };    // Update field value
@@ -297,14 +288,13 @@ const GeneratePreferences = ({ onPreferencesChange, onSubmit }) => {
                           <Form.Label>Color</Form.Label>
                           <CirclePicker
                             color={preference.color}
-                            onChange={(colorResult) => {
-                              console.log(colorResult.hex); // This will show the color hex value chosen
+                            onChange={(color) =>
                               handlePreferenceChange(
                                 preference.id,
                                 'color',
-                                colorResult.hex
-                              );
-                            }}
+                                color.hex
+                              )
+                            }
                           />
                         </div>
                       </Col>
@@ -380,4 +370,4 @@ const GeneratePreferences = ({ onPreferencesChange, onSubmit }) => {
   );
 };
 
-export default GeneratePreferences;  
+export default GeneratePreferencesTwo;  

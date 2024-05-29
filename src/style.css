@@ -1450,16 +1450,16 @@ button.addPerafrence:hover {
   width: 24px;
   height: 24px;
   border-radius: 20px;
-  background: #ad00ff;
+ 
   display: inline-block;
 }
 .prfAttached .dropdown-menu.show {
-  inset: 5px auto auto 27px !important;
+  inset: 5px auto auto 75px !important;
   z-index: 20;
   transform: translate(-50%, 45%) !important;
   overflow-x: hidden;
   overflow-y: scroll;
-  height: 120px;
+  height: 70px;
 }
 /* ----------UserSidebar--------  */
 .UserSidebar {
@@ -1837,7 +1837,6 @@ button.btnRemoveEvry:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: #962d2d;
 }
 button.btnFeedBack {
   color: var(--White, #fff);
@@ -2837,4 +2836,37 @@ p.prdctName.mb-3 {
   }
 }
 @media only screen and (max-width: 320px) {
+}
+
+.profile-image-container {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  margin: auto;
+  border-radius: 50%;
+}
+
+.profile-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+
+}
+
+.camera-icon {
+  position: absolute;
+  bottom: 2px; 
+  right: 10px; 
+  transform: translate(50%, -20%);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: lightgray;
+  color: black;
 }

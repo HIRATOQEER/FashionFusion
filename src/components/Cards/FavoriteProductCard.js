@@ -21,7 +21,7 @@ const FavoriteProductCard = ({ product, onDelete }) => {
     comment,
     rating,
     reason,
-    product_url, // Assuming product_url is available in product data
+    product_link, // Assuming product_url is available in product data
   } = product;
 
   const token = useSelector((state) => state.token);
@@ -41,9 +41,8 @@ const FavoriteProductCard = ({ product, onDelete }) => {
     }
   };
 
-  const handleBuyNow = (product_url) => {
-    // Redirect user to the product URL
-    window.location.href = product_url;
+  const handleBuyNow = () => {
+    window.open(product_link, "_blank");
   };
 
   return (
@@ -85,7 +84,7 @@ const FavoriteProductCard = ({ product, onDelete }) => {
               <RatingStar rating={rating} />
             </div>
             <div className="d-flex align-items-center mb-3">
-              <Button className="buyProduct" href={product_url} target="_blank">
+              <Button className="buyProduct" onClick={handleBuyNow}>
                 BUY NOW <img src="/images/buynow-Icon.svg" alt="icon" />
               </Button>
               <Button className="btnRemoveEvry border-0 ms-3" onClick={handleDeleteClick}>

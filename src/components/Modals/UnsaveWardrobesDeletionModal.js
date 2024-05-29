@@ -2,16 +2,16 @@ import React, {useState} from "react";
 import { useSelector } from "react-redux";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import saveWardrobeSvc from "../../services/saveWardrobe";
 import DeletedSuccessfullyToast from "../Toasts/DeletedSuccessfullyToast";
+import unSaveWardrobeSvc  from "../../services/unsaveWardrobe";
 
-const DeletionModal = (props) => {
+const UnsaveWardrobesDeletonModal = (props) => {
   const token = useSelector((state) => state.token); // Example assuming you have a token in your Redux state
   const [showToast, setShowToast] = useState(false);      // State to control the visibility of the toast
 
   const handleDeleteAll = async () => {
     try {
-      await saveWardrobeSvc.deleteAllSaveWardrobe(token);
+      await unSaveWardrobeSvc.deleteAllUnSaveWardrobe(token);
       props.onHide();
       setShowToast(true);
 
@@ -63,4 +63,4 @@ const DeletionModal = (props) => {
   );
 };
 
-export default DeletionModal;
+export default UnsaveWardrobesDeletonModal;

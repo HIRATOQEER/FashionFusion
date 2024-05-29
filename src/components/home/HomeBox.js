@@ -6,9 +6,11 @@ import { Link } from "react-router-dom";
 import SaveWardrobe from "../../services/saveWardrobe";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import RenameWardrobeModal from "../Modals/RenameWardrobeModal";
 import DeletedSuccessfullyToast from "../Toasts/DeletedSuccessfullyToast";
-
+import { Pencil } from 'react-bootstrap-icons';
+import UnSaveWardrobe from "../../services/unsaveWardrobe";
+import RenameDraftModal from "../Modals/RenameDraftModal";
+import UnSaveWardrobesSortedBy from "../sorted/UnSaveWardrobesSortedBy";
 
 const HomeBox = () => {
 
@@ -20,18 +22,27 @@ const HomeBox = () => {
   const [showRenameModal, setShowRenameModal] = useState(false);
   const [sortOrder, setSortOrder] = useState('Newest First'); // Default sorting
   const [currentWardrobeId, setCurrentWardrobeId] = useState(null);
+  const [wardrobeProducts, setWardrobeProducts] = useState([]);
 
   // api required parameters
   const accessToken = useSelector(state => state.token);
   const navigate = useNavigate();
 
+  const [dataToSend, setDataToSend] = useState({
+    uploadedImages: [],
+    facebookLink: '',
+    instagramLink: '',
+    preferences: [],
+  });
+
+  // Get Request to fetch unsaved wardrobes i.e. Drafts 
   useEffect(() => {
     const fetchWardrobe = async () => {
       try {
-        const data = await SaveWardrobe.getAllSaveWardrobes(token);
+        const data = await UnSaveWardrobe.getAllUnSaveWardrobes(token);
         console.log("wardrobedata", data);
 
-        // Assuming `created at timetstramp` is available and is a suitable replacement for sorting by creation date
+        // Sorting on the basis of `created_at timetstramp`
         const sortedData = sortOrder === 'Newest First'
           ? [...data].sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
           : [...data].sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
@@ -40,24 +51,23 @@ const HomeBox = () => {
 
       } catch (error) {
         console.error("Error fetching wardrobe products:", error);
-        // Handle error or set an error state
       }
     };
 
     fetchWardrobe();
-  }, [userId, token, sortOrder]); // Run effect whenever userId or token changes
+  }, [userId, token, sortOrder]);  // Run effect whenever userId or token changes
 
-  // function to delete wardrobe
+  // Delete Request to delete (draft ) i.e. unsaved wardrobe
   const handleDeleteWardrobe = async (id) => {
     if (!id) {
-      console.error('Wardrobe ID is undefined');
+      console.error('Draft ID is undefined');
       return;
     }
 
     try {
-      await SaveWardrobe.deleteSaveWardrobe(accessToken, id);
-      console.log("Wardrobe deleted successfully");
-      // Setting the state to show the toast after successful deletion of toast
+      await UnSaveWardrobe.deleteUnSaveWardrobe(accessToken, id);
+      console.log("Draft Deleted Successfully");
+      // Setting the state to show the toast after successful deletion
       setShowToast(true);
 
       // Set a timeout to refresh the page after 3 seconds , till 3 seconds deletion toast will show 
@@ -66,7 +76,7 @@ const HomeBox = () => {
       }, 3000);
 
     } catch (error) {
-      console.error('Failed to delete wardrobe:', error);
+      console.error('Failed to delete draft:', error);
     }
   };
 
@@ -74,7 +84,6 @@ const HomeBox = () => {
   const handleButtonClick = () => {
     setModalShow(!modalShow); // Toggle the modal state
   };
-
 
 
   // Function to close the modal
@@ -88,13 +97,75 @@ const HomeBox = () => {
     setSortOrder(order); // Update sorting order
   };
 
+  // extracting only date from created_at timestramp, instaed of time 
+  const formatDate = (datetime) => {
+    const date = new Date(datetime);
+    const options = { year: 'numeric', month: 'short', day: 'numeric' };
+    return date.toLocaleDateString('en-US', options); // Formats the date as "Jan 1, 2023"
+  };
+
+
+  const handleSaveWardrobe = async (wardrobeId) => {
+    if (!wardrobeId) {
+      console.error('Wardrobe ID is undefined');
+      return;
+    }
+    try {
+      const selectedWardrobe = wardrobes.find(x => x.wardrobe_id === wardrobeId);
+  
+      if (!selectedWardrobe) {
+        console.error('No wardrobe found with the provided ID:', wardrobeId);
+        return;
+      }
+  
+      // Ensure the properties are defined and have correct data types
+      const uploadedImages = selectedWardrobe.uploadedImages ? selectedWardrobe.uploadedImages : [];
+      const facebookLink = selectedWardrobe.facebookLink ? selectedWardrobe.facebookLink : '';
+      const instagramLink = selectedWardrobe.instagramLink ? selectedWardrobe.instagramLink : '';
+      const preferences = selectedWardrobe.preferences ? selectedWardrobe.preferences : [];
+      const products = selectedWardrobe.products ? selectedWardrobe.products : [];
+  
+      // Construct the data to be sent
+      const dataToSend = {
+        name: selectedWardrobe.name,
+        upload_images_arr: Array.isArray(uploadedImages) ? uploadedImages.map((x) => x.dataURL) : [], // Ensure uploadedImages is an array
+        media_links: {
+          Facebook: facebookLink,
+          Instagram: instagramLink
+        },
+        manual_preferences: preferences,
+        products: products
+      };
+  
+      // Log the data being sent
+      console.log('Data being sent to save wardrobe:', dataToSend);
+  
+      // Create Request to push in user saved wardrobes 
+      const response = await SaveWardrobe.saveWardrobe(token, dataToSend);
+      console.log('Wardrobe Saved successfully:', response);
+  
+      // Delete Request to delete from Draft wardrobe
+      await UnSaveWardrobe.deleteUnSaveWardrobe(token, wardrobeId);
+      console.log("Draft Deleted Successfully");
+  
+      setTimeout(() => {
+        window.location.reload();
+      }, 3000);
+  
+    } catch (error) {
+      console.error('Failed to save wardrobe:', error);
+    }
+    setShowToast(true);
+  };
+  
+
   return (
     <>
       <div className="HomeBox">
         <div className="gif-image d-none d-lg-block">
           <img src="/images/Home-screen.gif" alt="Gif Image" />
         </div>
-        <SortedBy onSortChange={handleSortChange} />
+        <UnSaveWardrobesSortedBy onSortChange={handleSortChange} />
 
         <div className="MainCardBox">
           <Row className="g-3 me-0">
@@ -114,7 +185,7 @@ const HomeBox = () => {
                     ))}
                   </Row>
                   <div className="d-flex justify-content-between align-items-center mb-3">
-                    <Link to={`/wardrobe/${wardrobeItem.wardrobe_id}`} style={{textDecoration : 'none'}}>
+                    <Link to={`/draft/${wardrobeItem.wardrobe_id}`} style={{ textDecoration: 'none' }}>
                       <p className="WrdbNmbr" >{wardrobeItem.name}</p>
                     </Link>
                     <Dropdown className="twoOption">
@@ -123,27 +194,34 @@ const HomeBox = () => {
                       </Dropdown.Toggle>
 
                       <Dropdown.Menu>
-                        <Dropdown.Item href="#/action-1">
+                        <Dropdown.Item onClick={() => handleSaveWardrobe(wardrobeItem.wardrobe_id)}>
                           Save Wardrobe
                         </Dropdown.Item>
 
-                        <Dropdown.Item onClick={() => handleDeleteWardrobe(wardrobeItem.wardrobe_id)}>
+                        <Dropdown.Item
+                          style={{ color: '#962d2d' }}
+                          onClick={() => handleDeleteWardrobe(wardrobeItem.wardrobe_id)}>
                           Delete  <img src="/images/remove-icon.svg" alt="icon" />
                         </Dropdown.Item>
 
                         <Dropdown.Item onClick={() => {
                           setShowRenameModal(true);
                           setCurrentWardrobeId(wardrobeItem.wardrobe_id); // Set current wardrobe ID when Rename is clicked
+                          console.log("Current ID set for renaming:", wardrobeItem.wardrobe_id);
                         }}>
-                          Rename <img src="/images/remove-icon.svg" alt="icon" />
+                          <span className="d-flex justify-content-between align-items-center">
+                            <span>Rename</span>
+                            <Pencil />
+                          </span>
                         </Dropdown.Item>
                       </Dropdown.Menu>
                     </Dropdown>
 
-                    <RenameWardrobeModal
+                    <RenameDraftModal
                       show={showRenameModal}
                       onHide={handleModalClose}
-                      wardrobeId={currentWardrobeId}  // Passing the currentWardrobeId to the modal
+                      wardrobeId={currentWardrobeId}
+                    // Passing the currentWardrobeId to the modal
                     />
 
                   </div>
@@ -154,7 +232,7 @@ const HomeBox = () => {
                     </Button>
 
                     <p className="AgaoTime">
-                      Created:{wardrobeItem.created_at}
+                      Created: {formatDate(wardrobeItem.created_at)}
                     </p>
 
                   </div>

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Toast } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-const EditSavedToast = ({ showToast, onClose }) => {
+const UpdatedInfoToast = ({ showToast, onClose }) => {
   const [modalShow, setModalShow] = React.useState(false);
   return (
     <div>
@@ -25,4 +25,4 @@ const EditSavedToast = ({ showToast, onClose }) => {
   );
 };
 
-export default EditSavedToast;
+export default UpdatedInfoToast;

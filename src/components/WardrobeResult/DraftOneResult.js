@@ -20,9 +20,11 @@ import SavedBasedUponPrfrnc from "./savedbasedpref";
 import { deleteSaveWardrobe, renameWardrobe } from '../../services/saveWardrobe';
 import DeleteSuccessfullyToast from "../Toasts/DeletedSuccessfullyToast";
 import { Link } from 'react-router-dom';
+import UnSaveWardrobe from "../../services/unsaveWardrobe";
 import { Pencil } from 'react-bootstrap-icons';
 
-const WardrobeOneResult = () => {
+const DraftOneResult = () => {
+
 
   const navigate = useNavigate();
   const [selectedProducts, setSelectedProducts] = useState([]);
@@ -49,8 +51,8 @@ const WardrobeOneResult = () => {
   useEffect(() => {
     const fetchWardrobe = async () => {
       try {
-        const data = await SaveWardrobe.getSaveWardrobeById(accessToken, wardrobeId);
-        console.log("wardrobedata1mmmmm", data);
+        const data = await UnSaveWardrobe.getUnSaveWardrobeById(accessToken, wardrobeId);
+        console.log("Draft One Result Data:", data); // Check fetched data
         setWardrobe(data);  // Update state with fetched wardrobe products data
       } catch (error) {
         console.error("Error fetching wardrobe products:", error);
@@ -80,18 +82,18 @@ const WardrobeOneResult = () => {
   // function to delete wardrobe
   const handleDeleteWardrobe = async () => {
     try {
-      await SaveWardrobe.deleteSaveWardrobe(accessToken, wardrobeId);
+      await UnSaveWardrobe.deleteUnSaveWardrobe(accessToken, wardrobeId);
       // Setting the state to show the toast after successful deletion of toast
       setShowToast(true);
-      console.log("Wardrobe deleted successfully");
+      console.log("Draft Deleted Successfully");
 
       // Calling navigate inside the setTimeout function and store the timeout ID
       timeoutId = setTimeout(() => {
-        navigate('/WardrobesCollection');
+        navigate('/home');
       }, 2000);
 
     } catch (error) {
-      console.error('Failed to delete wardrobe:', error);
+      console.error('Failed to delete draft:', error);
     }
   };
 
@@ -101,6 +103,7 @@ const WardrobeOneResult = () => {
       clearTimeout(timeoutId);
     };
   }, []);
+
 
   const handleChange = () => {
     navigate("/");
@@ -124,10 +127,6 @@ const WardrobeOneResult = () => {
               </Button>
             </div>
 
-            <Link to={`/wardrobe/${wardrobeId}/UpdateWardrobe`}
-              state={{ uploadedImage: wardrobes.upload_images_arr, manualPreferences: wardrobes.manual_preferences, mediaLinks: wardrobes.media_links }}
-              style={{ textDecoration: 'none' }}>
-
               <Button className="saveWrdrb" style={{
                 width: "200px",
                 height: "50px",
@@ -135,15 +134,10 @@ const WardrobeOneResult = () => {
                 alignItems: "center",
                 justifyContent: "center"
               }}
-                onClick={() => console.log({
-                  uploadedImage: wardrobes.upload_images_arr,
-                  manualPreferences: wardrobes.manual_preferences,
-                  mediaLinks: wardrobes.media_links
-                })}>
+               >
                 <Pencil style={{ marginRight: '10px' }} />
                 Update Preferences
-              </Button>
-            </Link>
+              </Button>       
           </div>
 
           {/* Showing the deleted successfully Toast component */}
@@ -196,17 +190,17 @@ const WardrobeOneResult = () => {
             </div>
             <div className="d-flex align-items-center gap-2">
 
-
-
-              <Button className="regenrete" onClick={() => setModalRegenrateShow(true)}>
-                Regenerate
-              </Button>
+              <Link to="/UpdateWardrobe">
+                <Button className="regenrete" onClick={() => setModalRegenrateShow(true)}>
+                  Regenerate
+                </Button>
+              </Link>
 
               <RegenerateModal show={modalRegenrateShow} onHide={() => setModalRegenrateShow(false)} />
             </div>
           </div>
         </div>
-      </div >
+      </div>
       <div>
 
       </div>
@@ -219,4 +213,4 @@ const WardrobeOneResult = () => {
   );
 };
 
-export default WardrobeOneResult;
+export default DraftOneResult;

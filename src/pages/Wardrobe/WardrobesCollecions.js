@@ -1,17 +1,33 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Col, Row } from "react-bootstrap";
 import UserSideBar from "../../components/Sidebar/UserSideBar";
-import GuestGenrateForm from "../../components/genrateForm/GuestGenrateForm";
-import HomeHeader from "../../components/headers/HomeHeader";
-import HomeBox from "../../components/home/HomeBox";
 import HomeFooter from "../../components/home-footer/HomeFooter";
 import WelcomeHeader from "../../components/headers/WelcomeHeader";
 import WardrobesBox from './WardrobesBox';
 import WardrobesHeader from "../../components/headers/WardrobesHeader";
+import SaveWardrobe from "../../services/saveWardrobe";
+import { useSelector } from "react-redux";
 
 const WardrobesCollecions = () => {
+
+  const token = useSelector((state) => state.token);
+  const [wardrobes, setWardrobes] = useState([]);
+
+  useEffect(() => {
+    const fetchWardrobes = async () => {
+      try {
+        const data = await SaveWardrobe.getAllSaveWardrobes(token);
+        setWardrobes(data);
+      } catch (error) {
+        console.error("Error fetching wardrobe products:", error);
+      }
+    };
+
+    fetchWardrobes();
+  }, [token]);
+
   return (
-      <>
+    <>
       <div className="crtWrdbMain pb-0">
         <div className="d-lg-none">
           <WelcomeHeader />
@@ -19,14 +35,10 @@ const WardrobesCollecions = () => {
         <WardrobesHeader />
         <Row className="m-0 p-0">
           <Col lg={2} className="ps-0">
-            <UserSideBar />
+            <UserSideBar wardrobes={wardrobes} />
           </Col>
           <Col xs={12} lg={10} className="pe-0">
-            <WardrobesBox />
-            {/* ------when you have don't wardrobe then show this div----- */}
-            {/* <div className="NoHaveWardrobe">
-              <img src="/images/no-have-wardrobe.png" alt="No Have Wordrobe" />
-            </div> */}
+            <WardrobesBox wardrobes={wardrobes}/>
           </Col>
         </Row>
         <div className="d-none d-lg-block">

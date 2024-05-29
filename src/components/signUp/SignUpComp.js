@@ -9,8 +9,8 @@ import { firebaseApp } from "../../firebase";
 import { useDispatch } from 'react-redux';
 import { updateAccessToken, updateUserToken } from '../../store/actions';
 import { onAuthStateChanged } from 'firebase/auth';
-import EmailVerificationToast from "../Toasts/EmailVerificationToast";
-
+import EmailAlreadyExistsToast from "../Toasts/EmailAlreadyExistsToast";
+import EmailVerificationToast from "../Toasts/EmailVerificationToast"
 
 const SignUpComp = ({ onClose }) => {
   const navigate = useNavigate();
@@ -20,7 +20,15 @@ const SignUpComp = ({ onClose }) => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [showToast, setShowToast] = useState(false);      // State to control the visibility of the toast
+  const [showToast, setShowToast] = useState(false);      // State to control the visibility of email verification toast
+  // State to control the visibility of the email already exists toast
+  const [showEmailAlreadyExistsToast, setShowEmailAlreadyExistsToast] = useState(false);
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+  const [usernameError, setUsernameError] = useState('');
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
+
 
   const auth = getAuth(firebaseApp);
   console.log("AUTH ", auth)
@@ -58,6 +66,31 @@ const SignUpComp = ({ onClose }) => {
     }
   };
   const handleSignUp = async () => {
+
+    // Validation checks
+    let valid = true;
+    if (!email) {
+      setEmailError('Email is required');
+      valid = false;
+    } else if (!emailRegex.test(email)) {
+      setEmailError('Invalid email');
+      valid = false;
+    } else {
+      setEmailError('');
+    }
+
+    if (!password) {
+      setPasswordError('Password is required');
+      valid = false;
+    } else if (!passwordRegex.test(password)) {
+      setPasswordError('Invalid password');
+      valid = false;
+    } else {
+      setPasswordError('');
+    }
+
+    if (!valid) return; // Exit if validation fails
+
     try {
 
 
@@ -66,8 +99,6 @@ const SignUpComp = ({ onClose }) => {
 
       await sendEmailVerification(auth.currentUser);
 
-
-      // Setting the state to show the toast after successful sign-up
       setShowToast(true);
 
       // Wait for email verification, checking periodically
@@ -114,9 +145,14 @@ const SignUpComp = ({ onClose }) => {
       // Show alert or message indicating successful registration
       setModalShow(true);
       console.log("User data saved to Firestore:", userData);
+
     } catch (error) {
-      // Show error message
-      console.error("Error signing up:", error.message);
+      if (error.code === 'auth/email-already-in-use') {
+        // Set the state to show the email already exists toast
+        setShowEmailAlreadyExistsToast(true);
+      } else {
+        console.error("Error signing up:", error.message);
+      }
     }
   };
 
@@ -163,7 +199,50 @@ const SignUpComp = ({ onClose }) => {
   };
 
 
+  const validateEmail = (value) => {
+    if (!emailRegex.test(value)) {
+      setEmailError('Invalid email');
+    } else {
+      setEmailError('');
+    }
+  };
 
+  const validatePassword = (value) => {
+    let errors = [];
+    if (!/(?=.*[a-z])/.test(value)) {
+      errors.push("1 lowercase");
+    }
+    if (!/(?=.*[A-Z])/.test(value)) {
+      errors.push("1 uppercase");
+    }
+    if (!/(?=.*[!@#$%^&*()_+[\]{};':"\\|,.<>/?])/.test(value)) {
+      errors.push("1 special character");
+    }
+    if (value.length < 8) {
+      errors.push("8 length");
+    }
+    if (errors.length > 0) {
+      setPasswordError(` ${errors.join(", ")} is missing`);
+    } else {
+      setPasswordError('');
+    }
+  };
+
+  const handleEmailBlur = () => {
+    validateEmail(email);
+  };
+
+  const handleEmailFocus = () => {
+    setEmailError('');
+  };
+
+  const handlePasswordBlur = () => {
+    validatePassword(password);
+  };
+
+  const handlePasswordFocus = () => {
+    setPasswordError('');
+  };
 
   return (
     <>
@@ -174,14 +253,22 @@ const SignUpComp = ({ onClose }) => {
         </div>
         <Form>
           <FormGroup className="mb-3" controlId="formBasicEmail">
-            <Form.Control type="email" placeholder="Enter email" onChange={(e) => setEmail(e.target.value)} />
+            <Form.Control type="email" placeholder="Enter email" onChange={(e) => setEmail(e.target.value)} onBlur={handleEmailBlur}
+              onFocus={handleEmailFocus} />
           </FormGroup>
+          {emailError && <p style={{ color: 'red' }}>{emailError}</p>}
+
           <FormGroup className="mb-3" controlId="formBasicUsername">
             <Form.Control type="text" placeholder="Username" onChange={(e) => setUsername(e.target.value)} />
           </FormGroup>
+          {usernameError && <p style={{ color: 'red' }}>{usernameError}</p>}
+
           <FormGroup controlId="formBasicPassword">
-            <Form.Control type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
+            <Form.Control type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} onBlur={handlePasswordBlur}
+              onFocus={handlePasswordFocus} />
           </FormGroup>
+          {passwordError && <p style={{ color: 'red' }}>{passwordError}</p>}
+
           <Button className="btnsign" onClick={handleSignUp}>Sign up</Button>
           <div className="d-flex flex-column align-items-center">
             <button className="btncontinue" onClick={handleGoogleSignIn}>
@@ -202,9 +289,10 @@ const SignUpComp = ({ onClose }) => {
           </div>
         </Form>
 
-        {/* Show the EmailVerificationToast component */}
         <EmailVerificationToast showToast={showToast} onClose={() => setShowToast(false)} />
 
+        {/* Showing the EmailAlreadyExistsToast component */}
+        <EmailAlreadyExistsToast showToast={showEmailAlreadyExistsToast} onClose={() => setShowEmailAlreadyExistsToast(false)} />
         <img
           className="bgMblLogin d-lg-none"
           src="/images/mbl-bg-login.png"

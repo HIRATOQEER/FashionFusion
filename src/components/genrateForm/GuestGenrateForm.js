@@ -1,35 +1,67 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, OverlayTrigger, Popover } from 'react-bootstrap';
 import GenratedImageAccordion from '../Accordions/GenratedImageAccordion';
 import GenrateSocialAccordion from '../Accordions/GenrateSocialAccordion';
 import GeneratePreferences from '../Accordions/GentratePreferences';
 import { useNavigate } from 'react-router-dom';
+import brandSvc from "../../services/brandService"; 
+import UnSaveWardrobe from "../../services/unsaveWardrobe";
+import { useSelector } from "react-redux";
+
 
 const GuestGenrateForm = () => {
 
   const [uploadedImages, setUploadedImages] = useState([]);
-  const [preferences, setPreferences] = useState([]);   // Corrected state setter name
+  const [preferences, setPreferences] = useState([]); 
   const [facebookLink, setFacebookLink] = useState('');
   const [instagramLink, setInstagramLink] = useState('');
-  
+  const [wardrobeProducts, setWardrobeProducts] = useState([]);
+  const token = useSelector((state) => state.token);
+  const [draftWardrobeId, setDraftWardrobeId] = useState(null);
   const navigate = useNavigate();
-  useEffect(() => {
-    console.log('Updated Preferences:', preferences);
-  }, [preferences]); // Run this effect whenever preferences state changes
 
-  const handleSubmit = (submittedPreferences) => {
-    console.log('Before navigation:', { uploadedImages, submittedPreferences, facebookLink, instagramLink });
-    
-    
-    const dataToSend = {
-      uploadedImages: uploadedImages,
-      preferences: submittedPreferences, // Use the submitted preferences here
-      facebookLink: facebookLink,
-      instagramLink: instagramLink,
-    };
-    navigate('/guestresult', { state: { dataToSend } });
-  };
   
+  // brands api to get brand products in drafted wardrobe
+  useEffect(() => {
+    const fetchWardrobeProducts = async () => {
+      try {
+        const data = await brandSvc.getWardrobeProducts("women");
+        console.log("Wardrobe data:", data);
+        setWardrobeProducts(data);
+      } catch (error) {
+        console.error("Error fetching wardrobe products:", error);
+      }
+    };
+    fetchWardrobeProducts();
+
+  }, []); // Run this effect whenever preferences state changes
+
+  const handleSubmit = async (submittedPreferences) => {
+    const dataToSend = {
+      uploadedImages,
+      preferences: submittedPreferences,
+      facebookLink,
+      instagramLink,
+    };
+
+    const draftData = {
+      name: "Draft Wardrobe",
+      upload_images_arr: dataToSend.uploadedImages.map((x) => x.dataURL),
+      media_links: {
+        Facebook: dataToSend.facebookLink,
+        Instagram: dataToSend.instagramLink,
+      },
+      manual_preferences: dataToSend.preferences,
+      products: wardrobeProducts,
+    };
+
+    // drafts api to create drafted wardrobe
+    const response = await UnSaveWardrobe.UnSaveWardrobe(draftData, token);
+    setDraftWardrobeId(response.wardrobe_id);
+    navigate('/guestresult', { state: { dataToSend, draftWardrobeId: response.wardrobe_id } });
+
+  };
+
 
   const handleImageUpload = (event) => {
     const newImage = event.target.files[0];
@@ -101,15 +133,15 @@ const GuestGenrateForm = () => {
         uploadedImages={uploadedImages}
         onImageChange={setUploadedImages}
       />
-      
+
       <GenrateSocialAccordion
         onFacebookLinkChange={handleFacebookLinkChange}
         onInstagramLinkChange={handleInstagramLinkChange}
       />
       <GeneratePreferences
-       preferences={preferences}
-       onPreferencesChange={handlePreferencesSubmit}
-       onSubmit={handleSubmit}
+        preferences={preferences}
+        onPreferencesChange={handlePreferencesSubmit}
+        onSubmit={handleSubmit}
       />
     </div>
   );

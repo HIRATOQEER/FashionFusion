@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import UserSideBar from "../../components/Sidebar/UserSideBar";
-import WardrobeOneResult from "../../components/WardrobeResult/WardrobeOneResult";
+import DraftOneResult from "../../components/WardrobeResult/DraftOneResult";
 import WelcomeHeader from "../../components/headers/WelcomeHeader";
-import WardrobesHeader from "../../components/headers/WardrobesHeader";
+import Draftsheader from "../../components/headers/Draftsheader";
 
-const WardrobeOne = () => {
+const DraftOne = () => {
 
-  const [wardrobes, setWardrobe] = useState([]);
+  const [wardrobe, setWardrobe] = useState({});
 
   return (
     <>
@@ -15,15 +15,15 @@ const WardrobeOne = () => {
         <div className="d-lg-none">
           <WelcomeHeader />
         </div>
-        <WardrobesHeader />
+        <Draftsheader />
         <Row className="m-0 p-0 pe-3">
           <Col lg={2} className="ps-0">
             <UserSideBar />
           </Col>
           <Col xs={12} lg={10} className="pe-0">
             <div className="genratedResult">
-              <WardrobeOneResult wardrobe={wardrobes} />
-            </div>         
+              <DraftOneResult wardrobe={wardrobe} />
+            </div>
           </Col>
         </Row>
       </div>
@@ -31,4 +31,4 @@ const WardrobeOne = () => {
   );
 };
 
-export default WardrobeOne;
+export default DraftOne;

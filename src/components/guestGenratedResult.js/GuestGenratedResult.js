@@ -16,6 +16,8 @@ import BasedUponPrfrnc from "./BasedUponPrfrnc";
 import brandSvc from "../../services/brandService"; // Import the API service
 import SaveWardrobe from "../../services/saveWardrobe";
 import { useSelector } from "react-redux";
+import EditSavedToast from "../Toasts/EditSavedToast";
+import UnSaveWardrobe from "../../services/unsaveWardrobe";
 
 const GuestGenratedResult = () => {
 
@@ -23,9 +25,29 @@ const GuestGenratedResult = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const token = useSelector((state) => state.token);
-  const { dataToSend } = location.state || {};
+  const { dataToSend, draftWardrobeId } = location.state || {};
   const [productModalVisible, setProductModalVisible] = useState({});
+  const [modalShow, setModalShow] = useState(false);
+  const [modalAddShow, setModalAddShow] = useState(false);
+  const [modalOverViewShow, setModalOverViewShow] = useState(false);
+  const [modalRegenrateShow, setModalRegenrateShow] = useState(false);
+  const [showToast, setShowToast] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0); // State to track the index of the currently displayed image
+  const [selectedProducts, setSelectedProducts] = useState([]);
+  const accessToken = useSelector(state => state.token);
+  const [wardrobeProducts, setWardrobeProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
+
+  const handleChange = () => {
+    // Logic to handle change
+    // navigate("/home",{state:{ dataToSend, draftWardrobeId: draftWardrobeId }});
+  };
+
+  const handleCloseToast = () => {
+    setShowToast(false);
+  };
 
   useEffect(() => {
     // Check if dataToSend is properly received
@@ -37,26 +59,7 @@ const GuestGenratedResult = () => {
     }
   }, [dataToSend]);
 
-
-  const [modalShow, setModalShow] = useState(false);
-  const [modalAddShow, setModalAddShow] = useState(false);
-  const [modalOverViewShow, setModalOverViewShow] = useState(false);
-  const [modalRegenrateShow, setModalRegenrateShow] = useState(false);
-  const [showToast, setShowToast] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState(null);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0); // State to track the index of the currently displayed image
-  const [selectedProducts, setSelectedProducts] = useState([]);
-  const accessToken = useSelector(state => state.token);
-
-  const handleChange = () => {
-    // Logic to handle change
-    navigate("/createwardrobe");
-  };
-
-
-  const [wardrobeProducts, setWardrobeProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
-
+// get request to fetch brand products 
   useEffect(() => {
     const fetchWardrobeProducts = async () => {
       try {
@@ -72,26 +75,24 @@ const GuestGenratedResult = () => {
     };
 
     fetchWardrobeProducts();
-  }, ["women"]); // Run effect whenever gender changes
+  }, []); // Run effect whenever gender changes
 
-  const handleCloseToast = () => {
-    setShowToast(false);
-  };
-
+  // firstly, deleting the draft wardrobe then calling the Saved api to create new wardrobe in user saved wardrobes 
   const handleButtonClick = async () => {
     try {
+      // Delete the draft wardrobe
+      const deleteResponse = await UnSaveWardrobe.deleteUnSaveWardrobe( token, draftWardrobeId);
+      console.log('Draft wardrobe deleted:', deleteResponse);
 
-      // Ensure that each image dataURL is properly encoded
       const imageData = dataToSend.uploadedImages.map(image => ({
         name: image.name,
         dataURL: image.dataURL.includes(',') ? image.dataURL.split(',')[1] : image.dataURL     // Check if dataURL contains prefix
       }));
 
-      console.log('Image Data:', imageData); // Log image data for verification
-
       const data2 = {
+
         "name": "My Wardrobe",
-        "upload_images_arr": dataToSend.uploadedImages.map((x)=> x.dataURL), // Updated image data
+        "upload_images_arr": dataToSend.uploadedImages.map((x) => x.dataURL), // Updated image data
         "media_links": {
           "Facebook": dataToSend.facebookLink,
           "Instagram": dataToSend.instagramLink
@@ -100,14 +101,18 @@ const GuestGenratedResult = () => {
         "products": wardrobeProducts
       };
 
+      // Create Request
       const response = await SaveWardrobe.saveWardrobe(token, data2);
       console.log('Wardrobe Saved successfully:', response);
-      console.log('WardrobeId', response.wardrobeId);
+      console.log('New wardrobe ID:', response.wardrobeId);
 
+      // Setting a timeout to refresh the page after 2 seconds
+      setTimeout(() => {
+        navigate('/WardrobesCollection')
+      }, 2000);
 
     } catch (error) {
       console.error('Error saving wardrobe:', error.message);
-      // Optionally, you can set state to display an error message to the user
     }
     setShowToast(true);
   };
@@ -270,6 +275,9 @@ const GuestGenratedResult = () => {
                 </Button>
               )}
 
+              {/* Showing the deleted successfully Toast component */}
+              <EditSavedToast showToast={showToast} onClose={() => setShowToast(false)} />
+
               <Button
                 className="regenrete"
                 onClick={() => setModalRegenrateShow(true)}
@@ -287,14 +295,14 @@ const GuestGenratedResult = () => {
       </div>
       <div>
 
-        <SuccessfullySavedToast
+        {/*  <SuccessfullySavedToast
           showToast={showToast}
           onClose={handleCloseToast}
           wardrobeId={wardrobeId}
-        />
+        /> */}
 
       </div>
-      <Button className="btnPrimary mx-auto mt-5 mb-3" onClick={handleChange}>
+      <Button className="btnPrimary mx-auto mt-5 mb-3" >
         <img className="me-3" src="/images/staricon.svg" alt="star" /> Generate
         the magic
       </Button>

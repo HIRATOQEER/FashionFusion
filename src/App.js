@@ -19,6 +19,8 @@ import WardrobeOne from "./pages/Wardrobe/WardrobeOne";
 import LoginModal from "./components/Modals/LoginModal";
 import WardrobesCollecions from "./pages/Wardrobe/WardrobesCollecions";
 import UpdateWardrobe from "./pages/AsGuest/UpdateWardrobe/UpdateWardrobe";
+import DraftOne from "./pages/Wardrobe/DraftOne";
+import DraftOneResult from "./components/WardrobeResult/DraftOneResult";
 
 function App() {
   
@@ -41,9 +43,12 @@ function App() {
           <Route path="/Add" element={<AddProduct/>} />
           <Route path="/home" element={<HomePage/>} />
           <Route path="/WardrobesCollection" element={<WardrobesCollecions/>} />
-          <Route path="/UpdateWardrobe" element={<UpdateWardrobe/>} />
+          
+          <Route path="/wardrobe/:wardrobeId/UpdateWardrobe" element={<UpdateWardrobe/>} />
+          <Route path="/draft/:wardrobeId" element={<DraftOne/>} />
+          <Route path="/draft-one-result" element={<DraftOneResult />} />
 
-          <Route path="*" element={<Navigate to="/" />} />
+          <Route path="*" element={ <Navigate to="/" />} />
         </Routes>
       </Router>
     </Provider>
